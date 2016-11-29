@@ -269,7 +269,7 @@ namespace ModelLayer
         /// </summary>
         protected override void UpdateEntityInDB()
         {
-            //TODO: Specialties.DeleteEntityFromDB(). Написать реализацию метода
+            //TODO: Employer.DeleteEntityFromDB(). Написать реализацию метода
             throw new Exception("Дайте знать если появилось это исключение Employer.UpdateEntityInDB()");
         }
     }

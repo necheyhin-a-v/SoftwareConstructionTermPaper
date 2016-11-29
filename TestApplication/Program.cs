@@ -12,7 +12,10 @@ namespace TestApplication
         static void Main(string[] args)
         {
             //Программа требует предварительной настройки
-            DataBase.Initialize("necheukhin.ddns.net", "1521");
+            DataBase.Initialize("192.168.1.50", "1521");
+            Vacancy vac = new Vacancy("Инженер-программист АСУ ТП", Employer.GetByItn("7707083893"), Specialty.GetByName("it"),
+                EmploymentType.FullTime, "Разработка программного обеспечения ПЛК, SCADA-систем.", 35000, 1);
+
 
            /* Employer emp = new Employer(
                 "7707083893",

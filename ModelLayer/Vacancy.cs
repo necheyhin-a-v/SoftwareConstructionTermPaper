@@ -82,7 +82,7 @@ namespace ModelLayer
             String description, uint salary, uint requiredExperience)
         {
             this.Name = name;
-            this.EmployerItn = employer.GetName();
+            this.EmployerItn = employer.GetItn();
             this.CurrentSpecialty = specialty;                          //Установка специальности с проверкой в базе
             this.CurrentEmploymentType = type;
             this.Description = description;
