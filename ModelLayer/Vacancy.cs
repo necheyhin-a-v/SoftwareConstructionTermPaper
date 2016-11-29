@@ -344,7 +344,7 @@ namespace ModelLayer
                 this.EmployerItn = employer.GetItn();
             }
             else
-                throw new Exception("Вакансия уже имеет работодателя");
+                throw new Exception("Вакансия уже имеет работодателя"); 
             AddEntityToDB();
         }
         /// <summary>
