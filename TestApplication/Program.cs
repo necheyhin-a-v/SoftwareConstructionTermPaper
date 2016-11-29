@@ -13,8 +13,9 @@ namespace TestApplication
         {
             //Программа требует предварительной настройки
             DataBase.Initialize("192.168.1.50", "1521");
-            Vacancy vac = new Vacancy("Инженер-программист АСУ ТП", Employer.GetByItn("7707083893"), Specialty.GetByName("it"),
-                EmploymentType.FullTime, "Разработка программного обеспечения ПЛК, SCADA-систем.", 35000, 1);
+
+           Vacancy vac = new Vacancy("Консультант/аналитик 1С", Employer.GetByItn("7707083893").GetItn(), "it",
+                EmploymentType.FullTime, "Консультация пользователей по функционалу программ на базе 1С", 0, 0);
 
 
            /* Employer emp = new Employer(
