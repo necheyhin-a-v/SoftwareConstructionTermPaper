@@ -54,7 +54,6 @@ namespace ModelLayer
             this.RoleId = (int)role;
             AddEntityToDB();
         }
-
         /// <summary>
         /// Функция ищет пользователя по логину
         /// Обратите внимание, что это статическая функция и может быть вызвана без создания объекта
@@ -195,7 +194,6 @@ namespace ModelLayer
                 throw e;
             }
         }
-
         /// <summary>
         /// защищенная функция, вставляет в базу данных запись на основе login, password, role
         /// </summary>

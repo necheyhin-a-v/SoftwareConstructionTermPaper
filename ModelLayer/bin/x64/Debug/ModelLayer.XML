@@ -668,6 +668,12 @@
              <param name="employerITN">ИНН работодателя</param>
              <returns>Список вакансий для работодателя</returns>
         </member>
+        <member name="M:ModelLayer.Vacancy.GetAll">
+            <summary>
+            Получить список всех вакансий существующих в базе данных
+            </summary>
+            <returns>Список вакансий</returns>
+        </member>
         <member name="M:ModelLayer.Vacancy.ChangeName(System.String)">
             <summary>
             Изменяет имя вакансии в базе данных на основе переданного параметра

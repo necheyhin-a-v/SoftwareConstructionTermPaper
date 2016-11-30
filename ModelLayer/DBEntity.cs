@@ -26,7 +26,6 @@ namespace ModelLayer
         /// Выполняет обновление на основе существующих данных в базе
         /// </summary>
         protected abstract void UpdateEntityInDB();
-
         /// <summary>
         /// Выполняет SQL запрос
         /// В случае невозможного выполнения запроса вызывается исключение

@@ -218,6 +218,42 @@ namespace ModelLayer
             }
         }
         /// <summary>
+        /// Получить список всех вакансий существующих в базе данных
+        /// </summary>
+        /// <returns>Список вакансий</returns>
+        public static List<Vacancy> GetAll()
+        {
+            try
+            {
+                String query = "SELECT * FROM PERMANENT_USER.VACANCIES";
+                //Создание временного объекта для получения функционала базового класса
+                Vacancy temp = new Vacancy();
+                List<Object[]> list = temp.ExecuteSelect(query);
+                List<Vacancy> result = new List<Vacancy>();
+                if (list.Count == 0) return result;
+                foreach (Object[] currentVacancy in list)
+                {
+                    Vacancy vac = new Vacancy();
+                    vac.Name = currentVacancy.ElementAt(0).ToString();            //Имя вакансии
+                    vac.EmployerItn = currentVacancy.ElementAt(1).ToString();     //ИНН работодателя предоставившего вакансию
+                    vac.CurrentSpecialty = Specialty.GetByID(Convert.ToInt32(currentVacancy.ElementAt(2)));
+                    vac.CurrentEmploymentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), currentVacancy.ElementAt(3).ToString());
+                    vac.Description = currentVacancy.ElementAt(4).ToString();
+                    vac.Salary = Convert.ToUInt32(currentVacancy.ElementAt(5).ToString());
+                    vac.RequiredExperience = Convert.ToUInt32(currentVacancy.ElementAt(6).ToString());
+                    //Добавить новый объект вакансии в список
+                    result.Add(vac);
+                }
+                return result;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список всех вакансий");
+                throw e;
+            }
+        }
+        /// <summary>
         /// Изменяет имя вакансии в базе данных на основе переданного параметра
         /// </summary>
         /// <param name="newName">Новое имя вакансии</param>
@@ -256,8 +292,6 @@ namespace ModelLayer
         {
             this.CurrentSpecialty = Specialty.GetByName(specialtyName);
         }
-
-
         /// <summary>
         /// Удаляет все записи из базы данных связанные с этим объектом
         /// </summary>
