@@ -56,7 +56,7 @@ namespace ModelLayer
         /// <param name="description">Описание вакансии, может быть null</param>
         /// <param name="salary">Заработная плата</param>
         /// <param name="requiredExperience">Требуемый уровень для вакансии</param>
-        public Vacancy(String name, String employerItn, Specialty specialty, EmploymentType type, 
+        public Vacancy(String name, String employerItn, Specialty specialty, EmploymentType type,
             String description, uint salary, uint requiredExperience)
         {
             this.Name = name;
@@ -254,13 +254,15 @@ namespace ModelLayer
             }
         }
         /// <summary>
-        /// Изменяет имя вакансии в базе данных на основе переданного параметра
+        /// Изменяет имя вакансии в базе данных, вносит исправления в базу данных на основе переданного параметра
         /// </summary>
         /// <param name="newName">Новое имя вакансии</param>
         public void ChangeName(String newName)
         {
             try
             {
+                if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
+                    throw new Exception("Не задан работодатель");
                 String query = "UPDATE PERMANENT_USER.VACANCIES "
                     + "SET NAME = '" + newName + "' "
                     + "WHERE NAME = '" + this.Name + "' "
@@ -277,12 +279,29 @@ namespace ModelLayer
             }
         }
         /// <summary>
-        /// Сменить тип специальности для данной вакансии. Обычно не требуется
+        /// Сменить тип специальности для данной вакансии и внести изменения в базу данных.
+        /// Обычно данный метод вызывать не требуется
         /// </summary>
         /// <param name="specialty">Специальность для данной вакансии</param>
         public void ChangeSpecialty(Specialty specialty)
         {
-
+            try
+            {
+                if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
+                    throw new Exception("Не задан работодатель");
+                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                    + "SET IDSPECIALTY = " + specialty.GetId() + " "
+                    + "WHERE NAME = '" + this.Name + "' "
+                    + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
+                ExecuteNonSelectQuery(query);
+                this.CurrentSpecialty = specialty;
+                Console.WriteLine("Тип специальности изменен для вакансии");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить тип специальности для вакансии");
+                throw e;
+            }
         }
         /// <summary>
         /// Сменить тип специальности для данной вакансии. Обычно не требуется
@@ -291,7 +310,25 @@ namespace ModelLayer
         /// <param name="specialtyName">Имя специальности существующее в базе данных</param>
         public void ChangeSpecialty(String specialtyName)
         {
-            this.CurrentSpecialty = Specialty.GetByName(specialtyName);
+            try
+            {
+                if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
+                    throw new Exception("Не задан работодатель");
+                //Получить объект по имени специальности
+                Specialty specialty = Specialty.GetByName(specialtyName);
+                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                    + "SET IDSPECIALTY = " + specialty.GetId() + " "
+                    + "WHERE NAME = '" + this.Name + "' "
+                    + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
+                ExecuteNonSelectQuery(query);
+                this.CurrentSpecialty = specialty;
+                Console.WriteLine("Тип специальности изменен для вакансии");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить тип специальности для вакансии");
+                throw e;
+            }
         }
         /// <summary>
         /// Изменить тип занятости для вакансии (например, полный рабочий день)
@@ -299,7 +336,25 @@ namespace ModelLayer
         /// <param name="newType">Новый тип занятости</param>
         public void ChangeEmploymentType(EmploymentType newType)
         {
+            try
+            {
+                if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
+                    throw new Exception("Не задан работодатель");
 
+                int idEmploymentType = Convert.ToInt32(Enum.Parse(typeof(EmploymentType), newType.ToString()));
+                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                    + "SET IDTOF = " + idEmploymentType + " "
+                    + "WHERE NAME = '" + this.Name + "' "
+                    + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
+                ExecuteNonSelectQuery(query);
+                this.CurrentEmploymentType = newType;
+                Console.WriteLine("Тип занятости изменен для вакансии");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить тип занятости для вакансии");
+                throw e;
+            }
         }
         /// <summary>
         /// Сменить описание для текущей вакансии
@@ -307,7 +362,23 @@ namespace ModelLayer
         /// <param name="newDescription">Новое описание</param>
         public void ChangeDescription(String newDescription)
         {
-
+            try
+            {
+                if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
+                    throw new Exception("Не задан работодатель");
+                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                    + "SET DESCRIPTION = '" + newDescription + "' "
+                    + "WHERE NAME = '" + this.Name + "' "
+                    + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
+                ExecuteNonSelectQuery(query);
+                this.Description = newDescription;
+                Console.WriteLine("Изменено описание для вакансии");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить описание для вакансии");
+                throw e;
+            }
         }
         /// <summary>
         /// Изменить оплату вакансии
@@ -315,7 +386,23 @@ namespace ModelLayer
         /// <param name="newSalary">Новая оплата вакансии</param>
         public void ChangeSalary(uint newSalary)
         {
-
+            try
+            {
+                if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
+                    throw new Exception("Не задан работодатель");
+                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                    + "SET SALARY = " + newSalary + " "
+                    + "WHERE NAME = '" + this.Name + "' "
+                    + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
+                ExecuteNonSelectQuery(query);
+                this.Salary = newSalary;
+                Console.WriteLine("Изменена заработная плата для вакансии");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить заработную плату для вакансии");
+                throw e;
+            }
         }
         /// <summary>
         /// Изменить требуемый опыт работы для специальности
@@ -323,11 +410,24 @@ namespace ModelLayer
         /// <param name="newExperience">Новый требуемый опыт работы в годах</param>
         public void ChangeRequiredExperience(uint newExperience)
         {
-
+            try
+            {
+                if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
+                    throw new Exception("Не задан работодатель");
+                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                    + "SET REQUIREDEXPERIENCE = " + newExperience + " "
+                    + "WHERE NAME = '" + this.Name + "' "
+                    + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
+                ExecuteNonSelectQuery(query);
+                this.RequiredExperience = newExperience;
+                Console.WriteLine("Изменен опыт работы для вакансии");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить опыт работы для вакансии");
+                throw e;
+            }
         }
-
-
-
         /// <summary>
         /// Удаляет все записи из базы данных связанные с этим объектом
         /// </summary>

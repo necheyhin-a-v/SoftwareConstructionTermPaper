@@ -474,6 +474,11 @@
             о пользователях и их привелегиях или ролях
             При смене имени роли в базе данных (руками) проверка на соответствие не делается.
             Существующего идентификатора достаточно для работы программы. Однако если нет идентификатора, то программа добавит его
+            </summary> 
+        </member>
+        <member name="M:ModelLayer.User.#ctor">
+            <summary>
+            Конструктор без параметров закрыт для "внешнего" использования
             </summary>
         </member>
         <member name="M:ModelLayer.User.#ctor(System.String,System.String,ModelLayer.UserRoles)">
@@ -688,13 +693,14 @@
         </member>
         <member name="M:ModelLayer.Vacancy.ChangeName(System.String)">
             <summary>
-            Изменяет имя вакансии в базе данных на основе переданного параметра
+            Изменяет имя вакансии в базе данных, вносит исправления в базу данных на основе переданного параметра
             </summary>
             <param name="newName">Новое имя вакансии</param>
         </member>
         <member name="M:ModelLayer.Vacancy.ChangeSpecialty(ModelLayer.Specialty)">
             <summary>
-            Сменить тип специальности для данной вакансии. Обычно не требуется
+            Сменить тип специальности для данной вакансии и внести изменения в базу данных.
+            Обычно данный метод вызывать не требуется
             </summary>
             <param name="specialty">Специальность для данной вакансии</param>
         </member>

@@ -13,8 +13,11 @@ namespace TestApplication
         {
             //Программа требует предварительной настройки
             DataBase.Initialize("192.168.1.50", "1521");
+            Vacancy vac = Vacancy.GetAllEmployerVacancies("7707083893").ElementAt(0);
+            uint saved = vac.GetRequiredExperience();
+            vac.ChangeRequiredExperience(6555555);
+            vac.ChangeRequiredExperience(saved);
 
-            List<User> list = User.GetAll();
 
             Console.Read();
         }
