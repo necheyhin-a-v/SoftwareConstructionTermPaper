@@ -407,6 +407,20 @@
             <param name="name">Имя специальности</param>
             <returns>Объект специальности</returns>
         </member>
+        <member name="M:ModelLayer.Specialty.GetByID(System.Int32)">
+            <summary>
+            Возвращает объект специальности по идентификатору, переданному в качестве параметра
+            </summary>
+            <param name="id">Идентификатор специальности которую нужно вернуть</param>
+            <returns>Специальность на основе данных из базы</returns>
+        </member>
+        <member name="M:ModelLayer.Specialty.CanGetByID(System.Int32)">
+            <summary>
+            Проверяется можно ли получить специальность из базы данных по идентификатору
+            </summary>
+            <param name="id">id специальности</param>
+            <returns>true если запись специальности с id существует в базе данных</returns>
+        </member>
         <member name="M:ModelLayer.Specialty.CanGetByName(System.String)">
             <summary>
             Проверяет существует ли специальность в базе данных с именем name

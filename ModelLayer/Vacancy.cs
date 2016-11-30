@@ -201,7 +201,7 @@ namespace ModelLayer
                     Vacancy vac = new Vacancy();
                     vac.Name = currentVacancy.ElementAt(0).ToString();            //Имя вакансии
                     vac.EmployerItn = currentVacancy.ElementAt(1).ToString();     //ИНН работодателя предоставившего вакансию
-                    vac.CurrentSpecialty = Specialty.GetByName(currentVacancy.ElementAt(2).ToString());
+                    vac.CurrentSpecialty = Specialty.GetByID(Convert.ToInt32(currentVacancy.ElementAt(2)));
                     vac.CurrentEmploymentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), currentVacancy.ElementAt(3).ToString());
                     vac.Description = currentVacancy.ElementAt(4).ToString();
                     vac.Salary = Convert.ToUInt32(currentVacancy.ElementAt(5).ToString());

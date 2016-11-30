@@ -117,13 +117,11 @@ namespace ModelLayer
                 throw e;
             }
         }
-
         /// <summary>
         /// Добавляет новую вакансию к текущему работодателю, производит необходимые связки в базе данных
         /// В случае ошибки вызывается исключение
         /// </summary>
         /// <param name="vacancy">Вакансия работодателя для добавления</param>
-        //TODO: Employer.AddVacancy() отладить
         public void AddVacancy(Vacancy vacancy)
         {
             vacancy.SetEmployer(this);
@@ -228,7 +226,6 @@ namespace ModelLayer
                 throw e;
             }
         }
-
         /// <summary>
         /// Функция для получения ИНН работодателя (текущего объекта)
         /// </summary>
