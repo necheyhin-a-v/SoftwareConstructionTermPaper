@@ -278,6 +278,37 @@ namespace ModelLayer
             }
         }
         /// <summary>
+        /// Получить все объекты пользователей из базы данных
+        /// </summary>
+        /// <returns>Список пользователей</returns>
+        public static List<User> GetAll()
+        {
+            try
+            {
+                String query = "SELECT * FROM PERMANENT_USER.USERS";
+                //Временный пользователь для вызова методов базового класса
+                User temp = new User();
+                List<Object[]> list = temp.ExecuteSelect(query);
+                if (list.Count == 0) throw new Exception("Запрос не вернул ни одной строки");
+                List<User> result = new List<User>();
+                foreach (Object[] currentUser in list)
+                {
+                    User newUser = new User();
+                    newUser.Login = currentUser.ElementAt(0).ToString();
+                    newUser.Password = currentUser.ElementAt(1).ToString();
+                    result.Add(newUser);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список пользователей");
+                throw e;
+            }
+        }
+        
+        
+        /// <summary>
         /// Обновляет сущность на основе данных класса в базе данных
         /// </summary>
         protected override void UpdateEntityInDB()

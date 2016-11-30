@@ -549,6 +549,12 @@
             </summary>
             <returns>Текущая роль пользователя</returns>
         </member>
+        <member name="M:ModelLayer.User.GetAll">
+            <summary>
+            Получить все объекты пользователей из базы данных
+            </summary>
+            <returns>Список пользователей</returns>
+        </member>
         <member name="M:ModelLayer.User.UpdateEntityInDB">
             <summary>
             Обновляет сущность на основе данных класса в базе данных

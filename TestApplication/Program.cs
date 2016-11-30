@@ -14,7 +14,7 @@ namespace TestApplication
             //Программа требует предварительной настройки
             DataBase.Initialize("192.168.1.50", "1521");
 
-            List<Employer> list = Employer.GetAll();
+            List<User> list = User.GetAll();
 
             Console.Read();
         }
