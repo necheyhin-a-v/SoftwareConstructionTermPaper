@@ -179,13 +179,29 @@ namespace ModelLayer
             this.RequiredExperience = requiredExperience;
             this.EmployerItn = null;
         }
+
         /// <summary>
         /// Изменяет имя вакансии в базе данных на основе переданного параметра
         /// </summary>
         /// <param name="newName">Новое имя вакансии</param>
         public void ChangeName(String newName)
         {
-
+            try
+            {
+                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                    + "SET NAME = '" + newName + "' "
+                    + "WHERE NAME = '" + this.Name + "' "
+                    + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
+                ExecuteNonSelectQuery(query);
+                //Имя меняется только в случае успешного выполнения запроса
+                this.Name = newName;
+                Console.WriteLine("Имя вакансии успешно изменено");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить имя вакансии");
+                throw e;
+            }
         }
         /// <summary>
         /// Сменить тип специальности для данной вакансии. Обычно не требуется
@@ -231,8 +247,6 @@ namespace ModelLayer
                 Console.WriteLine("Невозможно удалить вакансию из базы данных");
                 throw e;
             }
-
-
         }
         /// <summary>
         /// Добавляет новую запись в базу данных на основе имеющейся в классе информации

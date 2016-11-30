@@ -12,12 +12,14 @@ namespace TestApplication
         static void Main(string[] args)
         {
             //Программа требует предварительной настройки
-            DataBase.Initialize("192.168.1.50", "1521");
+            DataBase.Initialize("necheukhin.ddns.net", "1521");
 
-           Vacancy vac = new Vacancy("Консультант/аналитик 1С", Employer.GetByItn("7707083893").GetItn(), "it",
-                EmploymentType.FullTime, "Консультация пользователей по функционалу программ на базе 1С", 0, 0);
-
-
+            Employer emp1 = Employer.GetByItn("7014026629");
+        Vacancy vac = new Vacancy("Инженер технического центра", "производство",
+                EmploymentType.FullTime,
+                "Оказание консультационных услуг и технической поддержки потребителю касаемо особенностей работы выпускаемой предприятием продукции, методов устранения нештатных ситуаций при эксплуатации", 55000, 3);
+            emp1.AddVacancy(vac);
+            vac.SetEmployer("7014026629");
            /* Employer emp = new Employer(
                 "7707083893",
                 "ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО \"СБЕРБАНК РОССИИ\"",
