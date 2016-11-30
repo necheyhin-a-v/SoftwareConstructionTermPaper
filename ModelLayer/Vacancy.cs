@@ -179,7 +179,17 @@ namespace ModelLayer
             this.RequiredExperience = requiredExperience;
             this.EmployerItn = null;
         }
+        /// <summary>
+        /// Получает набор вакансий связанных с работодателем, по его ИНН
+        ///
+        /// </summary>
+        /// <param name="employerITN">ИНН работодателя</param>
+        /// <returns>Список вакансий для работодателя</returns>
+        public List<Vacancy> GetAllEmployerVacancies(String employerITN)
+        {
 
+            return null;
+        }
         /// <summary>
         /// Изменяет имя вакансии в базе данных на основе переданного параметра
         /// </summary>
