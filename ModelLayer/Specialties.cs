@@ -91,6 +91,7 @@ namespace ModelLayer
                 String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
                     + "WHERE SPECIALTY = '" + name +"'";
                 List<Object[]> list = specialty.ExecuteSelect(query);
+                if (list.Count == 0) throw new Exception("Запрос вернул 0 строк");
                 specialty.Id = Convert.ToInt32(list.ElementAt(0).ElementAt(0));
                 specialty.Name = list.ElementAt(0).ElementAt(1).ToString();
                 return specialty;
@@ -101,6 +102,25 @@ namespace ModelLayer
                 throw e;
             }
         }
+        public static Specialty GetByID(int id)
+        {
+            try
+            {
+                Specialty specialty = new Specialty();
+                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                    + "WHERE ID = " + id ;
+                List<Object[]> list = specialty.ExecuteSelect(query);
+                specialty.Id = Convert.ToInt32(list.ElementAt(0).ElementAt(0));
+                specialty.Name = list.ElementAt(0).ElementAt(1).ToString();
+                return specialty;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить объект специальности по имени");
+                throw e;
+            }
+        }
+
         /// <summary>
         /// Проверяет существует ли специальность в базе данных с именем name
         /// </summary>

@@ -185,10 +185,37 @@ namespace ModelLayer
         /// </summary>
         /// <param name="employerITN">ИНН работодателя</param>
         /// <returns>Список вакансий для работодателя</returns>
-        public List<Vacancy> GetAllEmployerVacancies(String employerITN)
+        public static List<Vacancy> GetAllEmployerVacancies(String employerITN)
         {
-
-            return null;
+            try
+            {
+                String query = "SELECT * FROM PERMANENT_USER.VACANCIES "
+                    + "WHERE EMPLOYERITN = '" + employerITN + "'";
+                //Создание временного объекта для получения функционала базового класса
+                Vacancy temp = new Vacancy();
+                List<Object[]> list = temp.ExecuteSelect(query);
+                List<Vacancy> result = new List<Vacancy>();
+                if (list.Count == 0) return result;
+                foreach (Object[] currentVacancy in list)
+                {
+                    Vacancy vac = new Vacancy();
+                    vac.Name = currentVacancy.ElementAt(0).ToString();            //Имя вакансии
+                    vac.EmployerItn = currentVacancy.ElementAt(1).ToString();     //ИНН работодателя предоставившего вакансию
+                    vac.CurrentSpecialty = Specialty.GetByName(currentVacancy.ElementAt(2).ToString());
+                    vac.CurrentEmploymentType = (EmploymentType)Enum.Parse(typeof(EmploymentType), currentVacancy.ElementAt(3).ToString());
+                    vac.Description = currentVacancy.ElementAt(4).ToString();
+                    vac.Salary = Convert.ToUInt32(currentVacancy.ElementAt(5).ToString());
+                    vac.RequiredExperience = Convert.ToUInt32(currentVacancy.ElementAt(6).ToString());
+                    //Добавить новый объект вакансии в список
+                    result.Add(vac);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список вакансий для работодателя");
+                throw e;
+            }
         }
         /// <summary>
         /// Изменяет имя вакансии в базе данных на основе переданного параметра
