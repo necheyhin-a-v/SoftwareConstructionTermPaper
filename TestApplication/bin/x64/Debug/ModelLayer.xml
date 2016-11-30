@@ -360,6 +360,12 @@
             </summary>
             <returns>Номер телефона работодателя</returns>
         </member>
+        <member name="M:ModelLayer.Employer.GetAll">
+            <summary>
+            Возвращает список всех объектов Employer, хранящихся в базе данных
+            </summary>
+            <returns>Список всех объектов Employer из базы данных</returns>
+        </member>
         <member name="M:ModelLayer.Employer.UpdateEntityInDB">
             <summary>
             Одновляет базу данных на основе сведений из класса
@@ -689,8 +695,33 @@
         <member name="M:ModelLayer.Vacancy.ChangeSpecialty(System.String)">
             <summary>
             Сменить тип специальности для данной вакансии. Обычно не требуется
+            Специальность на которую меняется должна существовать в базе данных
             </summary>
             <param name="specialtyName">Имя специальности существующее в базе данных</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeEmploymentType(ModelLayer.EmploymentType)">
+            <summary>
+            Изменить тип занятости для вакансии (например, полный рабочий день)
+            </summary>
+            <param name="newType">Новый тип занятости</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeDescription(System.String)">
+            <summary>
+            Сменить описание для текущей вакансии
+            </summary>
+            <param name="newDescription">Новое описание</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeSalary(System.UInt32)">
+            <summary>
+            Изменить оплату вакансии
+            </summary>
+            <param name="newSalary">Новая оплата вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeRequiredExperience(System.UInt32)">
+            <summary>
+            Изменить требуемый опыт работы для специальности
+            </summary>
+            <param name="newExperience">Новый требуемый опыт работы в годах</param>
         </member>
         <member name="M:ModelLayer.Vacancy.Delete">
             <summary>
