@@ -14,7 +14,10 @@ namespace TestApplication
             //Программа требует предварительной настройки
             DataBase.Initialize("192.168.1.50", "1521");
 
-            List<Vacancy> list = Vacancy.GetAll();
+            Vacancy vac = Vacancy.GetAll().ElementAt(0);
+            String savedName = vac.GetName();
+            vac.ChangeName("NewName");
+            vac.ChangeName(savedName);
 
             Console.Read();
         }

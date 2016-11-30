@@ -286,12 +286,48 @@ namespace ModelLayer
         }
         /// <summary>
         /// Сменить тип специальности для данной вакансии. Обычно не требуется
+        /// Специальность на которую меняется должна существовать в базе данных
         /// </summary>
         /// <param name="specialtyName">Имя специальности существующее в базе данных</param>
         public void ChangeSpecialty(String specialtyName)
         {
             this.CurrentSpecialty = Specialty.GetByName(specialtyName);
         }
+        /// <summary>
+        /// Изменить тип занятости для вакансии (например, полный рабочий день)
+        /// </summary>
+        /// <param name="newType">Новый тип занятости</param>
+        public void ChangeEmploymentType(EmploymentType newType)
+        {
+
+        }
+        /// <summary>
+        /// Сменить описание для текущей вакансии
+        /// </summary>
+        /// <param name="newDescription">Новое описание</param>
+        public void ChangeDescription(String newDescription)
+        {
+
+        }
+        /// <summary>
+        /// Изменить оплату вакансии
+        /// </summary>
+        /// <param name="newSalary">Новая оплата вакансии</param>
+        public void ChangeSalary(uint newSalary)
+        {
+
+        }
+        /// <summary>
+        /// Изменить требуемый опыт работы для специальности
+        /// </summary>
+        /// <param name="newExperience">Новый требуемый опыт работы в годах</param>
+        public void ChangeRequiredExperience(uint newExperience)
+        {
+
+        }
+
+
+
         /// <summary>
         /// Удаляет все записи из базы данных связанные с этим объектом
         /// </summary>
