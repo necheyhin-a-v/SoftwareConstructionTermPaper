@@ -13,8 +13,6 @@ namespace ModelLayer
     /// Класс взаимодействуя с базой данных на низком уровне
     /// извлекает информацию из БД, сохраняет информацию и т.д. 
     /// </summary>
-    //TODO: Employee.GetAll(). Добавить в класс метод GetAll()
-    //TODO: Employee. Добавить предпочтения в выборе специальности, типе занятости, добавить опыт работы
     public class Employee : DBEntity
     {
         private String PassportNumber;
@@ -25,6 +23,7 @@ namespace ModelLayer
         private String Phone;
         private Boolean HasFoundJob;
         private DateTime DateWhenWorkFounded;
+        private uint Experience;                //Опыт работы в месяцах
         /// <summary>
         /// Конструктор закрыт для внешнего воздействия
         /// </summary>
@@ -38,8 +37,9 @@ namespace ModelLayer
         /// <param name="middleName">Отчество (может быть null)</param>
         /// <param name="address">Адрес регистрации</param>
         /// <param name="phone">Номер телефона</param>
+        /// <param name="experience">Опыт работы в месяцах</param>
         public Employee(String passportNumber, String firstName, String secondName, String middleName,
-            String address, String phone)
+            String address, String phone, uint experience)
         {
             this.PassportNumber = passportNumber;
             this.FirstName = firstName;
@@ -48,6 +48,7 @@ namespace ModelLayer
             this.Address = address;
             this.Phone = phone;
             this.HasFoundJob = false;
+            this.Experience = experience;
             AddEntityToDB();
         }
         /// <summary>
@@ -100,6 +101,7 @@ namespace ModelLayer
                         newEmployee.HasFoundJob = true;
                         newEmployee.DateWhenWorkFounded = (DateTime)list.ElementAt(0).ElementAt(6);
                     }
+                    newEmployee.Experience = Convert.ToUInt32(list.ElementAt(0).ElementAt(7));
                     return newEmployee;
                 }
                 catch(Exception e)
@@ -116,7 +118,7 @@ namespace ModelLayer
         protected override void AddEntityToDB()
         {
             String query = "INSERT INTO PERMANENT_USER.EMPLOYEE"
-                + "(PASSPORT, FIRSTNAME, SECONDNAME, MIDDLENAME, ADDRESS, PHONE, HASFOUNDJOB)"
+                + "(PASSPORT, FIRSTNAME, SECONDNAME, MIDDLENAME, ADDRESS, PHONE, HASFOUNDJOB, EXPERIENCE)"
                 + "VALUES ("
                 + "'" + this.PassportNumber + "',"
                 + "'" + this.FirstName + "',"
@@ -124,8 +126,8 @@ namespace ModelLayer
                 + "'" + this.MiddleName + "',"
                 + "'" + this.Address + "',"
                 + "'" + this.Phone + "',"
-                + "'" + (this.HasFoundJob ? DateWhenWorkFounded.ToString("dd.MM.yy") : null)
-                + "')";
+                + "'" + (this.HasFoundJob ? DateWhenWorkFounded.ToString("dd.MM.yy") : null) + "', "
+                + this.Experience;
             try
             {
                 ExecuteNonSelectQuery(query);
@@ -151,7 +153,6 @@ namespace ModelLayer
         /// вызвав метод UPDATE можно вернуть данные в базу
         /// Вызывает исключение в случае невозможности удаления данных
         /// </summary>
-        //TODO: Employee.DeleteEntityFromDB(). Тестирование метода
         protected override void DeleteEntityFromDB()
         {
             try
@@ -439,8 +440,80 @@ namespace ModelLayer
         /// </summary>
         protected override void UpdateEntityInDB()
         {
-            //TODO: Employee.UpdateEntityInDB(). Реализовать метод
+            //TODO: Employee.UpdateEntityInDB(). Написать реализацию метода
             throw new Exception("Дайте знать если появилось это исключение Employee.UpdateEntityInDB()");
         }
+        /// <summary>
+        /// Получает список всех работников из базы даных
+        /// </summary>
+        /// <returns>Список объектов (работников)</returns>
+        public static List<Employee> GetAll()
+        {
+            try
+            {
+                String query = "SELECT * FROM PERMANENT_USER.EMPLOYEE";
+                //Временный объект для получения функционала базового класса
+                Employee temp = new Employee();
+                List<Object[]> list = temp.ExecuteSelect(query);
+                if (list.Count == 0) throw new Exception("Невозможно получить список работников");
+                List<Employee> result = new List<Employee>();
+                foreach (Object[] currentObject in list)
+                {
+                    Employee newEmployee = new Employee();
+                    newEmployee.PassportNumber = currentObject.ElementAt(0).ToString();
+                    newEmployee.FirstName = currentObject.ElementAt(1).ToString();
+                    newEmployee.SecondName = currentObject.ElementAt(2).ToString();
+                    newEmployee.MiddleName = currentObject.ElementAt(3).ToString();
+                    newEmployee.Address = currentObject.ElementAt(4).ToString();
+                    if(currentObject.ElementAt(5).ToString().CompareTo("") == 0)
+                        newEmployee.HasFoundJob = false;
+                    else
+                    {
+                        newEmployee.HasFoundJob = true;
+                        newEmployee.DateWhenWorkFounded = (DateTime)currentObject.ElementAt(5);
+                    }
+                    newEmployee.Experience = Convert.ToUInt32(currentObject.ElementAt(6));
+                    result.Add(newEmployee);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список работников");
+                throw e;
+            }
+
+        }
+        /// <summary>
+        /// Получить из базы данных опыт работы в месяцах
+        /// </summary>
+        /// <returns>Опыт работы сотрудника в месяцах</returns>
+        public uint GetExperience()
+        {
+            return this.Experience;
+        }
+        /// <summary>
+        /// Сменить опыт работника и обновить данные в базе
+        /// </summary>
+        /// <param name="newExperience">Новый опыт работы в месяцах</param>
+        public void ChangeExperience(uint newExperience)
+        {
+            try
+            {
+                String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+                    +"SET EXPERIENCE = " + newExperience;
+                ExecuteNonSelectQuery(query);
+                //Изменение поля происходит только после успешного изменения в базе данных
+                this.Experience = newExperience;
+                Console.WriteLine("Опыт работника успешно изменен");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить опыт работника");
+                throw e;
+            }
+        }
+
+
     }
 }

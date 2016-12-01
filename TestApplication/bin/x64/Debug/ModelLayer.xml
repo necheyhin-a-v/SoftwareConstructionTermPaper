@@ -248,6 +248,12 @@
             Обновить данные о рабочем в базе данных на основе данных из класса
             </summary>
         </member>
+        <member name="M:ModelLayer.Employee.GetAll">
+            <summary>
+            Получает список всех работников из базы даных
+            </summary>
+            <returns>Список объектов (работников)</returns>
+        </member>
         <member name="T:ModelLayer.Employer">
             <summary>
             Класс Employer отражает часть схемы базы данных, хранящую информацию

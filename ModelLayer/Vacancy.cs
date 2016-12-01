@@ -40,7 +40,7 @@ namespace ModelLayer
         private EmploymentType CurrentEmploymentType;        //Тип занятости для вакансии
         private String Description;         //Описание вакансии, может быть null
         private uint Salary;                 //Заработная плата, может быть null
-        private uint RequiredExperience;     //Требуемый уровень для вакансии, может быть null
+        private uint RequiredExperience;     //Требуемый уровень для вакансии в месяцах, может быть null
         /// <summary>
         /// Закрытый по умолчанию конструктор для внешнего доступа
         /// </summary>
@@ -405,9 +405,9 @@ namespace ModelLayer
             }
         }
         /// <summary>
-        /// Изменить требуемый опыт работы для специальности
+        /// Изменить требуемый опыт работы для специальности в месяцах
         /// </summary>
-        /// <param name="newExperience">Новый требуемый опыт работы в годах</param>
+        /// <param name="newExperience">Новый требуемый опыт работы в месяцах</param>
         public void ChangeRequiredExperience(uint newExperience)
         {
             try
@@ -545,9 +545,9 @@ namespace ModelLayer
             return this.Salary;
         }
         /// <summary>
-        /// Получить требуемый для вакансии стаж работы
+        /// Получить требуемый для вакансии стаж работы в месяцах
         /// </summary>
-        /// <returns>Необходимый стаж</returns>
+        /// <returns>Необходимый стаж в месяцах</returns>
         public uint GetRequiredExperience()
         {
             return this.RequiredExperience;
@@ -592,7 +592,7 @@ namespace ModelLayer
         /// </summary>
         protected override void UpdateEntityInDB()
         {
-            //TODO: Vacancy.UpdateEntityInDB(). написать реализацию
+            //TODO: Vacancy.UpdateEntityInDB(). Написать реализацию метода
             throw new Exception("Дайте знать если появилось это исключение Vacancy.UpdateEntityInDB()");
         }
     }

@@ -45,7 +45,6 @@ namespace ModelLayer
         /// <param name="login">Логин нового пользователя</param>
         /// <param name="password">Пароль нового пользователя</param>
         /// <param name="role">Строка отражающая роль пользователя</param>
-        //TODO: User.User() При инициализации объекта добавить проверку целостности базы данных на соответствие имен ролей пользователей и их индексов
         public User(String login, String password, UserRoles role = UserRoles.Consultant)
         {
             this.Login = login;
