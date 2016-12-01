@@ -1,0 +1,7 @@
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x86\Release\TestApplication.exe.config
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x86\Release\TestApplication.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x86\Release\TestApplication.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x86\Release\ModelLayer.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x86\Release\TestApplication.csprojResolveAssemblyReference.cache
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x86\Release\TestApplication.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x86\Release\TestApplication.pdb
