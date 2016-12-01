@@ -19,17 +19,8 @@ namespace TestApplication
             //uint experience = emp.GetExperience();
 
             Employee emp = Employee.GetByPassport("6912514093");
-
-            emp.AddPriorEmploymentType(EmploymentType.FullTime);
-            emp.AddPriorEmploymentType(EmploymentType.PartTime);
-            emp.AddPriorEmploymentType(EmploymentType.Traineeship);
-
-            List<EmploymentType> list = emp.GetPriorEmploymentTypes();
-
-
-
-
-
+            emp.AddPriorSpecialty("it");
+            List<Specialty> list = emp.GetPriorSpecialties();
             Console.Read();
         }
     }

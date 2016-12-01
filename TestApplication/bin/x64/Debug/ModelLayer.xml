@@ -285,6 +285,40 @@
             </summary>
             <returns>Список типов занятости</returns>
         </member>
+        <member name="M:ModelLayer.Employee.AddPriorSpecialty(ModelLayer.Specialty)">
+            <summary>
+            Добавить текущему работнику дополнительную приоритетную специальность
+            На основе этих данных будут подбираться предложения
+            </summary>
+            <param name="specialty">Специальность для добавления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.AddPriorSpecialty(System.String)">
+            <summary>
+            Добавить текущему работнику дополнительную приоритетную специальность
+            На основе этих данных будут подбираться предложения
+            Имя специальности должно существовать в базе данных
+            </summary>
+            <param name="specialty">Имя специальности для добавления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.DeletePriorSpecialty(ModelLayer.Specialty)">
+            <summary>
+            Убрать у текущего работника дополнительную приоритетную специальность
+            </summary>
+            <param name="specialty">Специальность для удаления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.DeletePriorSpecialty(System.String)">
+            <summary>
+            Убрать у текущего работника дополнительную приоритетную специальность
+            Имя специальности должно существовать в базе данных
+            </summary>
+            <param name="specialty">Имя специальности для удаления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.GetPriorSpecialties">
+            <summary>
+            Получить все приоритетные специальности для пользователя
+            </summary>
+            <returns>Список специальностей, которые интересуют пользователя</returns>
+        </member>
         <member name="T:ModelLayer.Employer">
             <summary>
             Класс Employer отражает часть схемы базы данных, хранящую информацию

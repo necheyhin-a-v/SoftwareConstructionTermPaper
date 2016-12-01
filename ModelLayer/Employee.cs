@@ -592,8 +592,104 @@ namespace ModelLayer
                 throw e;
             }
         }
-        //TODO: Добавить методы Employee.GetSpecialties
+        /// <summary>
+        /// Добавить текущему работнику дополнительную приоритетную специальность
+        /// На основе этих данных будут подбираться предложения
+        /// </summary>
+        /// <param name="specialty">Специальность для добавления</param>
+        public void AddPriorSpecialty(Specialty specialty)
+        {
+            try
+            {
+                //Проверка существования записи
+                String query = "SELECT * FROM PERMANENT_USER.ES "
+                    + "WHERE SPECIALTYID =" + specialty.GetId() + " " 
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                if (ExecuteSelect(query).Count > 0) return; //Запись существует
+                //Добавление записи о предпочтительной специальности
+                query = "INSERT INTO PERMANENT_USER.ES (SPECIALTYID, EMPLOYEEPASSPORT) VALUES ("
+                    +  specialty.GetId() + ", "
+                    + "'" + this.PassportNumber + "')";
+                ExecuteNonSelectQuery(query);
+                Console.WriteLine("Предпочитаемая специальность добавлена работнику");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("При добавлении приоритетной специальности произошли ошибки");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Добавить текущему работнику дополнительную приоритетную специальность
+        /// На основе этих данных будут подбираться предложения
+        /// Имя специальности должно существовать в базе данных
+        /// </summary>
+        /// <param name="specialty">Имя специальности для добавления</param>
+        public void AddPriorSpecialty(String specialty)
+        {
+            AddPriorSpecialty(Specialty.GetByName(specialty));
+        }
+        /// <summary>
+        /// Убрать у текущего работника дополнительную приоритетную специальность
+        /// </summary>
+        /// <param name="specialty">Специальность для удаления</param>
+        public void DeletePriorSpecialty(Specialty specialty)
+        {
+            try
+            {
+                //Проверка существования записи
+                String query = "SELECT * FROM PERMANENT_USER.ES "
+                    + "WHERE SPECIALTYID =" + specialty.GetId() + " "
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                if (ExecuteSelect(query).Count == 0) return; //Нечего удалять
+                //Удаление записи о предпочтительной специальности
+                query = "DELETE FROM PERMANENT_USER.ES WHERE "
+                    + "SPECIALTYID =" + specialty.GetId() + " "
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                ExecuteNonSelectQuery(query);
+                Console.WriteLine("Специальность удалена из предпочтительных");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("При удалении предпочтительной специальности произошли ошибки");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Убрать у текущего работника дополнительную приоритетную специальность
+        /// Имя специальности должно существовать в базе данных
+        /// </summary>
+        /// <param name="specialty">Имя специальности для удаления</param>
+        public void DeletePriorSpecialty(String specialty)
+        {
+            DeletePriorSpecialty(Specialty.GetByName(specialty));
+        }
 
+        /// <summary>
+        /// Получить все приоритетные специальности для пользователя
+        /// </summary>
+        /// <returns>Список специальностей, которые интересуют пользователя</returns>
+        public List<Specialty> GetPriorSpecialties()
+        {
+            try
+            {
+                //Выбрать все Id специальностей
+                String query = "SELECT SPECIALTYID FROM PERMANENT_USER.ES "
+                    + "WHERE EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                List<Object[]> list = ExecuteSelect(query);
+                List<Specialty> result = new List<Specialty>();
+                if (list.Count == 0) return result;     //Вернуть пустой список
+                //Преобразовать id специальности в объекты
+                foreach (Object[] item in list)
+                    result.Add(Specialty.GetByID(Convert.ToInt32(item.ElementAt(0))));
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список предпочтительных специальностей для работника");
+                throw e;
+            }
+        }
 
 
     }
