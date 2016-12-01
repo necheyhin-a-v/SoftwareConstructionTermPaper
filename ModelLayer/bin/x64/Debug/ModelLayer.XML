@@ -94,7 +94,7 @@
             Конструктор закрыт для внешнего воздействия
             </summary>
         </member>
-        <member name="M:ModelLayer.Employee.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:ModelLayer.Employee.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.UInt32)">
             <summary>
             Создает объект на основе параметров и добавляет в базу данных
             </summary>
@@ -104,6 +104,7 @@
             <param name="middleName">Отчество (может быть null)</param>
             <param name="address">Адрес регистрации</param>
             <param name="phone">Номер телефона</param>
+            <param name="experience">Опыт работы в месяцах</param>
         </member>
         <member name="M:ModelLayer.Employee.CanFindByPassport(System.String)">
             <summary>
@@ -135,8 +136,7 @@
         <member name="M:ModelLayer.Employee.DeleteEntityFromDB">
             <summary>
             Удаляет текущую сущность из базы данных.
-            Обратите внимание, что после удаления все параметры текущего объекта остаются и
-            вызвав метод UPDATE можно вернуть данные в базу
+            Обратите внимание, что после удаления все параметры текущего объекта остаются
             Вызывает исключение в случае невозможности удаления данных
             </summary>
         </member>
@@ -253,6 +253,37 @@
             Получает список всех работников из базы даных
             </summary>
             <returns>Список объектов (работников)</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetExperience">
+            <summary>
+            Получить из базы данных опыт работы в месяцах
+            </summary>
+            <returns>Опыт работы сотрудника в месяцах</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangeExperience(System.UInt32)">
+            <summary>
+            Сменить опыт работника и обновить данные в базе
+            </summary>
+            <param name="newExperience">Новый опыт работы в месяцах</param>
+        </member>
+        <member name="M:ModelLayer.Employee.AddPriorEmploymentType(ModelLayer.EmploymentType)">
+            <summary>
+            Добавить текущему работнику дополнительный предпочтительный тип занятости
+            На основе этих данных будут подбираться предложения
+            </summary>
+            <param name="type">Предпочтительный тип занятости</param>
+        </member>
+        <member name="M:ModelLayer.Employee.DeletePriorEmploymentType(ModelLayer.EmploymentType)">
+            <summary>
+            Удалить приоритетное направление специальности
+            </summary>
+            <param name="type">Тип занятости который больше не хочет искать работник</param>
+        </member>
+        <member name="M:ModelLayer.Employee.GetPriorEmploymentTypes">
+            <summary>
+            Получить список типов занятости интересных для работника
+            </summary>
+            <returns>Список типов занятости</returns>
         </member>
         <member name="T:ModelLayer.Employer">
             <summary>
@@ -737,9 +768,9 @@
         </member>
         <member name="M:ModelLayer.Vacancy.ChangeRequiredExperience(System.UInt32)">
             <summary>
-            Изменить требуемый опыт работы для специальности
+            Изменить требуемый опыт работы для специальности в месяцах
             </summary>
-            <param name="newExperience">Новый требуемый опыт работы в годах</param>
+            <param name="newExperience">Новый требуемый опыт работы в месяцах</param>
         </member>
         <member name="M:ModelLayer.Vacancy.Delete">
             <summary>
@@ -803,9 +834,9 @@
         </member>
         <member name="M:ModelLayer.Vacancy.GetRequiredExperience">
             <summary>
-            Получить требуемый для вакансии стаж работы
+            Получить требуемый для вакансии стаж работы в месяцах
             </summary>
-            <returns>Необходимый стаж</returns>
+            <returns>Необходимый стаж в месяцах</returns>
         </member>
         <member name="M:ModelLayer.Vacancy.SetEmployer(ModelLayer.Employer)">
             <summary>

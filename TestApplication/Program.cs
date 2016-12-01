@@ -13,10 +13,21 @@ namespace TestApplication
         {
             //Программа требует предварительной настройки
             DataBase.Initialize("192.168.1.50", "1521");
-            Vacancy vac = Vacancy.GetAllEmployerVacancies("7707083893").ElementAt(0);
-            uint saved = vac.GetRequiredExperience();
-            vac.ChangeRequiredExperience(6555555);
-            vac.ChangeRequiredExperience(saved);
+
+
+            //Employee emp = new Employee("6909847329", "Анастасия", "Минкевич", "Владимировна", "г. Томск, ул. Сибирская, д. 101, кв. 2", "", 8);
+            //uint experience = emp.GetExperience();
+
+            Employee emp = Employee.GetByPassport("6912514093");
+
+            emp.AddPriorEmploymentType(EmploymentType.FullTime);
+            emp.AddPriorEmploymentType(EmploymentType.PartTime);
+            emp.AddPriorEmploymentType(EmploymentType.Traineeship);
+
+            List<EmploymentType> list = emp.GetPriorEmploymentTypes();
+
+
+
 
 
             Console.Read();
