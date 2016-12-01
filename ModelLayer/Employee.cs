@@ -13,8 +13,6 @@ namespace ModelLayer
     /// Класс взаимодействуя с базой данных на низком уровне
     /// извлекает информацию из БД, сохраняет информацию и т.д. 
     /// </summary>
-    //TODO: Employee.GetAll(). Добавить в класс метод GetAll()
-    //TODO: Employee. Добавить предпочтения в выборе специальности, типе занятости, добавить опыт работы
     public class Employee : DBEntity
     {
         private String PassportNumber;
@@ -25,6 +23,7 @@ namespace ModelLayer
         private String Phone;
         private Boolean HasFoundJob;
         private DateTime DateWhenWorkFounded;
+        private uint Experience;                //Опыт работы в месяцах
         /// <summary>
         /// Конструктор закрыт для внешнего воздействия
         /// </summary>
@@ -38,8 +37,9 @@ namespace ModelLayer
         /// <param name="middleName">Отчество (может быть null)</param>
         /// <param name="address">Адрес регистрации</param>
         /// <param name="phone">Номер телефона</param>
+        /// <param name="experience">Опыт работы в месяцах</param>
         public Employee(String passportNumber, String firstName, String secondName, String middleName,
-            String address, String phone)
+            String address, String phone, uint experience)
         {
             this.PassportNumber = passportNumber;
             this.FirstName = firstName;
@@ -48,6 +48,7 @@ namespace ModelLayer
             this.Address = address;
             this.Phone = phone;
             this.HasFoundJob = false;
+            this.Experience = experience;
             AddEntityToDB();
         }
         /// <summary>
@@ -80,7 +81,7 @@ namespace ModelLayer
             List<Object[]> list = newEmployee.ExecuteSelect(query);
             //Ожидается, что будет возвращен один объект
             if (list.Count == 0)
-                return null;
+                throw new Exception("Невозможно найти запись в базе данных");
             else
             {
                 try
@@ -100,6 +101,7 @@ namespace ModelLayer
                         newEmployee.HasFoundJob = true;
                         newEmployee.DateWhenWorkFounded = (DateTime)list.ElementAt(0).ElementAt(6);
                     }
+                    newEmployee.Experience = Convert.ToUInt32(list.ElementAt(0).ElementAt(7));
                     return newEmployee;
                 }
                 catch(Exception e)
@@ -116,7 +118,7 @@ namespace ModelLayer
         protected override void AddEntityToDB()
         {
             String query = "INSERT INTO PERMANENT_USER.EMPLOYEE"
-                + "(PASSPORT, FIRSTNAME, SECONDNAME, MIDDLENAME, ADDRESS, PHONE, HASFOUNDJOB)"
+                + "(PASSPORT, FIRSTNAME, SECONDNAME, MIDDLENAME, ADDRESS, PHONE, HASFOUNDJOB, EXPERIENCE)"
                 + "VALUES ("
                 + "'" + this.PassportNumber + "',"
                 + "'" + this.FirstName + "',"
@@ -124,8 +126,8 @@ namespace ModelLayer
                 + "'" + this.MiddleName + "',"
                 + "'" + this.Address + "',"
                 + "'" + this.Phone + "',"
-                + "'" + (this.HasFoundJob ? DateWhenWorkFounded.ToString("dd.MM.yy") : null)
-                + "')";
+                + "'" + (this.HasFoundJob ? DateWhenWorkFounded.ToString("dd.MM.yy") : null) + "', "
+                + this.Experience + ")";
             try
             {
                 ExecuteNonSelectQuery(query);
@@ -147,11 +149,9 @@ namespace ModelLayer
         }
         /// <summary>
         /// Удаляет текущую сущность из базы данных.
-        /// Обратите внимание, что после удаления все параметры текущего объекта остаются и
-        /// вызвав метод UPDATE можно вернуть данные в базу
+        /// Обратите внимание, что после удаления все параметры текущего объекта остаются
         /// Вызывает исключение в случае невозможности удаления данных
         /// </summary>
-        //TODO: Employee.DeleteEntityFromDB(). Тестирование метода
         protected override void DeleteEntityFromDB()
         {
             try
@@ -439,8 +439,258 @@ namespace ModelLayer
         /// </summary>
         protected override void UpdateEntityInDB()
         {
-            //TODO: Employee.UpdateEntityInDB(). Реализовать метод
+            //TODO: Employee.UpdateEntityInDB(). Написать реализацию метода
             throw new Exception("Дайте знать если появилось это исключение Employee.UpdateEntityInDB()");
         }
+        /// <summary>
+        /// Получает список всех работников из базы даных
+        /// </summary>
+        /// <returns>Список объектов (работников)</returns>
+        public static List<Employee> GetAll()
+        {
+            try
+            {
+                String query = "SELECT * FROM PERMANENT_USER.EMPLOYEE";
+                //Временный объект для получения функционала базового класса
+                Employee temp = new Employee();
+                List<Object[]> list = temp.ExecuteSelect(query);
+                if (list.Count == 0) throw new Exception("Невозможно получить список работников");
+                List<Employee> result = new List<Employee>();
+                foreach (Object[] currentObject in list)
+                {
+                    Employee newEmployee = new Employee();
+                    newEmployee.PassportNumber = currentObject.ElementAt(0).ToString();
+                    newEmployee.FirstName = currentObject.ElementAt(1).ToString();
+                    newEmployee.SecondName = currentObject.ElementAt(2).ToString();
+                    newEmployee.MiddleName = currentObject.ElementAt(3).ToString();
+                    newEmployee.Address = currentObject.ElementAt(4).ToString();
+                    newEmployee.Phone = currentObject.ElementAt(5).ToString();
+                    if(currentObject.ElementAt(6).ToString().CompareTo("") == 0)
+                        newEmployee.HasFoundJob = false;
+                    else
+                    {
+                        newEmployee.HasFoundJob = true;
+                        newEmployee.DateWhenWorkFounded = (DateTime)currentObject.ElementAt(6);
+                    }
+                    newEmployee.Experience = Convert.ToUInt32(currentObject.ElementAt(7));
+                    result.Add(newEmployee);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список работников");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Получить из базы данных опыт работы в месяцах
+        /// </summary>
+        /// <returns>Опыт работы сотрудника в месяцах</returns>
+        public uint GetExperience()
+        {
+            return this.Experience;
+        }
+        /// <summary>
+        /// Сменить опыт работника и обновить данные в базе
+        /// </summary>
+        /// <param name="newExperience">Новый опыт работы в месяцах</param>
+        public void ChangeExperience(uint newExperience)
+        {
+            try
+            {
+                String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+                    +"SET EXPERIENCE = " + newExperience + " "
+                    + "WHERE PASSPORT = '" + this.PassportNumber + "'";
+                ExecuteNonSelectQuery(query);
+                //Изменение поля происходит только после успешного изменения в базе данных
+                this.Experience = newExperience;
+                Console.WriteLine("Опыт работника успешно изменен");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно сменить опыт работника");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Добавить текущему работнику дополнительный предпочтительный тип занятости
+        /// На основе этих данных будут подбираться предложения
+        /// </summary>
+        /// <param name="type">Предпочтительный тип занятости</param>
+        public void AddPriorEmploymentType(EmploymentType type)
+        {
+            try
+            {
+                //Проверка существующей записи
+                String query = "SELECT * FROM PERMANENT_USER.ETOF "
+                    + "WHERE TYPEID = " + (int)type + " "
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                if (ExecuteSelect(query).Count > 0) return; //Запись уже существует
+                //Добавление записи о предпочтительном типе занятости
+                query = "INSERT INTO PERMANENT_USER.ETOF (TYPEID, EMPLOYEEPASSPORT) VALUES ( "
+                    + (int)type + ", "
+                    + "'" + this.PassportNumber + "')";
+                ExecuteNonSelectQuery(query);
+                Console.WriteLine("Предпочтительный тип занятости добавлен для работника");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Не удается добавить приоритетное направление специальности. Возможно уже существует в базе данных.");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Удалить приоритетное направление специальности
+        /// </summary>
+        /// <param name="type">Тип занятости который больше не хочет искать работник</param>
+        public void DeletePriorEmploymentType(EmploymentType type)
+        {
+            try
+            {
+                //Проверка существующей записи
+                String query = "SELECT * FROM PERMANENT_USER.ETOF "
+                    + "WHERE TYPEID = " + (int)type + " "
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                if (ExecuteSelect(query).Count == 0)
+                {
+                    Console.WriteLine("Предпочитаемый тип занятости удален из списка работника");
+                    return; //Удалять нечего
+                }
+                query = "DELETE FROM PERMANENT_USER.ETOF WHERE "
+                    + "TYPEID = " + (int)type + " "
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                ExecuteNonSelectQuery(query);
+                Console.WriteLine("Предпочитаемый тип занятости удален из списка работника");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Во время удаления приоритетного направления специальности возникли ошибки");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Получить список типов занятости интересных для работника
+        /// </summary>
+        /// <returns>Список типов занятости</returns>
+        public List<EmploymentType> GetPriorEmploymentTypes()
+        {
+            try
+            {
+                String query = "SELECT TYPEID FROM PERMANENT_USER.ETOF "
+                    + "WHERE EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                List<Object[]> list = ExecuteSelect(query);
+                List<EmploymentType> result = new List<EmploymentType>();
+                if (list.Count == 0) return result;
+                foreach (Object[] item in list)
+                    result.Add( (EmploymentType)Enum.Parse(typeof(EmploymentType), item.ElementAt(0).ToString()));
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список предпочтений типа занятости для пользователя");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Добавить текущему работнику дополнительную приоритетную специальность
+        /// На основе этих данных будут подбираться предложения
+        /// </summary>
+        /// <param name="specialty">Специальность для добавления</param>
+        public void AddPriorSpecialty(Specialty specialty)
+        {
+            try
+            {
+                //Проверка существования записи
+                String query = "SELECT * FROM PERMANENT_USER.ES "
+                    + "WHERE SPECIALTYID =" + specialty.GetId() + " " 
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                if (ExecuteSelect(query).Count > 0) return; //Запись существует
+                //Добавление записи о предпочтительной специальности
+                query = "INSERT INTO PERMANENT_USER.ES (SPECIALTYID, EMPLOYEEPASSPORT) VALUES ("
+                    +  specialty.GetId() + ", "
+                    + "'" + this.PassportNumber + "')";
+                ExecuteNonSelectQuery(query);
+                Console.WriteLine("Предпочитаемая специальность добавлена работнику");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("При добавлении приоритетной специальности произошли ошибки");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Добавить текущему работнику дополнительную приоритетную специальность
+        /// На основе этих данных будут подбираться предложения
+        /// Имя специальности должно существовать в базе данных
+        /// </summary>
+        /// <param name="specialty">Имя специальности для добавления</param>
+        public void AddPriorSpecialty(String specialty)
+        {
+            AddPriorSpecialty(Specialty.GetByName(specialty));
+        }
+        /// <summary>
+        /// Убрать у текущего работника дополнительную приоритетную специальность
+        /// </summary>
+        /// <param name="specialty">Специальность для удаления</param>
+        public void DeletePriorSpecialty(Specialty specialty)
+        {
+            try
+            {
+                //Проверка существования записи
+                String query = "SELECT * FROM PERMANENT_USER.ES "
+                    + "WHERE SPECIALTYID =" + specialty.GetId() + " "
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                if (ExecuteSelect(query).Count == 0) return; //Нечего удалять
+                //Удаление записи о предпочтительной специальности
+                query = "DELETE FROM PERMANENT_USER.ES WHERE "
+                    + "SPECIALTYID =" + specialty.GetId() + " "
+                    + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                ExecuteNonSelectQuery(query);
+                Console.WriteLine("Специальность удалена из предпочтительных");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("При удалении предпочтительной специальности произошли ошибки");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Убрать у текущего работника дополнительную приоритетную специальность
+        /// Имя специальности должно существовать в базе данных
+        /// </summary>
+        /// <param name="specialty">Имя специальности для удаления</param>
+        public void DeletePriorSpecialty(String specialty)
+        {
+            DeletePriorSpecialty(Specialty.GetByName(specialty));
+        }
+
+        /// <summary>
+        /// Получить все приоритетные специальности для пользователя
+        /// </summary>
+        /// <returns>Список специальностей, которые интересуют пользователя</returns>
+        public List<Specialty> GetPriorSpecialties()
+        {
+            try
+            {
+                //Выбрать все Id специальностей
+                String query = "SELECT SPECIALTYID FROM PERMANENT_USER.ES "
+                    + "WHERE EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
+                List<Object[]> list = ExecuteSelect(query);
+                List<Specialty> result = new List<Specialty>();
+                if (list.Count == 0) return result;     //Вернуть пустой список
+                //Преобразовать id специальности в объекты
+                foreach (Object[] item in list)
+                    result.Add(Specialty.GetByID(Convert.ToInt32(item.ElementAt(0))));
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список предпочтительных специальностей для работника");
+                throw e;
+            }
+        }
+
+
     }
 }

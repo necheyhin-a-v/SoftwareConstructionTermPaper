@@ -23,21 +23,20 @@ namespace ModelLayer
         Moderator = 2
     }
 
-
-
     /// <summary>
     /// Класс User отражает часть схемы базы данных, хранящую информацию
     /// о пользователях и их привелегиях или ролях
     /// При смене имени роли в базе данных (руками) проверка на соответствие не делается.
     /// Существующего идентификатора достаточно для работы программы. Однако если нет идентификатора, то программа добавит его
-    /// </summary>
-    
+    /// </summary> 
     public class User : DBEntity
     {
         private String Login;
         private String Password;
         private int RoleId;
-
+        /// <summary>
+        /// Конструктор без параметров закрыт для "внешнего" использования
+        /// </summary>
         private User() { }
         /// <summary>
         /// Создать нового пользователя и поместить его в базу данных
@@ -46,7 +45,6 @@ namespace ModelLayer
         /// <param name="login">Логин нового пользователя</param>
         /// <param name="password">Пароль нового пользователя</param>
         /// <param name="role">Строка отражающая роль пользователя</param>
-        //TODO: User.User() При инициализации объекта добавить проверку целостности базы данных на соответствие имен ролей пользователей и их индексов
         public User(String login, String password, UserRoles role = UserRoles.Consultant)
         {
             this.Login = login;
@@ -54,7 +52,6 @@ namespace ModelLayer
             this.RoleId = (int)role;
             AddEntityToDB();
         }
-
         /// <summary>
         /// Функция ищет пользователя по логину
         /// Обратите внимание, что это статическая функция и может быть вызвана без создания объекта
@@ -195,7 +192,6 @@ namespace ModelLayer
                 throw e;
             }
         }
-
         /// <summary>
         /// защищенная функция, вставляет в базу данных запись на основе login, password, role
         /// </summary>
@@ -276,6 +272,35 @@ namespace ModelLayer
             catch (Exception e)
             {
                 Console.WriteLine("Невозможно распознать роль пользователя");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Получить все объекты пользователей из базы данных
+        /// </summary>
+        /// <returns>Список пользователей</returns>
+        public static List<User> GetAll()
+        {
+            try
+            {
+                String query = "SELECT * FROM PERMANENT_USER.USERS";
+                //Временный пользователь для вызова методов базового класса
+                User temp = new User();
+                List<Object[]> list = temp.ExecuteSelect(query);
+                if (list.Count == 0) throw new Exception("Запрос не вернул ни одной строки");
+                List<User> result = new List<User>();
+                foreach (Object[] currentUser in list)
+                {
+                    User newUser = new User();
+                    newUser.Login = currentUser.ElementAt(0).ToString();
+                    newUser.Password = currentUser.ElementAt(1).ToString();
+                    result.Add(newUser);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список пользователей");
                 throw e;
             }
         }

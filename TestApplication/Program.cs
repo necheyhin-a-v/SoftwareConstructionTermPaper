@@ -14,22 +14,13 @@ namespace TestApplication
             //Программа требует предварительной настройки
             DataBase.Initialize("192.168.1.50", "1521");
 
-           Vacancy vac = new Vacancy("Консультант/аналитик 1С", Employer.GetByItn("7707083893").GetItn(), "it",
-                EmploymentType.FullTime, "Консультация пользователей по функционалу программ на базе 1С", 0, 0);
 
+            //Employee emp = new Employee("6909847329", "Анастасия", "Минкевич", "Владимировна", "г. Томск, ул. Сибирская, д. 101, кв. 2", "", 8);
+            //uint experience = emp.GetExperience();
 
-           /* Employer emp = new Employer(
-                "7707083893",
-                "ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО \"СБЕРБАНК РОССИИ\"",
-                "117997,ГОРОД МОСКВА, УЛИЦА ВАВИЛОВА, 19",
-                "");*/
-            Specialty spec = Specialty.GetAll().ElementAt(0);
-            /*Vacancy vac = new Vacancy("Программист C#", "7707083893", spec, 
-                EmploymentType.FullTime, null, 0, 0);
-            vac.Delete();*/
-
-            //vac = new Vacancy("Другой программист", spec, EmploymentType.FullTime, "", 0, 0);
-
+            Employee emp = Employee.GetByPassport("6912514093");
+            emp.AddPriorSpecialty("it");
+            List<Specialty> list = emp.GetPriorSpecialties();
             Console.Read();
         }
     }

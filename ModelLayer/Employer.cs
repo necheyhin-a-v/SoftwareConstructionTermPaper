@@ -117,13 +117,11 @@ namespace ModelLayer
                 throw e;
             }
         }
-
         /// <summary>
         /// Добавляет новую вакансию к текущему работодателю, производит необходимые связки в базе данных
         /// В случае ошибки вызывается исключение
         /// </summary>
         /// <param name="vacancy">Вакансия работодателя для добавления</param>
-        //TODO: Employer.AddVacancy() отладить
         public void AddVacancy(Vacancy vacancy)
         {
             vacancy.SetEmployer(this);
@@ -228,7 +226,6 @@ namespace ModelLayer
                 throw e;
             }
         }
-
         /// <summary>
         /// Функция для получения ИНН работодателя (текущего объекта)
         /// </summary>
@@ -265,11 +262,43 @@ namespace ModelLayer
             return this.Phone;
         }
         /// <summary>
+        /// Возвращает список всех объектов Employer, хранящихся в базе данных
+        /// </summary>
+        /// <returns>Список всех объектов Employer из базы данных</returns>
+        public static List<Employer> GetAll()
+        {
+            try
+            {
+                String query = "SELECT * FROM PERMANENT_USER.EMPLOYER";
+                //Временный объект для использования функционала базового класса
+                Employer temp = new Employer();
+                List<Object[]> list = temp.ExecuteSelect(query);
+                List<Employer> result = new List<Employer>();
+                if (list.Count == 0) throw new Exception("Запрос не вернул ни одной строки");
+                foreach (Object[] currentEmployer in list)
+                {
+                    Employer newEmp = new Employer();
+                    newEmp.Itn = currentEmployer.ElementAt(0).ToString();
+                    newEmp.Name = currentEmployer.ElementAt(1).ToString();
+                    newEmp.Address = currentEmployer.ElementAt(2).ToString();
+                    newEmp.Phone = currentEmployer.ElementAt(3).ToString();
+                    //Добавить только что преобразованного работодателя в список
+                    result.Add(newEmp);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить список работодателей");
+                throw e;
+            }
+        }
+        /// <summary>
         /// Одновляет базу данных на основе сведений из класса
         /// </summary>
         protected override void UpdateEntityInDB()
         {
-            //TODO: Employer.DeleteEntityFromDB(). Написать реализацию метода
+            //TODO: Employer.UpdateEntityFromDB(). Написать реализацию метода
             throw new Exception("Дайте знать если появилось это исключение Employer.UpdateEntityInDB()");
         }
     }

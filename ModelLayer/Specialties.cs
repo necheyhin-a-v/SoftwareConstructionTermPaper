@@ -45,7 +45,6 @@ namespace ModelLayer
             //TODO: Specialties.UpdateEntityInDB(). Написать реализацию метода
             throw new Exception("Дайте знать если появилось это исключение Specialties.UpdateEntityInDB()");
         }
-
         /// <summary>
         /// Возвращает список всех специальностей существующих в базе данных
         /// </summary>
@@ -91,6 +90,7 @@ namespace ModelLayer
                 String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
                     + "WHERE SPECIALTY = '" + name +"'";
                 List<Object[]> list = specialty.ExecuteSelect(query);
+                if (list.Count == 0) throw new Exception("Запрос вернул 0 строк");
                 specialty.Id = Convert.ToInt32(list.ElementAt(0).ElementAt(0));
                 specialty.Name = list.ElementAt(0).ElementAt(1).ToString();
                 return specialty;
@@ -100,6 +100,55 @@ namespace ModelLayer
                 Console.WriteLine("Невозможно получить объект специальности по имени");
                 throw e;
             }
+        }
+        /// <summary>
+        /// Возвращает объект специальности по идентификатору, переданному в качестве параметра
+        /// </summary>
+        /// <param name="id">Идентификатор специальности которую нужно вернуть</param>
+        /// <returns>Специальность на основе данных из базы</returns>
+        public static Specialty GetByID(int id)
+        {
+            try
+            {
+                Specialty specialty = new Specialty();
+                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                    + "WHERE ID = " + id ;
+                List<Object[]> list = specialty.ExecuteSelect(query);
+                if (list.Count == 0) throw new Exception("Запрос вернул 0 строк");
+                specialty.Id = Convert.ToInt32(list.ElementAt(0).ElementAt(0));
+                specialty.Name = list.ElementAt(0).ElementAt(1).ToString();
+                return specialty;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Невозможно получить объект специальности по имени");
+                throw e;
+            }
+        }
+        /// <summary>
+        /// Проверяется можно ли получить специальность из базы данных по идентификатору
+        /// </summary>
+        /// <param name="id">id специальности</param>
+        /// <returns>true если запись специальности с id существует в базе данных</returns>
+        public static bool CanGetByID(int id)
+        {
+            try
+            {
+                Specialty specialty = new Specialty();
+                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                    + "WHERE ID = " + id;
+                List<Object[]> list = specialty.ExecuteSelect(query);
+                if (list.Count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ошибка при поиске специальности");
+                throw e;
+            }
+
         }
         /// <summary>
         /// Проверяет существует ли специальность в базе данных с именем name
