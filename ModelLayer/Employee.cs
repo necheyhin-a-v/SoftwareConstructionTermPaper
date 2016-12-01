@@ -664,7 +664,6 @@ namespace ModelLayer
         {
             DeletePriorSpecialty(Specialty.GetByName(specialty));
         }
-
         /// <summary>
         /// Получить все приоритетные специальности для пользователя
         /// </summary>
@@ -690,7 +689,5 @@ namespace ModelLayer
                 throw e;
             }
         }
-
-
     }
 }

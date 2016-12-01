@@ -1,0 +1,7 @@
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Release\TestApplication.exe.config
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Release\TestApplication.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Release\ModelLayer.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Release\Oracle.DataAccess.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Release\ModelLayer.xml
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Release\TestApplication.csprojResolveAssemblyReference.cache
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Release\TestApplication.exe
