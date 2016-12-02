@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace Consruction
 {
-    public partial class formEmployers : Form
+    public partial class FormEmployers : Form
     {
         ContextMenuStrip contextMenuInfoEmployer;
         DataGridViewCell currentCell;
 
-        public formEmployers()
+        public FormEmployers()
         {
             InitializeComponent();
             dataGridView1.RowCount = 5;

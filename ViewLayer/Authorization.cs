@@ -10,8 +10,15 @@ using System.Windows.Forms;
 
 namespace Consruction
 {
+    /// <summary>    
+    /// Класс авторизации
+    /// </summary>
+
     public partial class Authorization : Form
     {
+        /// <summary>
+        /// Конструктор, который инициализирует форму
+        /// </summary>
         public Authorization()
         {
             InitializeComponent();
@@ -21,23 +28,34 @@ namespace Consruction
         /// </summary>
         /// <param name="sender">Отправитель события</param>
         /// <param name="e">Аргументы события</param>
-        private void EnterInSystem_Click(object sender, EventArgs e)
+        private void EnterInSystemClick(object sender, EventArgs e)
         {
+            //TODO: Autorization.EnterInSystemClick() Изменить заглушку от авторизации
             if (LoginTB.Text == "moderator")
             {
                 this.Hide();
-                var f1 = new formEmployers();
-                f1.Closed += (s, args) => this.Close();
-                f1.Show();
+                Form form = new FormEmployers();
+                //Создание нового обработчика события "Закрытие формы"
+                form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedClick);
+                form.Show();
             }
 
             if (LoginTB.Text == "consultant")
             {
                 this.Hide();
-                var f2 = new formEmployees();
-                f2.Closed += (s, args) => this.Close();
-                f2.Show();
+                Form form = new FormEmployees();
+                form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedClick);
+                form.Show();
             }
+        }
+        /// <summary>
+        /// Удаление формы авторизации при закрытии дочерних форм
+        /// </summary>
+        /// <param name="sender">Объект вызвавший событие</param>
+        /// <param name="events"></param>
+        private void FormClosedClick(Object sender, EventArgs events)
+        {
+            this.Close();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Consruction
 {
-    partial class formEmployees
+    partial class FormEmployees
     {
         /// <summary>
         /// Required designer variable.
@@ -233,13 +233,13 @@
             this.comboBox1.Size = new System.Drawing.Size(196, 21);
             this.comboBox1.TabIndex = 23;
             // 
-            // formEmployees
+            // FormEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 699);
             this.Controls.Add(this.tcEmployees);
-            this.Name = "formEmployees";
+            this.Name = "FormEmployees";
             this.Text = "Работа с работниками";
             this.tcEmployees.ResumeLayout(false);
             this.tabRegEmployees.ResumeLayout(false);

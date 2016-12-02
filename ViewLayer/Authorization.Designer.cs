@@ -32,7 +32,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.LoginTB = new System.Windows.Forms.TextBox();
             this.PasswordTB = new System.Windows.Forms.TextBox();
-            this.EnterInSystem = new System.Windows.Forms.Button();
+            this.ButtonEnterInSystem = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
@@ -72,15 +72,15 @@
             this.PasswordTB.Size = new System.Drawing.Size(118, 20);
             this.PasswordTB.TabIndex = 5;
             // 
-            // EnterInSystem
+            // ButtonEnterInSystem
             // 
-            this.EnterInSystem.Location = new System.Drawing.Point(15, 90);
-            this.EnterInSystem.Name = "EnterInSystem";
-            this.EnterInSystem.Size = new System.Drawing.Size(115, 23);
-            this.EnterInSystem.TabIndex = 6;
-            this.EnterInSystem.Text = "Войти";
-            this.EnterInSystem.UseVisualStyleBackColor = true;
-            this.EnterInSystem.Click += new System.EventHandler(this.EnterInSystem_Click);
+            this.ButtonEnterInSystem.Location = new System.Drawing.Point(15, 90);
+            this.ButtonEnterInSystem.Name = "ButtonEnterInSystem";
+            this.ButtonEnterInSystem.Size = new System.Drawing.Size(115, 23);
+            this.ButtonEnterInSystem.TabIndex = 6;
+            this.ButtonEnterInSystem.Text = "Войти";
+            this.ButtonEnterInSystem.UseVisualStyleBackColor = true;
+            this.ButtonEnterInSystem.Click += new System.EventHandler(this.EnterInSystemClick);
             // 
             // fileSystemWatcher1
             // 
@@ -89,10 +89,11 @@
             // 
             // Authorization
             // 
+            this.AcceptButton = this.ButtonEnterInSystem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(142, 125);
-            this.Controls.Add(this.EnterInSystem);
+            this.Controls.Add(this.ButtonEnterInSystem);
             this.Controls.Add(this.PasswordTB);
             this.Controls.Add(this.LoginTB);
             this.Controls.Add(this.label3);
@@ -113,7 +114,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox LoginTB;
         private System.Windows.Forms.TextBox PasswordTB;
-        private System.Windows.Forms.Button EnterInSystem;
+        private System.Windows.Forms.Button ButtonEnterInSystem;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }

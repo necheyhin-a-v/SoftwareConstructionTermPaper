@@ -1,6 +1,6 @@
 ﻿namespace Consruction
 {
-    partial class formEmployers
+    partial class FormEmployers
     {
         /// <summary>
         /// Required designer variable.

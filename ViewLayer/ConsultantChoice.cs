@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Consruction
 {
-    public partial class formEmployees : Form
+    public partial class FormEmployees : Form
     {
-        public formEmployees()
+        public FormEmployees()
         {
             InitializeComponent();
         }

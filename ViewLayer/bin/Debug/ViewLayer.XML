@@ -4,29 +4,46 @@
         <name>ViewLayer</name>
     </assembly>
     <members>
-        <member name="F:Consruction.formEmployees.components">
+        <member name="F:Consruction.FormEmployees.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Consruction.formEmployees.Dispose(System.Boolean)">
+        <member name="M:Consruction.FormEmployees.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Consruction.formEmployees.InitializeComponent">
+        <member name="M:Consruction.FormEmployees.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:Consruction.Authorization.EnterInSystem_Click(System.Object,System.EventArgs)">
+        <member name="T:Consruction.Authorization">
+            <summary>    
+            Класс авторизации
+            </summary>
+        </member>
+        <member name="M:Consruction.Authorization.#ctor">
+            <summary>
+            Конструктор, который инициализирует форму
+            </summary>
+        </member>
+        <member name="M:Consruction.Authorization.EnterInSystemClick(System.Object,System.EventArgs)">
             <summary>
             Обработчик входа в систему по клику 
             </summary>
             <param name="sender">Отправитель события</param>
             <param name="e">Аргументы события</param>
+        </member>
+        <member name="M:Consruction.Authorization.FormClosedClick(System.Object,System.EventArgs)">
+            <summary>
+            Удаление формы авторизации при закрытии дочерних форм
+            </summary>
+            <param name="sender">Объект вызвавший событие</param>
+            <param name="events"></param>
         </member>
         <member name="F:Consruction.Authorization.components">
             <summary>
@@ -45,18 +62,18 @@
             содержимое этого метода с помощью редактора кода.
             </summary>
         </member>
-        <member name="F:Consruction.formEmployers.components">
+        <member name="F:Consruction.FormEmployers.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Consruction.formEmployers.Dispose(System.Boolean)">
+        <member name="M:Consruction.FormEmployers.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Consruction.formEmployers.InitializeComponent">
+        <member name="M:Consruction.FormEmployers.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
