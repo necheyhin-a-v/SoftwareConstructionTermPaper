@@ -1,4 +1,4 @@
-﻿namespace Consruction
+﻿namespace ViewLayer
 {
     partial class RegistrationEmployee
     {
