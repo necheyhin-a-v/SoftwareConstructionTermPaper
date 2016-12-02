@@ -1,0 +1,13 @@
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\bin\Debug\ViewLayer.exe.config
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\bin\Debug\ViewLayer.XML
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\bin\Debug\ViewLayer.exe
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\bin\Debug\ViewLayer.pdb
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\Consruction.formEmployees.resources
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\Consruction.Authorization.resources
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\Consruction.formEmployers.resources
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\ViewLayer.Properties.Resources.resources
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\Consruction.RegistrationEmployee.resources
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\Consruction.RegistrationEmployer.resources
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\ViewLayer.csproj.GenerateResource.Cache
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\ViewLayer.exe
+C:\Users\megabit\Desktop\Проганье\КПО\PaperTerm\ViewLayer\obj\Debug\ViewLayer.pdb
