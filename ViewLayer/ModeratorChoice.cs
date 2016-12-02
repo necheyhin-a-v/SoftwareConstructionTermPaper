@@ -10,87 +10,87 @@ using System.Windows.Forms;
 
 namespace ViewLayer
 {
+    /// <summary>
+    /// Класс формы работы с работодателями
+    /// </summary>
     public partial class FormEmployers : Form
     {
         ContextMenuStrip contextMenuInfoEmployer;
         DataGridViewCell currentCell;
-
+        /// <summary>
+        /// Конструктор формы.
+        /// Инициализирует все графические объекты формы
+        /// </summary>
         public FormEmployers()
         {
             InitializeComponent();
-            dataGridView1.RowCount = 5;
+            dataGridInfo.RowCount = 5;
+            //Создание объекта контекстного меню
             contextMenuInfoEmployer = new ContextMenuStrip();
-            // создаем элементы меню
+            // Создание пунктов меню
             ToolStripMenuItem editMenuItem = new ToolStripMenuItem("Редактировать");
             ToolStripMenuItem watchVacancyMenuItem = new ToolStripMenuItem("Просмотр вакансии");
-            //добавляем элементы в меню
-            contextMenuInfoEmployer.Items.AddRange(new[] { editMenuItem, watchVacancyMenuItem });
-            // ассоциируем контекстное меню с таблицей
-            contextMenuInfoEmployer.ItemClicked += ContextMenuInfoEmployer_ItemClicked;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
+            //Добавление пунктов меню в контекстное меню
+            contextMenuInfoEmployer.Items.Add(editMenuItem);
+            contextMenuInfoEmployer.Items.Add(watchVacancyMenuItem);
+            //Задать для каждой новой строки контекстное меню
+            foreach (DataGridViewRow row in dataGridInfo.Rows)
                 row.ContextMenuStrip = contextMenuInfoEmployer;
-            }
-            // устанавливаем обработчики событий для меню
-            editMenuItem.Click += editMenuItem_Click;
-            watchVacancyMenuItem.Click += watchVacancyMenuItem_Click;
+            // Установка обработчиков событий для пунктов меню
+            editMenuItem.Click += EditMenuItemClick;
+            watchVacancyMenuItem.Click += WatchVacancyMenuItemClick;
         }
-
-        private void ContextMenuInfoEmployer_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        /// <summary>
+        /// Обработчик событий для контекстного меню "Просмотр вакансий"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void WatchVacancyMenuItemClick(object sender, EventArgs e)
         {
-            switch (e.ClickedItem.Text)
-            {
-                case "Редактировать":
-                    try
-                    {
-                        dataGridView1.ReadOnly = false;
-                        dataGridView1.BeginEdit(false);
-                    }
-                    catch
-                    {
-
-                    }
-                    break;
-                case "Просмотр вакансии":
-
-                    break;
-            }
+            MessageBox.Show("Просмотр вакансий");
         }
-
-        void editMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обработчик событий для контекстного меню "Редактирование"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void EditMenuItemClick(object sender, EventArgs e)
         {
-            
+            dataGridInfo.ReadOnly = false;  //Открытие режима редактирования
+            dataGridInfo.BeginEdit(false);  //Не выбирать все ячейки для редактирования
         }
-        void watchVacancyMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabControlEmployersSelectedIndexChanged(object sender, EventArgs e)
         {
-            
-        }
-    
-
-        private void tabRegEmployers_Click(object sender, EventArgs e)
-        {
-            this.tcEmployers.Size = new Size(360, 180);
+            this.tabControlEmployers.Size = new Size(360, 180);
             this.Size = new Size(400, 245);
         }
+
+
+
 
         private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {            
             for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
             {
-                dataGridView1.Rows[i].ContextMenuStrip = contextMenuInfoEmployer;
+                dataGridInfo.Rows[i].ContextMenuStrip = contextMenuInfoEmployer;
             }
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView1.ReadOnly = true;
+            dataGridInfo.ReadOnly = true;
         }
 
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                currentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
+                currentCell = dataGridInfo[e.ColumnIndex, e.RowIndex];
             }
             catch
             {
@@ -102,8 +102,10 @@ namespace ViewLayer
         {
             if (e.Button == MouseButtons.Right)
             {
-                dataGridView1.CurrentCell = currentCell;
+                dataGridInfo.CurrentCell = currentCell;
             }
         }
+
+
     }
 }

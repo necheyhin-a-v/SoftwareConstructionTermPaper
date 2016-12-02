@@ -30,9 +30,9 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.LoginTB = new System.Windows.Forms.TextBox();
-            this.PasswordTB = new System.Windows.Forms.TextBox();
-            this.ButtonEnterInSystem = new System.Windows.Forms.Button();
+            this.texBoxLogin = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.buttonEnterInSystem = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
@@ -58,29 +58,29 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Пароль";
             // 
-            // LoginTB
+            // texBoxLogin
             // 
-            this.LoginTB.Location = new System.Drawing.Point(12, 25);
-            this.LoginTB.Name = "LoginTB";
-            this.LoginTB.Size = new System.Drawing.Size(118, 20);
-            this.LoginTB.TabIndex = 4;
+            this.texBoxLogin.Location = new System.Drawing.Point(12, 25);
+            this.texBoxLogin.Name = "texBoxLogin";
+            this.texBoxLogin.Size = new System.Drawing.Size(118, 20);
+            this.texBoxLogin.TabIndex = 4;
             // 
-            // PasswordTB
+            // textBoxPassword
             // 
-            this.PasswordTB.Location = new System.Drawing.Point(12, 64);
-            this.PasswordTB.Name = "PasswordTB";
-            this.PasswordTB.Size = new System.Drawing.Size(118, 20);
-            this.PasswordTB.TabIndex = 5;
+            this.textBoxPassword.Location = new System.Drawing.Point(12, 64);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.Size = new System.Drawing.Size(118, 20);
+            this.textBoxPassword.TabIndex = 5;
             // 
-            // ButtonEnterInSystem
+            // buttonEnterInSystem
             // 
-            this.ButtonEnterInSystem.Location = new System.Drawing.Point(15, 90);
-            this.ButtonEnterInSystem.Name = "ButtonEnterInSystem";
-            this.ButtonEnterInSystem.Size = new System.Drawing.Size(115, 23);
-            this.ButtonEnterInSystem.TabIndex = 6;
-            this.ButtonEnterInSystem.Text = "Войти";
-            this.ButtonEnterInSystem.UseVisualStyleBackColor = true;
-            this.ButtonEnterInSystem.Click += new System.EventHandler(this.EnterInSystemClick);
+            this.buttonEnterInSystem.Location = new System.Drawing.Point(15, 90);
+            this.buttonEnterInSystem.Name = "buttonEnterInSystem";
+            this.buttonEnterInSystem.Size = new System.Drawing.Size(115, 23);
+            this.buttonEnterInSystem.TabIndex = 6;
+            this.buttonEnterInSystem.Text = "Войти";
+            this.buttonEnterInSystem.UseVisualStyleBackColor = true;
+            this.buttonEnterInSystem.Click += new System.EventHandler(this.EnterInSystemClick);
             // 
             // fileSystemWatcher1
             // 
@@ -89,13 +89,13 @@
             // 
             // Authorization
             // 
-            this.AcceptButton = this.ButtonEnterInSystem;
+            this.AcceptButton = this.buttonEnterInSystem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(142, 125);
-            this.Controls.Add(this.ButtonEnterInSystem);
-            this.Controls.Add(this.PasswordTB);
-            this.Controls.Add(this.LoginTB);
+            this.Controls.Add(this.buttonEnterInSystem);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.texBoxLogin);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -112,9 +112,9 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox LoginTB;
-        private System.Windows.Forms.TextBox PasswordTB;
-        private System.Windows.Forms.Button ButtonEnterInSystem;
+        private System.Windows.Forms.TextBox texBoxLogin;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Button buttonEnterInSystem;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }

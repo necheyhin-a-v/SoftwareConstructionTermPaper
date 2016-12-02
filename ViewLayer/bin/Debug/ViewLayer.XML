@@ -4,115 +4,147 @@
         <name>ViewLayer</name>
     </assembly>
     <members>
-        <member name="F:Consruction.FormEmployees.components">
+        <member name="F:ViewLayer.FormEmployees.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Consruction.FormEmployees.Dispose(System.Boolean)">
+        <member name="M:ViewLayer.FormEmployees.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Consruction.FormEmployees.InitializeComponent">
+        <member name="M:ViewLayer.FormEmployees.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:Consruction.Authorization">
+        <member name="T:ViewLayer.Authorization">
             <summary>    
             Класс авторизации
             </summary>
         </member>
-        <member name="M:Consruction.Authorization.#ctor">
+        <member name="M:ViewLayer.Authorization.#ctor">
             <summary>
             Конструктор, который инициализирует форму
             </summary>
         </member>
-        <member name="M:Consruction.Authorization.EnterInSystemClick(System.Object,System.EventArgs)">
+        <member name="M:ViewLayer.Authorization.EnterInSystemClick(System.Object,System.EventArgs)">
             <summary>
             Обработчик входа в систему по клику 
             </summary>
             <param name="sender">Отправитель события</param>
             <param name="e">Аргументы события</param>
         </member>
-        <member name="M:Consruction.Authorization.FormClosedClick(System.Object,System.EventArgs)">
+        <member name="M:ViewLayer.Authorization.FormClosedClick(System.Object,System.EventArgs)">
             <summary>
             Удаление формы авторизации при закрытии дочерних форм
             </summary>
             <param name="sender">Объект вызвавший событие</param>
             <param name="events"></param>
         </member>
-        <member name="F:Consruction.Authorization.components">
+        <member name="F:ViewLayer.Authorization.components">
             <summary>
             Обязательная переменная конструктора.
             </summary>
         </member>
-        <member name="M:Consruction.Authorization.Dispose(System.Boolean)">
+        <member name="M:ViewLayer.Authorization.Dispose(System.Boolean)">
             <summary>
             Освободить все используемые ресурсы.
             </summary>
             <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         </member>
-        <member name="M:Consruction.Authorization.InitializeComponent">
+        <member name="M:ViewLayer.Authorization.InitializeComponent">
             <summary>
             Требуемый метод для поддержки конструктора — не изменяйте 
             содержимое этого метода с помощью редактора кода.
             </summary>
         </member>
-        <member name="F:Consruction.FormEmployers.components">
+        <member name="T:ViewLayer.FormEmployers">
+            <summary>
+            Класс формы работы с работодателями
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.#ctor">
+            <summary>
+            Конструктор формы.
+            Инициализирует все графические объекты формы
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.WatchVacancyMenuItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик событий для контекстного меню "Просмотр вакансий"
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.EditMenuItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик событий для контекстного меню "Редактирование"
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.tabRegEmployersClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик события перехода на вкладку регистрация работодателя
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:ViewLayer.FormEmployers.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Consruction.FormEmployers.Dispose(System.Boolean)">
+        <member name="M:ViewLayer.FormEmployers.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Consruction.FormEmployers.InitializeComponent">
+        <member name="M:ViewLayer.FormEmployers.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:Consruction.Program.Main">
+        <member name="M:ViewLayer.Program.Main">
             <summary>
             Главная точка входа для приложения.
             </summary>
         </member>
-        <member name="F:Consruction.RegistrationEmployee.components">
+        <member name="F:ViewLayer.RegistrationEmployee.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Consruction.RegistrationEmployee.Dispose(System.Boolean)">
+        <member name="M:ViewLayer.RegistrationEmployee.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Consruction.RegistrationEmployee.InitializeComponent">
+        <member name="M:ViewLayer.RegistrationEmployee.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:Consruction.RegistrationEmployer.components">
+        <member name="F:ViewLayer.RegistrationEmployer.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Consruction.RegistrationEmployer.Dispose(System.Boolean)">
+        <member name="M:ViewLayer.RegistrationEmployer.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Consruction.RegistrationEmployer.InitializeComponent">
+        <member name="M:ViewLayer.RegistrationEmployer.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

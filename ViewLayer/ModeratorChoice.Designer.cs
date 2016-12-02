@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tcEmployers = new System.Windows.Forms.TabControl();
+            this.tabControlEmployers = new System.Windows.Forms.TabControl();
             this.tabRegEmployers = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonClearRegistration = new System.Windows.Forms.Button();
+            this.buttonAcceptRegistration = new System.Windows.Forms.Button();
             this.textBoxEmployerPhoneNumber = new System.Windows.Forms.TextBox();
             this.textBoxEmployerAddress = new System.Windows.Forms.TextBox();
             this.textBoxITN = new System.Windows.Forms.TextBox();
@@ -41,39 +41,39 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxEmployerName = new System.Windows.Forms.TextBox();
             this.tabInfoEmployers = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonSearchInfo = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridInfo = new System.Windows.Forms.DataGridView();
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnITN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxSearchInfo = new System.Windows.Forms.TextBox();
             this.tabVacancies = new System.Windows.Forms.TabPage();
             this.tabStatistics = new System.Windows.Forms.TabPage();
-            this.tcEmployers.SuspendLayout();
+            this.tabControlEmployers.SuspendLayout();
             this.tabRegEmployers.SuspendLayout();
             this.tabInfoEmployers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).BeginInit();
             this.SuspendLayout();
             // 
-            // tcEmployers
+            // tabControlEmployers
             // 
-            this.tcEmployers.Controls.Add(this.tabRegEmployers);
-            this.tcEmployers.Controls.Add(this.tabInfoEmployers);
-            this.tcEmployers.Controls.Add(this.tabVacancies);
-            this.tcEmployers.Controls.Add(this.tabStatistics);
-            this.tcEmployers.Location = new System.Drawing.Point(12, 12);
-            this.tcEmployers.Name = "tcEmployers";
-            this.tcEmployers.SelectedIndex = 0;
-            this.tcEmployers.Size = new System.Drawing.Size(1117, 555);
-            this.tcEmployers.TabIndex = 4;
+            this.tabControlEmployers.Controls.Add(this.tabRegEmployers);
+            this.tabControlEmployers.Controls.Add(this.tabInfoEmployers);
+            this.tabControlEmployers.Controls.Add(this.tabVacancies);
+            this.tabControlEmployers.Controls.Add(this.tabStatistics);
+            this.tabControlEmployers.Location = new System.Drawing.Point(12, 12);
+            this.tabControlEmployers.Name = "tabControlEmployers";
+            this.tabControlEmployers.SelectedIndex = 0;
+            this.tabControlEmployers.Size = new System.Drawing.Size(1117, 555);
+            this.tabControlEmployers.TabIndex = 4;
+            this.tabControlEmployers.SelectedIndexChanged += new System.EventHandler(this.tabControlEmployersSelectedIndexChanged);
             // 
             // tabRegEmployers
             // 
-            this.tabRegEmployers.Controls.Add(this.button2);
-            this.tabRegEmployers.Controls.Add(this.button1);
+            this.tabRegEmployers.Controls.Add(this.buttonClearRegistration);
+            this.tabRegEmployers.Controls.Add(this.buttonAcceptRegistration);
             this.tabRegEmployers.Controls.Add(this.textBoxEmployerPhoneNumber);
             this.tabRegEmployers.Controls.Add(this.textBoxEmployerAddress);
             this.tabRegEmployers.Controls.Add(this.textBoxITN);
@@ -89,25 +89,25 @@
             this.tabRegEmployers.TabIndex = 0;
             this.tabRegEmployers.Text = "Регистрация";
             this.tabRegEmployers.UseVisualStyleBackColor = true;
-            this.tabRegEmployers.Click += new System.EventHandler(this.tabRegEmployers_Click);
+            this.tabRegEmployers.Click += new System.EventHandler(this.tabRegEmployersClick);
             // 
-            // button2
+            // buttonClearRegistration
             // 
-            this.button2.Location = new System.Drawing.Point(238, 116);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Очистить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonClearRegistration.Location = new System.Drawing.Point(238, 116);
+            this.buttonClearRegistration.Name = "buttonClearRegistration";
+            this.buttonClearRegistration.Size = new System.Drawing.Size(95, 23);
+            this.buttonClearRegistration.TabIndex = 9;
+            this.buttonClearRegistration.Text = "Очистить";
+            this.buttonClearRegistration.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonAcceptRegistration
             // 
-            this.button1.Location = new System.Drawing.Point(137, 116);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Принять";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonAcceptRegistration.Location = new System.Drawing.Point(137, 116);
+            this.buttonAcceptRegistration.Name = "buttonAcceptRegistration";
+            this.buttonAcceptRegistration.Size = new System.Drawing.Size(95, 23);
+            this.buttonAcceptRegistration.TabIndex = 8;
+            this.buttonAcceptRegistration.Text = "Принять";
+            this.buttonAcceptRegistration.UseVisualStyleBackColor = true;
             // 
             // textBoxEmployerPhoneNumber
             // 
@@ -176,11 +176,10 @@
             // 
             // tabInfoEmployers
             // 
-            this.tabInfoEmployers.Controls.Add(this.button4);
-            this.tabInfoEmployers.Controls.Add(this.button3);
+            this.tabInfoEmployers.Controls.Add(this.buttonSearchInfo);
             this.tabInfoEmployers.Controls.Add(this.label5);
-            this.tabInfoEmployers.Controls.Add(this.dataGridView1);
-            this.tabInfoEmployers.Controls.Add(this.textBox1);
+            this.tabInfoEmployers.Controls.Add(this.dataGridInfo);
+            this.tabInfoEmployers.Controls.Add(this.textBoxSearchInfo);
             this.tabInfoEmployers.Location = new System.Drawing.Point(4, 22);
             this.tabInfoEmployers.Name = "tabInfoEmployers";
             this.tabInfoEmployers.Padding = new System.Windows.Forms.Padding(3);
@@ -189,23 +188,14 @@
             this.tabInfoEmployers.Text = "Сведения";
             this.tabInfoEmployers.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonSearchInfo
             // 
-            this.button4.Location = new System.Drawing.Point(626, 406);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(187, 10);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonSearchInfo.Location = new System.Drawing.Point(187, 10);
+            this.buttonSearchInfo.Name = "buttonSearchInfo";
+            this.buttonSearchInfo.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearchInfo.TabIndex = 3;
+            this.buttonSearchInfo.Text = "Найти";
+            this.buttonSearchInfo.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -216,23 +206,23 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Поиск";
             // 
-            // dataGridView1
+            // dataGridInfo
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnName,
             this.ColumnITN,
             this.ColumnAddress,
             this.ColumnPhoneNumber});
-            this.dataGridView1.Location = new System.Drawing.Point(9, 39);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(445, 151);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
-            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
-            this.dataGridView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseUp);
+            this.dataGridInfo.Location = new System.Drawing.Point(9, 39);
+            this.dataGridInfo.Name = "dataGridInfo";
+            this.dataGridInfo.ReadOnly = true;
+            this.dataGridInfo.Size = new System.Drawing.Size(445, 151);
+            this.dataGridInfo.TabIndex = 1;
+            this.dataGridInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridInfo.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
+            this.dataGridInfo.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
+            this.dataGridInfo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseUp);
             // 
             // ColumnName
             // 
@@ -258,12 +248,12 @@
             this.ColumnPhoneNumber.Name = "ColumnPhoneNumber";
             this.ColumnPhoneNumber.ReadOnly = true;
             // 
-            // textBox1
+            // textBoxSearchInfo
             // 
-            this.textBox1.Location = new System.Drawing.Point(51, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBoxSearchInfo.Location = new System.Drawing.Point(51, 12);
+            this.textBoxSearchInfo.Name = "textBoxSearchInfo";
+            this.textBoxSearchInfo.Size = new System.Drawing.Size(130, 20);
+            this.textBoxSearchInfo.TabIndex = 0;
             // 
             // tabVacancies
             // 
@@ -285,29 +275,29 @@
             this.tabStatistics.Text = "Статистика";
             this.tabStatistics.UseVisualStyleBackColor = true;
             // 
-            // formEmployers
+            // FormEmployers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1220, 618);
-            this.Controls.Add(this.tcEmployers);
+            this.Controls.Add(this.tabControlEmployers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
-            this.Name = "formEmployers";
+            this.Name = "FormEmployers";
             this.Text = "Работа с предприятиями";
-            this.tcEmployers.ResumeLayout(false);
+            this.tabControlEmployers.ResumeLayout(false);
             this.tabRegEmployers.ResumeLayout(false);
             this.tabRegEmployers.PerformLayout();
             this.tabInfoEmployers.ResumeLayout(false);
             this.tabInfoEmployers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tcEmployers;
+        private System.Windows.Forms.TabControl tabControlEmployers;
         private System.Windows.Forms.TabPage tabRegEmployers;
         private System.Windows.Forms.TabPage tabInfoEmployers;
         private System.Windows.Forms.TabPage tabVacancies;
@@ -320,13 +310,12 @@
         private System.Windows.Forms.TextBox textBoxEmployerPhoneNumber;
         private System.Windows.Forms.TextBox textBoxEmployerAddress;
         private System.Windows.Forms.TextBox textBoxITN;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonAcceptRegistration;
+        private System.Windows.Forms.Button buttonClearRegistration;
+        private System.Windows.Forms.Button buttonSearchInfo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridInfo;
+        private System.Windows.Forms.TextBox textBoxSearchInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnITN;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAddress;

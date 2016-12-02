@@ -31,7 +31,7 @@ namespace ViewLayer
         private void EnterInSystemClick(object sender, EventArgs e)
         {
             //TODO: Autorization.EnterInSystemClick() Изменить заглушку от авторизации
-            if (LoginTB.Text == "moderator")
+            if (texBoxLogin.Text == "moderator")
             {
                 this.Hide();
                 Form form = new FormEmployers();
@@ -40,7 +40,7 @@ namespace ViewLayer
                 form.Show();
             }
 
-            if (LoginTB.Text == "consultant")
+            if (texBoxLogin.Text == "consultant")
             {
                 this.Hide();
                 Form form = new FormEmployees();

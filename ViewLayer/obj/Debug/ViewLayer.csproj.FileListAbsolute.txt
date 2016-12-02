@@ -17,11 +17,11 @@ D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\Vie
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\bin\Debug\ViewLayer.exe
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\bin\Debug\ViewLayer.pdb
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.csprojResolveAssemblyReference.cache
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\Consruction.formEmployees.resources
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\Consruction.Authorization.resources
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\Consruction.formEmployers.resources
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.Properties.Resources.resources
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\Consruction.RegistrationEmployee.resources
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\Consruction.RegistrationEmployer.resources
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.csproj.GenerateResource.Cache
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.FormEmployees.resources
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.Authorization.resources
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.FormEmployers.resources
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.RegistrationEmployee.resources
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.RegistrationEmployer.resources
