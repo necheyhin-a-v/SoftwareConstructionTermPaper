@@ -25,3 +25,16 @@ D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\Vie
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.FormEmployers.resources
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.RegistrationEmployee.resources
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\ViewLayer\obj\Debug\ViewLayer.RegistrationEmployer.resources
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ViewLayer.exe.config
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ViewLayer.XML
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.exe
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.FormEmployees.resources
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.Authorization.resources
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.FormEmployers.resources
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.Properties.Resources.resources
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.RegistrationEmployee.resources
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.RegistrationEmployer.resources
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.csproj.GenerateResource.Cache
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ViewLayer.exe
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ViewLayer.pdb
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.pdb

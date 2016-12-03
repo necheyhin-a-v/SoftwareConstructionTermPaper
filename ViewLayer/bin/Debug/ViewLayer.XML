@@ -87,9 +87,9 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:ViewLayer.FormEmployers.tabRegEmployersClick(System.Object,System.EventArgs)">
+        <member name="M:ViewLayer.FormEmployers.tabControlEmployersSelectedIndexChanged(System.Object,System.EventArgs)">
             <summary>
-            Обработчик события перехода на вкладку регистрация работодателя
+            
             </summary>
             <param name="sender"></param>
             <param name="e"></param>

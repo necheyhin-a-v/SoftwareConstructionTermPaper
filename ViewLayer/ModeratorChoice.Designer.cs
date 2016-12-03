@@ -89,7 +89,6 @@
             this.tabRegEmployers.TabIndex = 0;
             this.tabRegEmployers.Text = "Регистрация";
             this.tabRegEmployers.UseVisualStyleBackColor = true;
-            this.tabRegEmployers.Click += new System.EventHandler(this.tabRegEmployersClick);
             // 
             // buttonClearRegistration
             // 

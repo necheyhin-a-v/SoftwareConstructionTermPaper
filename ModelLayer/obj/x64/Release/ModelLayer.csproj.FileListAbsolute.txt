@@ -1,0 +1,4 @@
+D:\ProjectCPO\PaperTerm\ModelLayer\bin\x64\Release\ModelLayer.XML
+D:\ProjectCPO\PaperTerm\ModelLayer\bin\x64\Release\ModelLayer.dll
+D:\ProjectCPO\PaperTerm\ModelLayer\bin\x64\Release\Oracle.DataAccess.dll
+D:\ProjectCPO\PaperTerm\ModelLayer\obj\x64\Release\ModelLayer.dll

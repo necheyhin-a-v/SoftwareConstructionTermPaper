@@ -12,7 +12,7 @@ namespace TestApplication
         static void Main(string[] args)
         {
             //Программа требует предварительной настройки
-            DataBase.Initialize("192.168.1.50", "1521");
+            DataBase.Initialize("necheukhin.ddns.net", "1521");
 
 
             //Employee emp = new Employee("6909847329", "Анастасия", "Минкевич", "Владимировна", "г. Томск, ул. Сибирская, д. 101, кв. 2", "", 8);

@@ -1,0 +1,898 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ModelLayer</name>
+    </assembly>
+    <members>
+        <member name="T:ModelLayer.DataBase">
+            <summary>
+            Класс для настройки базы данных, хранит 
+            </summary>
+        </member>
+        <member name="M:ModelLayer.DataBase.Initialize(System.String,System.String)">
+            <summary>
+            Инициализирует БД с портом и хостом
+            </summary>
+            <param name="host">Хост или ip адрес удаленного компьютера</param>
+            <param name="port">порт</param>
+        </member>
+        <member name="M:ModelLayer.DataBase.OpenConnection">
+            <summary>
+            Открывает подключение к базе данных
+            В случае каких-либо ошибок вызывает иключение
+            </summary>
+        </member>
+        <member name="M:ModelLayer.DataBase.CloseConnection">
+            <summary>
+            Закрывает подключение к базе данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.DataBase.GetConnection">
+            <summary>
+            Возвращает объект подключения к базе данных
+            </summary>
+            <returns>Возвращает объект подключения к базе данных</returns>
+        </member>
+        <member name="M:ModelLayer.DataBase.GetCommand">
+            <summary>
+            Возвращает объект выполнения запроса
+            </summary>
+            <returns>Возвращает объект выполнения запроса</returns>
+        </member>
+        <member name="T:ModelLayer.DBEntity">
+            <summary>
+            Абстрактный класс, выполняющий подключение к базе данных
+            Обратите внимание, что при запросах к базе данных одиночные кавычки должны дублироваться
+            </summary>
+        </member>
+        <member name="M:ModelLayer.DBEntity.AddEntityToDB">
+            <summary>
+            Добавляет сущность в базу данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.DBEntity.DeleteEntityFromDB">
+            <summary>
+            Удаляет все записи связанные с текущей записью из базы данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.DBEntity.UpdateEntityInDB">
+            <summary>
+            Выполняет обновление на основе существующих данных в базе
+            </summary>
+        </member>
+        <member name="M:ModelLayer.DBEntity.ExecuteNonSelectQuery(System.String)">
+            <summary>
+            Выполняет SQL запрос
+            В случае невозможного выполнения запроса вызывается исключение
+            </summary>
+            <param name="query">Строка запроса</param>
+        </member>
+        <member name="M:ModelLayer.DBEntity.ExecuteSelect(System.String)">
+            <summary>
+            Выполняет select запрос к базе данных
+            В случае ошибки вызывается исключение
+            </summary>
+            <param name="query">Строка запроса</param>
+            <returns>Возвращает список, состоящий из массива объектов(столбцов)</returns>
+        </member>
+        <member name="M:ModelLayer.DBEntity.ExecuteTransaction(System.String[])">
+            <summary>
+            Выполняет транзакцию, состоящую из массива запросов. Каждый запрос обрабатывается
+            отдельно и в случае невыполнения одного из запросов база данных "откатывается"
+            и все изменения, сделанные до этого также возвращаются.
+            </summary>
+            <param name="queries">Список запросов на выполнение.</param>
+        </member>
+        <member name="T:ModelLayer.Employee">
+            <summary>
+            Класс взаимодействуя с базой данных на низком уровне
+            извлекает информацию из БД, сохраняет информацию и т.д. 
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employee.#ctor">
+            <summary>
+            Конструктор закрыт для внешнего воздействия
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employee.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.UInt32)">
+            <summary>
+            Создает объект на основе параметров и добавляет в базу данных
+            </summary>
+            <param name="passportNumber">Паспорт(серия и номер без пробела)</param>
+            <param name="firstName">Имя</param>
+            <param name="secondName">Фамилия</param>
+            <param name="middleName">Отчество (может быть null)</param>
+            <param name="address">Адрес регистрации</param>
+            <param name="phone">Номер телефона</param>
+            <param name="experience">Опыт работы в месяцах</param>
+        </member>
+        <member name="M:ModelLayer.Employee.CanFindByPassport(System.String)">
+            <summary>
+            Проверяет может ли быть найдена запись по паспорту в базе данных или нет.
+            </summary>
+            <param name="passport">Серия и номер паспорта без пробела</param>
+            <returns>True если запись в базе данных существует</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetByPassport(System.String)">
+            <summary>
+            Пытается найти человека по номеру паспорта, создает объект и возвращает ссылку на него. 
+            Обратите внимание, что это статический метод, может использоваться без создания объекта
+            </summary>
+            <param name="passport">Серия и номер паспорта без пробела</param>
+            <returns>Возвращает новый инициализированный объект Employee на основе данных из базы данных</returns>
+            <returns>Или возвращает ссылку на null если данных нет в базе данных</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.AddEntityToDB">
+            <summary>
+            Вставляет новую запись в базу данных
+            Вызывает исключение если невозможно вставить запись в базу данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employee.Delete">
+            <summary>
+            Удаляет существующую запись пользователя и все связанные с ней из базы данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employee.DeleteEntityFromDB">
+            <summary>
+            Удаляет текущую сущность из базы данных.
+            Обратите внимание, что после удаления все параметры текущего объекта остаются
+            Вызывает исключение в случае невозможности удаления данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangePassport(System.String)">
+            <summary>
+            Установить сущности новый номер паспорта и изменить запись в базе данных
+            В случае ошибки вызывается ислкючение и поле остается неименным
+            </summary>
+            <param name="newPassportNumber">Серия и номер паспорта для смены старого</param>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangeFirstName(System.String)">
+            <summary>
+            Установить новое имя и внести исправления в базу данных
+            В случае ошибки вызывается ислкючение и поле остается неименным
+            </summary>
+            <param name="newFirstName">Новое имя</param>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangeSecondName(System.String)">
+            <summary>
+            Установить новую фамилию и внести исправления в базу данных
+            В случае ошибки вызывается ислкючение и поле остается неименным
+            </summary>
+            <param name="newSecondName">Новая фамилия</param>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangeMiddleName(System.String)">
+            <summary>
+            Изменение отчества и внесение исправления в базу данных
+            В случае ошибки вызывается ислкючение и поле остается неименным
+            </summary>
+            <param name="newMiddleName">Новое отчество</param>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangeAddress(System.String)">
+            <summary>
+            Смена адреса и внесение исправления в базу данных
+            В случае ошибки вызывается ислкючение и поле остается неименным
+            </summary>
+            <param name="newAddress">Новый адрес</param>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangePhone(System.String)">
+            <summary>
+            Смена телефона и внесение исправления в базу данных
+            В случае ошибки вызывается ислкючение и поле остается неименным
+            </summary>
+            <param name="newPhone">Новый номер телефона</param>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangeDateWhenJobFounded(System.DateTime)">
+            <summary>
+            Устанавливает дату, когда была найдена работа сотрудником
+            В случае ошибки вызывается ислкючение и поле остается неименным
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employee.GetPassport">
+            <summary>
+            Возвращает значение пасспорта для текущего объекта
+            </summary>
+            <returns>Возвращает паспорт в виде серия и номер без пробела</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetFirstName">
+            <summary>
+            Получить имя
+            </summary>
+            <returns>Возвращает имя</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetSecondName">
+            <summary>
+            Получить фамилию
+            </summary>
+            <returns>Возвращает фамилию</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetMiddleName">
+            <summary>
+            Получить отчество
+            </summary>
+            <returns>Возвращает отчество или "-" в случае отсутствия такового</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetAddress">
+            <summary>
+            Получить адрес места жительства
+            </summary>
+            <returns>Возвращает адрес</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetPhone">
+            <summary>
+            Получить номер телефона
+            </summary>
+            <returns>Возвращает номер телефона или "-" в случае отсутствия такогого</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetStatus">
+            <summary>
+            Возвращает статус о том найдена ли работа или еще в поиске
+            </summary>
+            <returns>Возвращает true в случае если человек нашел работу</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetDateWhenJobFounded">
+            <summary>
+            Возвращает дату, когда работа была найдена
+            Либо выдает исключение о том, что невозможно получить дату
+            </summary>
+            <returns>Возвращает дату</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.ToString">
+            <summary>
+            Возвращает имя отчество и фамилию
+            </summary>
+            <returns>Возвращает строку в виде Имя Отчество Фамилия</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.UpdateEntityInDB">
+            <summary>
+            Обновить данные о рабочем в базе данных на основе данных из класса
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employee.GetAll">
+            <summary>
+            Получает список всех работников из базы даных
+            </summary>
+            <returns>Список объектов (работников)</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.GetExperience">
+            <summary>
+            Получить из базы данных опыт работы в месяцах
+            </summary>
+            <returns>Опыт работы сотрудника в месяцах</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.ChangeExperience(System.UInt32)">
+            <summary>
+            Сменить опыт работника и обновить данные в базе
+            </summary>
+            <param name="newExperience">Новый опыт работы в месяцах</param>
+        </member>
+        <member name="M:ModelLayer.Employee.AddPriorEmploymentType(ModelLayer.EmploymentType)">
+            <summary>
+            Добавить текущему работнику дополнительный предпочтительный тип занятости
+            На основе этих данных будут подбираться предложения
+            </summary>
+            <param name="type">Предпочтительный тип занятости</param>
+        </member>
+        <member name="M:ModelLayer.Employee.DeletePriorEmploymentType(ModelLayer.EmploymentType)">
+            <summary>
+            Удалить приоритетное направление специальности
+            </summary>
+            <param name="type">Тип занятости который больше не хочет искать работник</param>
+        </member>
+        <member name="M:ModelLayer.Employee.GetPriorEmploymentTypes">
+            <summary>
+            Получить список типов занятости интересных для работника
+            </summary>
+            <returns>Список типов занятости</returns>
+        </member>
+        <member name="M:ModelLayer.Employee.AddPriorSpecialty(ModelLayer.Specialty)">
+            <summary>
+            Добавить текущему работнику дополнительную приоритетную специальность
+            На основе этих данных будут подбираться предложения
+            </summary>
+            <param name="specialty">Специальность для добавления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.AddPriorSpecialty(System.String)">
+            <summary>
+            Добавить текущему работнику дополнительную приоритетную специальность
+            На основе этих данных будут подбираться предложения
+            Имя специальности должно существовать в базе данных
+            </summary>
+            <param name="specialty">Имя специальности для добавления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.DeletePriorSpecialty(ModelLayer.Specialty)">
+            <summary>
+            Убрать у текущего работника дополнительную приоритетную специальность
+            </summary>
+            <param name="specialty">Специальность для удаления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.DeletePriorSpecialty(System.String)">
+            <summary>
+            Убрать у текущего работника дополнительную приоритетную специальность
+            Имя специальности должно существовать в базе данных
+            </summary>
+            <param name="specialty">Имя специальности для удаления</param>
+        </member>
+        <member name="M:ModelLayer.Employee.GetPriorSpecialties">
+            <summary>
+            Получить все приоритетные специальности для пользователя
+            </summary>
+            <returns>Список специальностей, которые интересуют пользователя</returns>
+        </member>
+        <member name="T:ModelLayer.Employer">
+            <summary>
+            Класс Employer отражает часть схемы базы данных, хранящую информацию
+            о работодателях и их вакансиях
+            Обратите внимание, что по Российскому законодательству смена ИНН не производится
+            Также смена ИНН невозможно из программы
+            Добавление вакансии работодателю может производится как при помощи текущего класса (метод AddVacancy())
+            так и при помощи класса Vacancy, передав ему в качестве параметра работодателя
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employer.#ctor">
+            <summary>
+            Закрытый для создания по умолчанию конструктор
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employer.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Занесение сведений о работодателе в базу данных и создание на основе этих данных объекта
+            </summary>
+            <param name="itn">ИНН организации или работодателя</param>
+            <param name="name">Название организации или имя частного предпринимателя</param>
+            <param name="address">Юридический адрес работодателя</param>
+            <param name="phone">Контактный номер телефона работодателя</param>
+        </member>
+        <member name="M:ModelLayer.Employer.DeleteEmployer">
+            <summary>
+            Удаляет все записи связанные с текущим работодателем из базы данных
+            ВНИМАНИЕ!!! Также удаляются все вакансии связанные с работодателем
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employer.DeleteEntityFromDB">
+            <summary>
+            Удаляются все связанные записи с сущностью DBEntity из базы данных
+            Ссылка на DBEntity после успешного удаления равна NULL
+            В случае ошибки - исключение
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employer.AddEntityToDB">
+            <summary>
+            Вставить новую запись о работодателе в базу данных. Исключение в случае ошибки
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Employer.CanGetByItn(System.String)">
+            <summary>
+            Проверяет можно ли получить из базы данных сведения о работодателе с переданным ИНН
+            Может вызвать исключение
+            </summary>
+            <param name="itn">ИНН для поиска информации о работодателе</param>
+            <returns>true если информация о работодателе в базе данных существует</returns>
+        </member>
+        <member name="M:ModelLayer.Employer.AddVacancy(ModelLayer.Vacancy)">
+            <summary>
+            Добавляет новую вакансию к текущему работодателю, производит необходимые связки в базе данных
+            В случае ошибки вызывается исключение
+            </summary>
+            <param name="vacancy">Вакансия работодателя для добавления</param>
+        </member>
+        <member name="M:ModelLayer.Employer.ChangeName(System.String)">
+            <summary>
+            Именяет текущее наименование организации или имя частного предпринимателя.
+            В случае ошибки вызывает исключение
+            </summary>
+            <param name="newName">Новое имя организации или частного предпринимателя</param>
+        </member>
+        <member name="M:ModelLayer.Employer.ChangeAddress(System.String)">
+            <summary>
+            Изменяет текущий адрес работодателя на новый.
+            В случае ошибки вызывает исключение
+            </summary>
+            <param name="newAddress">Новый адрес работодателя</param>
+        </member>
+        <member name="M:ModelLayer.Employer.ChangePhone(System.String)">
+            <summary>
+            Изменяет текущий контактный телефон работодателя
+            </summary>
+            <param name="newPhone">Новый телефонный номер</param>
+        </member>
+        <member name="M:ModelLayer.Employer.GetByItn(System.String)">
+            <summary>
+            Проверяет в базе данных запись о работодателе с переданным в качестве параметра ИНН
+            и в случае существования последней возвращает объект, созданный на основе данных из базы
+            </summary>
+            <param name="itn">ИНН работодателя для поиска</param>
+            <returns>Возвращает объект работодателя на основе данных из базы</returns>
+        </member>
+        <member name="M:ModelLayer.Employer.GetItn">
+            <summary>
+            Функция для получения ИНН работодателя (текущего объекта)
+            </summary>
+            <returns>Возвращает ИНН работодателя</returns>
+        </member>
+        <member name="M:ModelLayer.Employer.GetName">
+            <summary>
+            Получение названия компании, либо имени частного предпринимателя
+            </summary>
+            <returns>Возвращает имя компании либо частного предпринимателя</returns>
+        </member>
+        <member name="M:ModelLayer.Employer.GetAddress">
+            <summary>
+            Получение адреса работодателя
+            Вообще адрес вроде должен быть один у каждого работодателя, т.к. каждый филиал
+            регистрируется в налоговой службе отдельно. В программе считается, что у каждого
+            работодателя один адрес. В реальности же это может быть не так
+            </summary>
+            <returns>Возвращает адрес работодателя</returns>
+        </member>
+        <member name="M:ModelLayer.Employer.GetPhone">
+            <summary>
+            Функция получения контактного номера с работодателем
+            </summary>
+            <returns>Номер телефона работодателя</returns>
+        </member>
+        <member name="M:ModelLayer.Employer.GetAll">
+            <summary>
+            Возвращает список всех объектов Employer, хранящихся в базе данных
+            </summary>
+            <returns>Список всех объектов Employer из базы данных</returns>
+        </member>
+        <member name="M:ModelLayer.Employer.UpdateEntityInDB">
+            <summary>
+            Одновляет базу данных на основе сведений из класса
+            </summary>
+        </member>
+        <member name="T:ModelLayer.Specialty">
+            <summary>
+            Класс специальность работает со специальностями на основе базы данных
+            Используйте метод GetAll для поиска специальности прежде чем создать новую
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Specialty.#ctor">
+            <summary>
+            Закрытый для общего доступа конструктор
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Specialty.#ctor(System.String)">
+            <summary>
+            Создает новую специальность с именем name. Производится проверка существования в базе данных и если запись уже существует
+            то возвращаются данные на основе этой записи
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:ModelLayer.Specialty.DeleteEntityFromDB">
+            <summary>
+            Удалить сферу деятельности из базы данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Specialty.UpdateEntityInDB">
+            <summary>
+            Обновляет базу данных на основе данных в классе
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Specialty.GetAll">
+            <summary>
+            Возвращает список всех специальностей существующих в базе данных
+            </summary>
+            <returns>Список всех записей (специальностей) в БД</returns>
+        </member>
+        <member name="M:ModelLayer.Specialty.GetByName(System.String)">
+            <summary>
+            Возвращает объект "Специальность" созданный на основе данных в базе
+            Вызывается исключение если специальности в базе не существует
+            </summary>
+            <param name="name">Имя специальности</param>
+            <returns>Объект специальности</returns>
+        </member>
+        <member name="M:ModelLayer.Specialty.GetByID(System.Int32)">
+            <summary>
+            Возвращает объект специальности по идентификатору, переданному в качестве параметра
+            </summary>
+            <param name="id">Идентификатор специальности которую нужно вернуть</param>
+            <returns>Специальность на основе данных из базы</returns>
+        </member>
+        <member name="M:ModelLayer.Specialty.CanGetByID(System.Int32)">
+            <summary>
+            Проверяется можно ли получить специальность из базы данных по идентификатору
+            </summary>
+            <param name="id">id специальности</param>
+            <returns>true если запись специальности с id существует в базе данных</returns>
+        </member>
+        <member name="M:ModelLayer.Specialty.CanGetByName(System.String)">
+            <summary>
+            Проверяет существует ли специальность в базе данных с именем name
+            </summary>
+            <param name="name">true если запись в базе данных существует</param>
+            <returns></returns>
+        </member>
+        <member name="M:ModelLayer.Specialty.AddEntityToDB">
+            <summary>
+            Пытаемся сначала насилу запихать новую запись в базу данных (а вдруг прокатит)
+            После вставки (успешной или нет) проверяем запросом запись и получаем ID созданных автоматически СУБД.
+            Если запрос после вставки ничего не вернул, то значит чего-то пошло не так и невозможно добавить запись в БД
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Specialty.GetId">
+            <summary>
+            Возвращает идентификатор текущей сферы деятельности (специальности)
+            </summary>
+            <returns>Идентификатор специальности в базе данных</returns>
+        </member>
+        <member name="M:ModelLayer.Specialty.GetName">
+            <summary>
+            Возвращает текущее имя специальности
+            </summary>
+            <returns>Название специальности (сферы деятельности)</returns>
+        </member>
+        <member name="T:ModelLayer.UserRoles">
+            <summary>
+            Роли пользователя на основе которых будет определяться доступный пользователю функционал
+            </summary>
+        </member>
+        <member name="F:ModelLayer.UserRoles.Consultant">
+            <summary>
+            Консультант
+            </summary>
+        </member>
+        <member name="F:ModelLayer.UserRoles.Moderator">
+            <summary>
+            Человек, который добавляет информацию о работодателях в базу данных
+            </summary>
+        </member>
+        <member name="T:ModelLayer.User">
+            <summary>
+            Класс User отражает часть схемы базы данных, хранящую информацию
+            о пользователях и их привелегиях или ролях
+            При смене имени роли в базе данных (руками) проверка на соответствие не делается.
+            Существующего идентификатора достаточно для работы программы. Однако если нет идентификатора, то программа добавит его
+            </summary> 
+        </member>
+        <member name="M:ModelLayer.User.#ctor">
+            <summary>
+            Конструктор без параметров закрыт для "внешнего" использования
+            </summary>
+        </member>
+        <member name="M:ModelLayer.User.#ctor(System.String,System.String,ModelLayer.UserRoles)">
+            <summary>
+            Создать нового пользователя и поместить его в базу данных
+            В случае ошибки вызывается исключение, например логин уже существует
+            </summary>
+            <param name="login">Логин нового пользователя</param>
+            <param name="password">Пароль нового пользователя</param>
+            <param name="role">Строка отражающая роль пользователя</param>
+        </member>
+        <member name="M:ModelLayer.User.CanFindByLogin(System.String)">
+            <summary>
+            Функция ищет пользователя по логину
+            Обратите внимание, что это статическая функция и может быть вызвана без создания объекта
+            </summary>
+            <param name="login">Логин пользователя для поиска в базе данных</param>
+            <returns>true, если пользователь с таким логином существует</returns>
+        </member>
+        <member name="M:ModelLayer.User.GetByLogin(System.String)">
+            <summary>
+            Функция возвращает объект пользователя инициализированный на основе данных из базы данных
+            </summary>
+            <param name="login">Логин пользователя из базы данных</param>
+            <returns>Возвращает объект или null</returns>
+        </member>
+        <member name="M:ModelLayer.User.ChangePassword(System.String)">
+            <summary>
+            Сменить пароль для пользователя
+            </summary>
+            <param name="newPassword">Новый пароль для записи в базу данных</param>
+        </member>
+        <member name="M:ModelLayer.User.ChangeRole(ModelLayer.UserRoles)">
+            <summary>
+            Изменяет текущую роль пользователя
+            </summary>
+            <param name="newRole">Новая роль пользователя</param>
+        </member>
+        <member name="M:ModelLayer.User.DeleteUser">
+            <summary>
+            Удаляет текущего пользователя из базы данных.
+            Вызывает исключение в случае ошибки
+            </summary>
+        </member>
+        <member name="M:ModelLayer.User.DeleteEntityFromDB">
+            <summary>
+            Удаляются все связанные записи с сущностью DBEntity из базы данных
+            Ссылка на DBEntity после успешного удаления равна NULL
+            В случае ошибки - исключение
+            </summary>
+        </member>
+        <member name="M:ModelLayer.User.AddEntityToDB">
+            <summary>
+            защищенная функция, вставляет в базу данных запись на основе login, password, role
+            </summary>
+        </member>
+        <member name="M:ModelLayer.User.GetPassword">
+            <summary>
+            Функция возвращает текущий пароль пользователя
+            Используйте шифрование перед установкой пароля для того, чтобы пароль не передавался в открытом виде
+            </summary>
+            <returns>Текущий пароль пользователя</returns>
+        </member>
+        <member name="M:ModelLayer.User.GetLogin">
+            <summary>
+            Возвращает логин пользователя. Обратите внимание, что по архитектуре сменить логин невозможно
+            </summary>
+            <returns>Текущий логин пользователя</returns>
+        </member>
+        <member name="M:ModelLayer.User.GetRole">
+            <summary>
+            Возвращает текущую роль пользователя
+            </summary>
+            <returns>Текущая роль пользователя</returns>
+        </member>
+        <member name="M:ModelLayer.User.GetAll">
+            <summary>
+            Получить все объекты пользователей из базы данных
+            </summary>
+            <returns>Список пользователей</returns>
+        </member>
+        <member name="M:ModelLayer.User.UpdateEntityInDB">
+            <summary>
+            Обновляет сущность на основе данных класса в базе данных
+            </summary>
+        </member>
+        <member name="T:ModelLayer.EmploymentType">
+            <summary>
+            Тип занятости предполагающий вакансию
+            </summary>
+        </member>
+        <member name="F:ModelLayer.EmploymentType.FullTime">
+            <summary>
+            Вакансия с полной занятостью
+            </summary>
+        </member>
+        <member name="F:ModelLayer.EmploymentType.PartTime">
+            <summary>
+            Вакансия с частичной занятостью
+            </summary>
+        </member>
+        <member name="F:ModelLayer.EmploymentType.Traineeship">
+            <summary>
+            Стажировка
+            </summary>
+        </member>
+        <member name="F:ModelLayer.EmploymentType.Volunteering">
+            <summary>
+            Волонтерство
+            </summary>
+        </member>
+        <member name="T:ModelLayer.Vacancy">
+            <summary>
+            Класс Vacancy отражает часть схемы базы данных, хранящую информацию
+            о вакансиях
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Vacancy.#ctor">
+            <summary>
+            Закрытый по умолчанию конструктор для внешнего доступа
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Vacancy.#ctor(System.String,System.String,ModelLayer.Specialty,ModelLayer.EmploymentType,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создает вакансию и добавляет информацию о ней в базу данных
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="employerItn">ИНН работодателя, для которого создается вакансия.
+            ИНН должен существовать в базе данных</param>
+            <param name="specialty">Специальность для вакансии</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.#ctor(System.String,ModelLayer.Employer,ModelLayer.Specialty,ModelLayer.EmploymentType,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создает вакансию и добавляет информацию о ней в базу данных
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="employer">Работодатель, для которого создается вакансия.</param>
+            <param name="specialty">Специальность для вакансии</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.#ctor(System.String,System.String,System.String,ModelLayer.EmploymentType,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создает вакансию и добавляет информацию о ней в базу данных
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="employerItn">ИНН работодателя, для которого создается вакансия.
+            Работодатель должен существовать в базе данных</param>
+            <param name="specialtyName">Имя специальности для вакансии. Должно существовать в базе данных</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.#ctor(System.String,ModelLayer.Employer,System.String,ModelLayer.EmploymentType,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создает вакансию, и добавляет информацию о ней в базу данных
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="employer">Работодатель предоставляющий вакансию</param>
+            <param name="specialtyName">Имя специальности для вакансии. 
+            Должно существовать в базе данных</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.#ctor(System.String,System.String,ModelLayer.EmploymentType,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создает вакансию, но не добавляет запись в базу данных. Необходимо вызвать метод SetEmployer()
+            для записи данных в базу. 
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="specialtyName">Специальность для вакансии.
+            Должно существовать в базе данных</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.#ctor(System.String,ModelLayer.Specialty,ModelLayer.EmploymentType,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создает вакансию, но не добавляет запись в базу данных. Необходимо вызвать метод SetEmployer()
+            для записи данных в базу. 
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="specialty">Специальность для вакансии</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetAllEmployerVacancies(System.String)">
+             <summary>
+             Получает набор вакансий связанных с работодателем, по его ИНН
+            
+             </summary>
+             <param name="employerITN">ИНН работодателя</param>
+             <returns>Список вакансий для работодателя</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetAll">
+            <summary>
+            Получить список всех вакансий существующих в базе данных
+            </summary>
+            <returns>Список вакансий</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeName(System.String)">
+            <summary>
+            Изменяет имя вакансии в базе данных, вносит исправления в базу данных на основе переданного параметра
+            </summary>
+            <param name="newName">Новое имя вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeSpecialty(ModelLayer.Specialty)">
+            <summary>
+            Сменить тип специальности для данной вакансии и внести изменения в базу данных.
+            Обычно данный метод вызывать не требуется
+            </summary>
+            <param name="specialty">Специальность для данной вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeSpecialty(System.String)">
+            <summary>
+            Сменить тип специальности для данной вакансии. Обычно не требуется
+            Специальность на которую меняется должна существовать в базе данных
+            </summary>
+            <param name="specialtyName">Имя специальности существующее в базе данных</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeEmploymentType(ModelLayer.EmploymentType)">
+            <summary>
+            Изменить тип занятости для вакансии (например, полный рабочий день)
+            </summary>
+            <param name="newType">Новый тип занятости</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeDescription(System.String)">
+            <summary>
+            Сменить описание для текущей вакансии
+            </summary>
+            <param name="newDescription">Новое описание</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeSalary(System.UInt32)">
+            <summary>
+            Изменить оплату вакансии
+            </summary>
+            <param name="newSalary">Новая оплата вакансии</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.ChangeRequiredExperience(System.UInt32)">
+            <summary>
+            Изменить требуемый опыт работы для специальности в месяцах
+            </summary>
+            <param name="newExperience">Новый требуемый опыт работы в месяцах</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.Delete">
+            <summary>
+            Удаляет все записи из базы данных связанные с этим объектом
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Vacancy.DeleteEntityFromDB">
+            <summary>
+            Удаляет информацию о сущности Vacancy из базы данных
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Vacancy.AddEntityToDB">
+            <summary>
+            Добавляет новую запись в базу данных на основе имеющейся в классе информации
+            Вызывает исключение в случае неудачи
+            </summary>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetName">
+            <summary>
+            Получение полного имени вакансии
+            </summary>
+            <returns>Имя вакансии</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetEmployerItn">
+            <summary>
+            Получение работодателя для которого эта вакансия существует
+            Если работодатель не установлен, то возвращается null
+            </summary>
+            <returns>ИНН работодателя или null если работодатель еще не установлен</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetSpecialty">
+            <summary>
+            Получить объект Специальность
+            </summary>
+            <returns>Возвращает объект типа "Специальность"</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetSpecialtyName">
+            <summary>
+            Возвращает название специальности
+            </summary>
+            <returns>Название специальности</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetEmploymentType">
+            <summary>
+            Получить тип занятости для текущей вакансии
+            </summary>
+            <returns>Тип занятости</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetDescription">
+            <summary>
+            Получить описание для текущей вакансиии, если установлено
+            Описание для вакансии может быть не установлено
+            </summary>
+            <returns>Описание вакансии или пустую строку</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetSalary">
+            <summary>
+            Возвращает заработную плату для этой вакансии
+            </summary>
+            <returns>заработная плата</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.GetRequiredExperience">
+            <summary>
+            Получить требуемый для вакансии стаж работы в месяцах
+            </summary>
+            <returns>Необходимый стаж в месяцах</returns>
+        </member>
+        <member name="M:ModelLayer.Vacancy.SetEmployer(ModelLayer.Employer)">
+            <summary>
+            Установить для текущей вакансии работодателя.
+            Только в этом месте вакансия добавляется в базу данных
+            Вызывает исключение в случае ошибки добавления вакансии работодателю, также не добавляется в базу данных
+            </summary>
+            <param name="employer">Работодатель, предоставивший вакансию</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.SetEmployer(System.String)">
+            <summary>
+            Установить для текущей вакансии работодателя.
+            Только в этом месте вакансия добавляется в базу данных
+            Вызывает исключение в случае ошибки добавления вакансии работодателю
+            или если ИНН работодателя не найден
+            </summary>
+            <param name="itn">ИНН работодателя предоставившего вакансию</param>
+        </member>
+        <member name="M:ModelLayer.Vacancy.UpdateEntityInDB">
+            <summary>
+            Обновить сущность на основе данных в классе
+            </summary>
+        </member>
+    </members>
+</doc>

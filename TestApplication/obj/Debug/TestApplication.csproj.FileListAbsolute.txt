@@ -7,3 +7,12 @@ D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\Tes
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\Debug\TestApplication.csprojResolveAssemblyReference.cache
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\Debug\TestApplication.exe
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\Debug\TestApplication.pdb
+D:\ProjectCPO\PaperTerm\TestApplication\bin\Debug\TestApplication.exe.config
+D:\ProjectCPO\PaperTerm\TestApplication\obj\Debug\TestApplication.exe
+D:\ProjectCPO\PaperTerm\TestApplication\bin\Debug\TestApplication.exe
+D:\ProjectCPO\PaperTerm\TestApplication\bin\Debug\TestApplication.pdb
+D:\ProjectCPO\PaperTerm\TestApplication\bin\Debug\ModelLayer.dll
+D:\ProjectCPO\PaperTerm\TestApplication\bin\Debug\Oracle.DataAccess.dll
+D:\ProjectCPO\PaperTerm\TestApplication\bin\Debug\ModelLayer.pdb
+D:\ProjectCPO\PaperTerm\TestApplication\obj\Debug\TestApplication.csprojResolveAssemblyReference.cache
+D:\ProjectCPO\PaperTerm\TestApplication\obj\Debug\TestApplication.pdb
