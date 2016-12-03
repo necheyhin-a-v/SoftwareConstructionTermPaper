@@ -66,7 +66,7 @@
             this.tabControlEmployers.Location = new System.Drawing.Point(12, 12);
             this.tabControlEmployers.Name = "tabControlEmployers";
             this.tabControlEmployers.SelectedIndex = 0;
-            this.tabControlEmployers.Size = new System.Drawing.Size(1117, 555);
+            this.tabControlEmployers.Size = new System.Drawing.Size(470, 230);
             this.tabControlEmployers.TabIndex = 4;
             this.tabControlEmployers.SelectedIndexChanged += new System.EventHandler(this.tabControlEmployersSelectedIndexChanged);
             // 
@@ -182,7 +182,7 @@
             this.tabInfoEmployers.Location = new System.Drawing.Point(4, 22);
             this.tabInfoEmployers.Name = "tabInfoEmployers";
             this.tabInfoEmployers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfoEmployers.Size = new System.Drawing.Size(1109, 529);
+            this.tabInfoEmployers.Size = new System.Drawing.Size(462, 204);
             this.tabInfoEmployers.TabIndex = 1;
             this.tabInfoEmployers.Text = "Сведения";
             this.tabInfoEmployers.UseVisualStyleBackColor = true;
@@ -278,7 +278,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1220, 618);
+            this.ClientSize = new System.Drawing.Size(490, 257);
             this.Controls.Add(this.tabControlEmployers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
