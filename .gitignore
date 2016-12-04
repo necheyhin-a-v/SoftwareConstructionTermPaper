@@ -11,16 +11,16 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-[Xx]64/
-[Xx]86/
-[Bb]uild/
-bld/
-[Bb]in/
-[Oo]bj/
+#[Dd]ebug/
+#[Dd]ebugPublic/
+#[Rr]elease/
+#[Rr]eleases/
+#[Xx]64/
+#[Xx]86/
+#[Bb]uild/
+#bld/
+#[Bb]in/
+#[Oo]bj/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -240,5 +240,9 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-/BusinessLayer/bin/x64/Debug
-/BusinessLayer/obj/x64/Debug
+/BusinessLayer/bin
+/BusinessLayer/obj
+/ModelLayer/bin
+/ModelLayer/obj
+/ViewLayer/bin
+/ViewLayer/obj
