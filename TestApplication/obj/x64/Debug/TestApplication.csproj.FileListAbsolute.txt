@@ -1,13 +1,3 @@
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\TestApplication.exe.config
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\TestApplication.exe
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\TestApplication.pdb
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\ModelLayer.dll
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\Oracle.DataAccess.dll
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\ModelLayer.pdb
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Debug\TestApplication.csprojResolveAssemblyReference.cache
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Debug\TestApplication.exe
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Debug\TestApplication.pdb
-D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\ModelLayer.xml
 D:\ProjectCPO\PaperTerm\TestApplication\bin\x64\Debug\TestApplication.exe.config
 D:\ProjectCPO\PaperTerm\TestApplication\obj\x64\Debug\TestApplication.exe
 D:\ProjectCPO\PaperTerm\TestApplication\bin\x64\Debug\TestApplication.exe
@@ -18,3 +8,13 @@ D:\ProjectCPO\PaperTerm\TestApplication\bin\x64\Debug\ModelLayer.pdb
 D:\ProjectCPO\PaperTerm\TestApplication\bin\x64\Debug\ModelLayer.xml
 D:\ProjectCPO\PaperTerm\TestApplication\obj\x64\Debug\TestApplication.csprojResolveAssemblyReference.cache
 D:\ProjectCPO\PaperTerm\TestApplication\obj\x64\Debug\TestApplication.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\TestApplication.exe.config
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\TestApplication.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\TestApplication.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\ModelLayer.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\Oracle.DataAccess.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\ModelLayer.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\bin\x64\Debug\ModelLayer.xml
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Debug\TestApplication.csprojResolveAssemblyReference.cache
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Debug\TestApplication.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\PaperTerm\ModelLayer\TestApplication\obj\x64\Debug\TestApplication.pdb

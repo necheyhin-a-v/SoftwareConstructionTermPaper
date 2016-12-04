@@ -62,11 +62,20 @@ namespace ModelLayer
         {
             String query = "SELECT * FROM PERMANENT_USER.USERS "
                 + "WHERE USERLOGIN = '" + login + "'";
-            User newUser = new User();
-            if (newUser.ExecuteSelect(query).Count != 0)
-                return true;
-            else
-                return false;
+            try
+            {
+                User newUser = new User();
+                if (newUser.ExecuteSelect(query).Count != 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ошибка обращения к базе данных");
+                throw e;
+            }
+
         }
         /// <summary>
         /// Функция возвращает объект пользователя инициализированный на основе данных из базы данных

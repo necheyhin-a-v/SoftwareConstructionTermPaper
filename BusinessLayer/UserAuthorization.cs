@@ -14,10 +14,7 @@ namespace BusinessLayer
         /// <summary>
         /// Конструктор по-умолчанию
         /// </summary>
-        public UserAutorization()
-        {
-
-        }
+        public UserAutorization() { }
         /// <summary>
         /// Функция возвращает возможность авторизации с указанными логином и паролем
         /// и также запрашивает данные по пользователю из БД

@@ -58,7 +58,7 @@ namespace ModelLayer
             }
             catch (Exception)
             {
-                throw new Exception("Не возможно открыть соединение с базой данных");
+                throw new Exception("Невозможно открыть соединение с базой данных");
             }
         }
         /// <summary>
