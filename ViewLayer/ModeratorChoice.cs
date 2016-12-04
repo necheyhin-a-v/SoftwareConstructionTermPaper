@@ -60,14 +60,32 @@ namespace ViewLayer
             dataGridInfo.BeginEdit(false);  //Не выбирать все ячейки для редактирования
         }
         /// <summary>
-        /// 
+        /// Подстроить размеры формы под внутренний контент
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void tabControlEmployersSelectedIndexChanged(object sender, EventArgs e)
         {
-            this.tabControlEmployers.Size = new Size(360, 180);
-            this.Size = new Size(400, 245);
+            switch(tabControlEmployers.SelectedIndex)
+            {
+                case 0: //Вкладка Регистрация
+                    this.tabControlEmployers.Size = new Size(360, 180);
+                    this.Size = new Size(400, 245);
+                    break;
+                case 1: //Вкладка сведения
+                    this.tabControlEmployers.Size = new Size(470, 230);
+                    this.Size = new Size(510, 300);
+                    break;
+                case 2: //Вкладка вакансии
+                    MessageBox.Show("Выбран индекс 2");
+                    break;
+                case 3: //Вкладка статистика
+                    MessageBox.Show("Выбран индекс 3");
+                    break;
+                default:
+                    MessageBox.Show("Нет обработчика для этой вкладки");
+                    break;
+            }
         }
 
 
