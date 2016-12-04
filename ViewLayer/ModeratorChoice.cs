@@ -64,7 +64,7 @@ namespace ViewLayer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabControlEmployersSelectedIndexChanged(object sender, EventArgs e)
+        private void TabControlEmployersSelectedIndexChanged(object sender, EventArgs e)
         {
             switch(tabControlEmployers.SelectedIndex)
             {

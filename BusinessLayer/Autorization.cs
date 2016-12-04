@@ -48,7 +48,7 @@ namespace BusinessLayer
             if (canAuth)
                 return _user.GetRole();
             else
-                return 0;
+                throw new Exception("Невозможно авторизоваться");
         }
     }
 }

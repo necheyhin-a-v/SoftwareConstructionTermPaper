@@ -68,7 +68,7 @@
             this.tabControlEmployers.SelectedIndex = 0;
             this.tabControlEmployers.Size = new System.Drawing.Size(470, 230);
             this.tabControlEmployers.TabIndex = 4;
-            this.tabControlEmployers.SelectedIndexChanged += new System.EventHandler(this.tabControlEmployersSelectedIndexChanged);
+            this.tabControlEmployers.SelectedIndexChanged += new System.EventHandler(this.TabControlEmployersSelectedIndexChanged);
             // 
             // tabRegEmployers
             // 
