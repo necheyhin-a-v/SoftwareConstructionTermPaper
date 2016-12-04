@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,22 +31,25 @@ namespace ViewLayer
         /// <param name="e">Аргументы события</param>
         private void EnterInSystemClick(object sender, EventArgs e)
         {
-            //TODO: Autorization.EnterInSystemClick() Изменить заглушку от авторизации
-            if (texBoxLogin.Text == "moderator")
+            //заглушка заменена на логику авторизации
+            UserAutorization currentAuth = new UserAutorization();
+            if(currentAuth.CanAuth(texBoxLogin.Text, textBoxPassword.Text))
             {
-                this.Hide();
-                Form form = new FormEmployers();
-                //Создание нового обработчика события "Закрытие формы"
-                form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedClick);
-                form.Show();
-            }
-
-            if (texBoxLogin.Text == "consultant")
-            {
-                this.Hide();
-                Form form = new FormEmployees();
-                form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedClick);
-                form.Show();
+                if(currentAuth.GetRole() == ModelLayer.UserRoles.Moderator)
+                {
+                    this.Hide();
+                    Form form = new FormEmployers();
+                    //Создание нового обработчика события "Закрытие формы"
+                    form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedClick);
+                    form.Show();
+                }
+                else if(currentAuth.GetRole() == ModelLayer.UserRoles.Consultant)
+                {
+                    this.Hide();
+                    Form form = new FormEmployees();
+                    form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedClick);
+                    form.Show();
+                }
             }
         }
         /// <summary>

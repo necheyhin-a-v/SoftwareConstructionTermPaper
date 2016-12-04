@@ -38,3 +38,11 @@ D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.csproj.GenerateResource.Ca
 D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ViewLayer.exe
 D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ViewLayer.pdb
 D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.pdb
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\BusinessLayer.dll
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ModelLayer.dll
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\Oracle.DataAccess.dll
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\BusinessLayer.pdb
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\BusinessLayer.xml
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ModelLayer.pdb
+D:\ProjectCPO\PaperTerm\ViewLayer\bin\Debug\ModelLayer.xml
+D:\ProjectCPO\PaperTerm\ViewLayer\obj\Debug\ViewLayer.csprojResolveAssemblyReference.cache
