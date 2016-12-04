@@ -1,6 +1,0 @@
-D:\ProjectCPO\PaperTerm\ModelLayer\bin\Debug\ModelLayer.dll
-D:\ProjectCPO\PaperTerm\ModelLayer\bin\Debug\ModelLayer.pdb
-D:\ProjectCPO\PaperTerm\ModelLayer\bin\Debug\Oracle.DataAccess.dll
-D:\ProjectCPO\PaperTerm\ModelLayer\obj\Debug\ModelLayer.csprojResolveAssemblyReference.cache
-D:\ProjectCPO\PaperTerm\ModelLayer\obj\Debug\ModelLayer.dll
-D:\ProjectCPO\PaperTerm\ModelLayer\obj\Debug\ModelLayer.pdb

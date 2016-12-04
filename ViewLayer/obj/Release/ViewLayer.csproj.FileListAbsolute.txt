@@ -1,9 +1,0 @@
-D:\ProjectCPO\PaperTerm\ViewLayer\bin\Release\ViewLayer.XML
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.csprojResolveAssemblyReference.cache
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.FormEmployees.resources
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.Authorization.resources
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.FormEmployers.resources
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.Properties.Resources.resources
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.RegistrationEmployee.resources
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.RegistrationEmployer.resources
-D:\ProjectCPO\PaperTerm\ViewLayer\obj\Release\ViewLayer.csproj.GenerateResource.Cache
