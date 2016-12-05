@@ -14,7 +14,6 @@ namespace ViewLayer
     /// <summary>    
     /// Класс авторизации
     /// </summary>
-
     public partial class Authorization : Form
     {
         /// <summary>
@@ -31,12 +30,12 @@ namespace ViewLayer
         /// <param name="e">Аргументы события</param>
         private void EnterInSystemClick(object sender, EventArgs e)
         {
-            //заглушка заменена на логику авторизации
             UserAutorization currentAuth = new UserAutorization();
             try
             {
                 if (currentAuth.CanAuth(texBoxLogin.Text, textBoxPassword.Text))
                 {
+                    //Запуск формы работы с работодателями
                     if (currentAuth.GetRole() == ModelLayer.UserRoles.Moderator)
                     {
                         this.Hide();
@@ -45,6 +44,7 @@ namespace ViewLayer
                         form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedClick);
                         form.Show();
                     }
+                    //Запуск формы работы с работниками
                     else if (currentAuth.GetRole() == ModelLayer.UserRoles.Consultant)
                     {
                         this.Hide();

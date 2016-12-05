@@ -19,8 +19,6 @@ namespace ViewLayer
 
         private void СChoiceRegEmp_Click(object sender, EventArgs e)
         {
-            RegistrationEmployee f2 = new RegistrationEmployee();
-            f2.ShowDialog();
         }
     }
 }

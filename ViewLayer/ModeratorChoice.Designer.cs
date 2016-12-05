@@ -66,7 +66,7 @@
             this.tabControlEmployers.Location = new System.Drawing.Point(12, 12);
             this.tabControlEmployers.Name = "tabControlEmployers";
             this.tabControlEmployers.SelectedIndex = 0;
-            this.tabControlEmployers.Size = new System.Drawing.Size(470, 230);
+            this.tabControlEmployers.Size = new System.Drawing.Size(704, 398);
             this.tabControlEmployers.TabIndex = 4;
             this.tabControlEmployers.SelectedIndexChanged += new System.EventHandler(this.TabControlEmployersSelectedIndexChanged);
             // 
@@ -85,7 +85,7 @@
             this.tabRegEmployers.Location = new System.Drawing.Point(4, 22);
             this.tabRegEmployers.Name = "tabRegEmployers";
             this.tabRegEmployers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRegEmployers.Size = new System.Drawing.Size(1109, 529);
+            this.tabRegEmployers.Size = new System.Drawing.Size(696, 372);
             this.tabRegEmployers.TabIndex = 0;
             this.tabRegEmployers.Text = "Регистрация";
             this.tabRegEmployers.UseVisualStyleBackColor = true;
@@ -182,7 +182,7 @@
             this.tabInfoEmployers.Location = new System.Drawing.Point(4, 22);
             this.tabInfoEmployers.Name = "tabInfoEmployers";
             this.tabInfoEmployers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfoEmployers.Size = new System.Drawing.Size(462, 204);
+            this.tabInfoEmployers.Size = new System.Drawing.Size(696, 372);
             this.tabInfoEmployers.TabIndex = 1;
             this.tabInfoEmployers.Text = "Сведения";
             this.tabInfoEmployers.UseVisualStyleBackColor = true;
@@ -259,7 +259,7 @@
             this.tabVacancies.Location = new System.Drawing.Point(4, 22);
             this.tabVacancies.Name = "tabVacancies";
             this.tabVacancies.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVacancies.Size = new System.Drawing.Size(1109, 529);
+            this.tabVacancies.Size = new System.Drawing.Size(696, 372);
             this.tabVacancies.TabIndex = 2;
             this.tabVacancies.Text = "Вакансии";
             this.tabVacancies.UseVisualStyleBackColor = true;
@@ -269,7 +269,7 @@
             this.tabStatistics.Location = new System.Drawing.Point(4, 22);
             this.tabStatistics.Name = "tabStatistics";
             this.tabStatistics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatistics.Size = new System.Drawing.Size(1109, 529);
+            this.tabStatistics.Size = new System.Drawing.Size(462, 204);
             this.tabStatistics.TabIndex = 3;
             this.tabStatistics.Text = "Статистика";
             this.tabStatistics.UseVisualStyleBackColor = true;
@@ -278,7 +278,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 257);
+            this.ClientSize = new System.Drawing.Size(752, 454);
             this.Controls.Add(this.tabControlEmployers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;

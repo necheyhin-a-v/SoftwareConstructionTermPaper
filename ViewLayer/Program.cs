@@ -16,7 +16,7 @@ namespace ViewLayer
         static void Main()
         {
             //Программа требует предварительной настройки
-            DataBase.Initialize("192.168.1.50", "1521");
+            DataBase.Initialize("necheukhin.ddns.net", "1521");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Authorization());

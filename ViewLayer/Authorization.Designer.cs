@@ -71,6 +71,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(118, 20);
             this.textBoxPassword.TabIndex = 5;
+            this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // buttonEnterInSystem
             // 
@@ -100,6 +101,7 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Authorization";
             this.Text = "Авторизация";
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
