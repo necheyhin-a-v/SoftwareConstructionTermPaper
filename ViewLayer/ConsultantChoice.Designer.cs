@@ -30,9 +30,10 @@
         {
             this.tcEmployees = new System.Windows.Forms.TabControl();
             this.tabRegEmployees = new System.Windows.Forms.TabPage();
-            this.tabInfoEmployees = new System.Windows.Forms.TabPage();
-            this.tabWorkSearch = new System.Windows.Forms.TabPage();
-            this.tabStatistic = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxEmployerPhoneNumber = new System.Windows.Forms.TextBox();
@@ -43,10 +44,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxEmployerName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tabInfoEmployees = new System.Windows.Forms.TabPage();
+            this.tabWorkSearch = new System.Windows.Forms.TabPage();
+            this.tabStatistic = new System.Windows.Forms.TabPage();
             this.tcEmployees.SuspendLayout();
             this.tabRegEmployees.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +60,7 @@
             this.tcEmployees.Location = new System.Drawing.Point(12, 12);
             this.tcEmployees.Name = "tcEmployees";
             this.tcEmployees.SelectedIndex = 0;
-            this.tcEmployees.Size = new System.Drawing.Size(725, 318);
+            this.tcEmployees.Size = new System.Drawing.Size(725, 237);
             this.tcEmployees.TabIndex = 4;
             // 
             // tabRegEmployees
@@ -82,40 +82,43 @@
             this.tabRegEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabRegEmployees.Name = "tabRegEmployees";
             this.tabRegEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRegEmployees.Size = new System.Drawing.Size(717, 292);
+            this.tabRegEmployees.Size = new System.Drawing.Size(717, 211);
             this.tabRegEmployees.TabIndex = 0;
             this.tabRegEmployees.Text = "Регистрация";
             this.tabRegEmployees.UseVisualStyleBackColor = true;
             // 
-            // tabInfoEmployees
+            // comboBox1
             // 
-            this.tabInfoEmployees.Location = new System.Drawing.Point(4, 22);
-            this.tabInfoEmployees.Name = "tabInfoEmployees";
-            this.tabInfoEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfoEmployees.Size = new System.Drawing.Size(717, 292);
-            this.tabInfoEmployees.TabIndex = 1;
-            this.tabInfoEmployees.Text = "Сведения";
-            this.tabInfoEmployees.UseVisualStyleBackColor = true;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(144, 140);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(196, 21);
+            this.comboBox1.TabIndex = 23;
             // 
-            // tabWorkSearch
+            // textBox1
             // 
-            this.tabWorkSearch.Location = new System.Drawing.Point(4, 22);
-            this.tabWorkSearch.Name = "tabWorkSearch";
-            this.tabWorkSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWorkSearch.Size = new System.Drawing.Size(717, 292);
-            this.tabWorkSearch.TabIndex = 2;
-            this.tabWorkSearch.Text = "Поиск работы";
-            this.tabWorkSearch.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(144, 114);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(196, 20);
+            this.textBox1.TabIndex = 22;
             // 
-            // tabStatistic
+            // label6
             // 
-            this.tabStatistic.Location = new System.Drawing.Point(4, 22);
-            this.tabStatistic.Name = "tabStatistic";
-            this.tabStatistic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatistic.Size = new System.Drawing.Size(717, 292);
-            this.tabStatistic.TabIndex = 3;
-            this.tabStatistic.Text = "Статистика";
-            this.tabStatistic.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 143);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 26);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Препочитаемые \r\nспециальности";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 117);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Стаж работы";
             // 
             // button2
             // 
@@ -200,38 +203,35 @@
             this.textBoxEmployerName.Size = new System.Drawing.Size(196, 20);
             this.textBoxEmployerName.TabIndex = 10;
             // 
-            // label5
+            // tabInfoEmployees
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 117);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Стаж работы";
+            this.tabInfoEmployees.Location = new System.Drawing.Point(4, 22);
+            this.tabInfoEmployees.Name = "tabInfoEmployees";
+            this.tabInfoEmployees.Padding = new System.Windows.Forms.Padding(3);
+            this.tabInfoEmployees.Size = new System.Drawing.Size(717, 292);
+            this.tabInfoEmployees.TabIndex = 1;
+            this.tabInfoEmployees.Text = "Сведения";
+            this.tabInfoEmployees.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // tabWorkSearch
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 143);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 26);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Препочитаемые \r\nспециальности";
+            this.tabWorkSearch.Location = new System.Drawing.Point(4, 22);
+            this.tabWorkSearch.Name = "tabWorkSearch";
+            this.tabWorkSearch.Padding = new System.Windows.Forms.Padding(3);
+            this.tabWorkSearch.Size = new System.Drawing.Size(717, 292);
+            this.tabWorkSearch.TabIndex = 2;
+            this.tabWorkSearch.Text = "Поиск работы";
+            this.tabWorkSearch.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tabStatistic
             // 
-            this.textBox1.Location = new System.Drawing.Point(144, 114);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(196, 20);
-            this.textBox1.TabIndex = 22;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(144, 140);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(196, 21);
-            this.comboBox1.TabIndex = 23;
+            this.tabStatistic.Location = new System.Drawing.Point(4, 22);
+            this.tabStatistic.Name = "tabStatistic";
+            this.tabStatistic.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStatistic.Size = new System.Drawing.Size(717, 292);
+            this.tabStatistic.TabIndex = 3;
+            this.tabStatistic.Text = "Статистика";
+            this.tabStatistic.UseVisualStyleBackColor = true;
             // 
             // FormEmployees
             // 

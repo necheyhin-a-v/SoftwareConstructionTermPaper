@@ -24,6 +24,8 @@ namespace ViewLayer
         public FormEmployers()
         {
             InitializeComponent();
+            //Установить размер формы начальный
+            this.Size = new Size(377, 225);
             dataGridInfo.RowCount = 5;
             //Создание объекта контекстного меню
             contextMenuInfoEmployer = new ContextMenuStrip();
@@ -69,21 +71,13 @@ namespace ViewLayer
             switch(tabControlEmployers.SelectedIndex)
             {
                 case 0: //Вкладка Регистрация
-                    this.tabControlEmployers.Size = new Size(360, 180);
-                    this.Size = new Size(400, 245);
+                    this.Size = new Size(377, 225);
                     break;
                 case 1: //Вкладка сведения
-                    this.tabControlEmployers.Size = new Size(470, 230);
-                    this.Size = new Size(510, 300);
+                    this.Size = new Size(477, 400);
                     break;
                 case 2: //Вкладка вакансии
-                    MessageBox.Show("Выбран индекс 2");
-                    break;
-                case 3: //Вкладка статистика
-                    MessageBox.Show("Выбран индекс 3");
-                    break;
-                default:
-                    MessageBox.Show("Нет обработчика для этой вкладки");
+                    this.Size = new Size(777, 400);
                     break;
             }
         }
@@ -124,6 +118,19 @@ namespace ViewLayer
             }
         }
 
+        private void dataGridVacancies_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tabInfoEmployers_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
