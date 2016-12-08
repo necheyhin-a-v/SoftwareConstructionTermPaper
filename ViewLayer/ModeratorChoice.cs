@@ -81,38 +81,56 @@ namespace ViewLayer
                     break;
             }
         }
-        /// <summary>
-        /// Выделение ячейки в таблице "сведения о работодателе
-        /// при нажании правой кнопки мыши
-        /// </summary>
-        private void dataGridInfo_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                dataGridInfo.CurrentCell = currentCell;
-            }
-        }
-        /// <summary>
-        /// Блокировка ячейки в таблице "сведения о работодателе"
-        /// при завершении редактирования ячейки
-        /// </summary>
-        private void dataGridInfo_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            dataGridInfo.ReadOnly = true;
-        }
-        /// <summary>
-        /// Обработчик события на добавление новой строки в таблицу
-        /// "сведения о работодателе"
-        /// </summary>
-        private void dataGridInfo_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            //Перебрать все ячейки в добавленной строке и установить для каждой контекстное меню
+
+
+
+
+        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {            
             for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
             {
                 dataGridInfo.Rows[i].ContextMenuStrip = contextMenuInfoEmployer;
             }
         }
 
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridInfo.ReadOnly = true;
+        }
 
+        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                currentCell = dataGridInfo[e.ColumnIndex, e.RowIndex];
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                dataGridInfo.CurrentCell = currentCell;
+            }
+        }
+
+        private void dataGridVacancies_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tabInfoEmployers_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
