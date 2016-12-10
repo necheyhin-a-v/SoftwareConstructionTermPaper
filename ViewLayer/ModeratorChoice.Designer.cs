@@ -63,6 +63,7 @@
             this.ColumnEmploymentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonAddVacancy = new System.Windows.Forms.Button();
             this.tabControlEmployers.SuspendLayout();
             this.tabRegEmployers.SuspendLayout();
             this.tabInfoEmployers.SuspendLayout();
@@ -107,7 +108,7 @@
             this.tabRegEmployers.Location = new System.Drawing.Point(4, 22);
             this.tabRegEmployers.Name = "tabRegEmployers";
             this.tabRegEmployers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRegEmployers.Size = new System.Drawing.Size(806, 472);
+            this.tabRegEmployers.Size = new System.Drawing.Size(750, 472);
             this.tabRegEmployers.TabIndex = 0;
             this.tabRegEmployers.Text = "Регистрация";
             this.tabRegEmployers.UseVisualStyleBackColor = true;
@@ -267,8 +268,8 @@
             this.dataGridInfo.Size = new System.Drawing.Size(744, 436);
             this.dataGridInfo.TabIndex = 1;
             this.dataGridInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInfo_CellEndEdit);
+            this.dataGridInfo.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridInfo_CellMouseUp);
             this.dataGridInfo.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridInfo_RowsAdded);
-            this.dataGridInfo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dataGridInfo_MouseUp);
             // 
             // ColumnName
             // 
@@ -315,6 +316,7 @@
             // 
             // splitContainerVacancies.Panel1
             // 
+            this.splitContainerVacancies.Panel1.Controls.Add(this.buttonAddVacancy);
             this.splitContainerVacancies.Panel1.Controls.Add(this.label6);
             this.splitContainerVacancies.Panel1.Controls.Add(this.buttonSearchVacancy);
             this.splitContainerVacancies.Panel1.Controls.Add(this.textBoxSearchVacancy);
@@ -411,6 +413,16 @@
             this.ColumnDescription.Name = "ColumnDescription";
             this.ColumnDescription.ReadOnly = true;
             // 
+            // buttonAddVacancy
+            // 
+            this.buttonAddVacancy.Location = new System.Drawing.Point(267, 0);
+            this.buttonAddVacancy.Name = "buttonAddVacancy";
+            this.buttonAddVacancy.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddVacancy.TabIndex = 8;
+            this.buttonAddVacancy.Text = "Добавить";
+            this.buttonAddVacancy.UseVisualStyleBackColor = true;
+            this.buttonAddVacancy.Click += new System.EventHandler(this.buttonAddVacancy_Click);
+            // 
             // FormEmployers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,5 +491,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmploymentType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalary;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
+        private System.Windows.Forms.Button buttonAddVacancy;
     }
 }

@@ -16,7 +16,6 @@ namespace ViewLayer
     public partial class FormEmployers : Form
     {
         ContextMenuStrip contextMenuInfoEmployer;
-        DataGridViewCell currentCell;
         /// <summary>
         /// Конструктор формы.
         /// Инициализирует все графические объекты формы
@@ -45,17 +44,15 @@ namespace ViewLayer
         /// <summary>
         /// Обработчик событий для контекстного меню "Просмотр вакансий"
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         void WatchVacancyMenuItemClick(object sender, EventArgs e)
         {
             MessageBox.Show("Просмотр вакансий");
+            dataGridInfo.RowCount += 1;
         }
         /// <summary>
         /// Обработчик событий для контекстного меню "Редактирование"
+        /// включает изменение текущей ячейки
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         void EditMenuItemClick(object sender, EventArgs e)
         {
             dataGridInfo.ReadOnly = false;  //Открытие режима редактирования
@@ -82,17 +79,6 @@ namespace ViewLayer
             }
         }
         /// <summary>
-        /// Выделение ячейки в таблице "сведения о работодателе
-        /// при нажании правой кнопки мыши
-        /// </summary>
-        private void dataGridInfo_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                dataGridInfo.CurrentCell = currentCell;
-            }
-        }
-        /// <summary>
         /// Блокировка ячейки в таблице "сведения о работодателе"
         /// при завершении редактирования ячейки
         /// </summary>
@@ -106,13 +92,29 @@ namespace ViewLayer
         /// </summary>
         private void dataGridInfo_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            //Перебрать все ячейки в добавленной строке и установить для каждой контекстное меню
+            //Перебрать все строки и установить для каждой контекстное меню
             for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
             {
                 dataGridInfo.Rows[i].ContextMenuStrip = contextMenuInfoEmployer;
             }
         }
+        /// <summary>
+        /// Выделение ячейки в таблице "сведения о работодателе
+        /// при нажании правой кнопки мыши
+        /// </summary>
+        private void dataGridInfo_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.ColumnIndex >= 0 && e.RowIndex >=0 )
+            {
+                dataGridInfo.CurrentCell = dataGridInfo[e.ColumnIndex, e.RowIndex];
+            }
+        }
+        /// <summary>
+        /// Запуск добавления новой вакансии
+        /// </summary>
+        private void buttonAddVacancy_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

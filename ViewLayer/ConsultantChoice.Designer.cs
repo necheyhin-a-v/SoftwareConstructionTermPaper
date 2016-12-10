@@ -47,8 +47,17 @@
             this.tabInfoEmployees = new System.Windows.Forms.TabPage();
             this.tabWorkSearch = new System.Windows.Forms.TabPage();
             this.tabStatistic = new System.Windows.Forms.TabPage();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.tcEmployees.SuspendLayout();
             this.tabRegEmployees.SuspendLayout();
+            this.tabStatistic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcEmployees
@@ -60,7 +69,7 @@
             this.tcEmployees.Location = new System.Drawing.Point(12, 12);
             this.tcEmployees.Name = "tcEmployees";
             this.tcEmployees.SelectedIndex = 0;
-            this.tcEmployees.Size = new System.Drawing.Size(725, 237);
+            this.tcEmployees.Size = new System.Drawing.Size(852, 528);
             this.tcEmployees.TabIndex = 4;
             // 
             // tabRegEmployees
@@ -82,7 +91,7 @@
             this.tabRegEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabRegEmployees.Name = "tabRegEmployees";
             this.tabRegEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRegEmployees.Size = new System.Drawing.Size(717, 211);
+            this.tabRegEmployees.Size = new System.Drawing.Size(844, 502);
             this.tabRegEmployees.TabIndex = 0;
             this.tabRegEmployees.Text = "Регистрация";
             this.tabRegEmployees.UseVisualStyleBackColor = true;
@@ -208,7 +217,7 @@
             this.tabInfoEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabInfoEmployees.Name = "tabInfoEmployees";
             this.tabInfoEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfoEmployees.Size = new System.Drawing.Size(717, 292);
+            this.tabInfoEmployees.Size = new System.Drawing.Size(844, 502);
             this.tabInfoEmployees.TabIndex = 1;
             this.tabInfoEmployees.Text = "Сведения";
             this.tabInfoEmployees.UseVisualStyleBackColor = true;
@@ -218,20 +227,87 @@
             this.tabWorkSearch.Location = new System.Drawing.Point(4, 22);
             this.tabWorkSearch.Name = "tabWorkSearch";
             this.tabWorkSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWorkSearch.Size = new System.Drawing.Size(717, 292);
+            this.tabWorkSearch.Size = new System.Drawing.Size(844, 502);
             this.tabWorkSearch.TabIndex = 2;
             this.tabWorkSearch.Text = "Поиск работы";
             this.tabWorkSearch.UseVisualStyleBackColor = true;
             // 
             // tabStatistic
             // 
+            this.tabStatistic.Controls.Add(this.radioButton2);
+            this.tabStatistic.Controls.Add(this.radioButton1);
+            this.tabStatistic.Controls.Add(this.dataGridView1);
+            this.tabStatistic.Controls.Add(this.label8);
+            this.tabStatistic.Controls.Add(this.label7);
+            this.tabStatistic.Controls.Add(this.monthCalendar2);
+            this.tabStatistic.Controls.Add(this.monthCalendar1);
             this.tabStatistic.Location = new System.Drawing.Point(4, 22);
             this.tabStatistic.Name = "tabStatistic";
             this.tabStatistic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatistic.Size = new System.Drawing.Size(717, 292);
+            this.tabStatistic.Size = new System.Drawing.Size(844, 502);
             this.tabStatistic.TabIndex = 3;
             this.tabStatistic.Text = "Статистика";
             this.tabStatistic.UseVisualStyleBackColor = true;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(12, 37);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "label7";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(314, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "label8";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 211);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(535, 217);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(388, 68);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(85, 17);
+            this.radioButton1.TabIndex = 5;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(388, 91);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(85, 17);
+            this.radioButton2.TabIndex = 6;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "radioButton2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(185, 37);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 0;
             // 
             // FormEmployees
             // 
@@ -244,6 +320,9 @@
             this.tcEmployees.ResumeLayout(false);
             this.tabRegEmployees.ResumeLayout(false);
             this.tabRegEmployees.PerformLayout();
+            this.tabStatistic.ResumeLayout(false);
+            this.tabStatistic.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -268,5 +347,12 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
     }
 }
