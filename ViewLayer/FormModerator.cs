@@ -11,17 +11,35 @@ using System.Windows.Forms;
 namespace ViewLayer
 {
     /// <summary>
+    /// Интерфейс для взаимодействия со слоем представления
+    /// </summary>
+    public interface IViewEmployer
+    {
+        /// <summary>
+        /// Зарегистрировать предпринимателя или предприятие
+        /// </summary>
+        /// <param name="name">Название организации</param>
+        /// <param name="itn">ИНН предприятия</param>
+        /// <param name="address">Адрес</param>
+        /// <param name="phone"></param>
+        void RegisterEmployer(string name, string itn, string address, string phone);
+    }
+
+
+    /// <summary>
     /// Класс формы работы с работодателями
     /// </summary>
     public partial class FormEmployers : Form
     {
         ContextMenuStrip contextMenuInfoEmployer;
+        private IViewEmployer View;
         /// <summary>
         /// Конструктор формы.
         /// Инициализирует все графические объекты формы
         /// </summary>
-        public FormEmployers()
+        public FormEmployers(IViewEmployer view)
         {
+            this.View = view;
             InitializeComponent();
             //Установить размер формы начальный
             this.Size = new Size(377, 225);
@@ -126,6 +144,27 @@ namespace ViewLayer
         private void enableFormModerator(object sender, FormClosedEventArgs e)
         {
             this.Enabled = true;
+        }
+        /// <summary>
+        /// Регистрация предприятия
+        /// </summary>
+        private void buttonAcceptRegistration_Click(object sender, EventArgs e)
+        {
+            this.View.RegisterEmployer(
+                this.textBoxEmployerName.Text,
+                this.textBoxITN.Text,
+                this.textBoxEmployerAddress.Text,
+                this.textBoxEmployerPhoneNumber.Text);
+        }
+        /// <summary>
+        /// Очистить поля формы регистрация
+        /// </summary>
+        private void buttonClearRegistration_Click(object sender, EventArgs e)
+        {
+            this.textBoxEmployerName.Text = "";
+            this.textBoxITN.Text = "";
+            this.textBoxEmployerAddress.Text = "";
+            this.textBoxEmployerPhoneNumber.Text = "";
         }
     }
 }

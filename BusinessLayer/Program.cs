@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ModelLayer;
 
-namespace ViewLayer
+namespace BusinessLayer
 {
     static class Program
     {
@@ -17,10 +16,9 @@ namespace ViewLayer
         {
             //Программа требует предварительной настройки
             //DataBase.Initialize("necheukhin.ddns.net", "1521");
-            DataBase.Initialize("192.168.1.50", "1521");
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAuthorization());
+            ModelLayer.DataBase.Initialize("192.168.1.50", "1521");
+            //Запуск авторизации из Business уровня
+            UserAutorization auth = new BusinessLayer.UserAutorization();
         }
     }
 }

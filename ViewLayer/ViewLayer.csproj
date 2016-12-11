@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EFE8B644-6293-416E-B410-1DFAE648BFC9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ViewLayer</RootNamespace>
     <AssemblyName>ViewLayer</AssemblyName>
@@ -58,6 +58,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,8 +99,10 @@
     <Compile Include="FormModerator.Designer.cs">
       <DependentUpon>FormModerator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddVacancy.resx">
+      <DependentUpon>FormAddVacancy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormConsultant.resx">
       <DependentUpon>FormConsultant.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,16 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
-      <Project>{072f1d64-8ded-4d71-9fcb-3a7d63580aef}</Project>
-      <Name>BusinessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelLayer\ModelLayer.csproj">
-      <Project>{2828fe02-2cbe-4e5b-b365-a009911f6b13}</Project>
-      <Name>ModelLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

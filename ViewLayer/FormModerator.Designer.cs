@@ -52,6 +52,7 @@
             this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabVacancies = new System.Windows.Forms.TabPage();
             this.splitContainerVacancies = new System.Windows.Forms.SplitContainer();
+            this.buttonAddVacancy = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonSearchVacancy = new System.Windows.Forms.Button();
             this.textBoxSearchVacancy = new System.Windows.Forms.TextBox();
@@ -63,7 +64,6 @@
             this.ColumnEmploymentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonAddVacancy = new System.Windows.Forms.Button();
             this.tabControlEmployers.SuspendLayout();
             this.tabRegEmployers.SuspendLayout();
             this.tabInfoEmployers.SuspendLayout();
@@ -121,6 +121,7 @@
             this.buttonClearRegistration.TabIndex = 9;
             this.buttonClearRegistration.Text = "Очистить";
             this.buttonClearRegistration.UseVisualStyleBackColor = true;
+            this.buttonClearRegistration.Click += new System.EventHandler(this.buttonClearRegistration_Click);
             // 
             // buttonAcceptRegistration
             // 
@@ -130,6 +131,7 @@
             this.buttonAcceptRegistration.TabIndex = 8;
             this.buttonAcceptRegistration.Text = "Принять";
             this.buttonAcceptRegistration.UseVisualStyleBackColor = true;
+            this.buttonAcceptRegistration.Click += new System.EventHandler(this.buttonAcceptRegistration_Click);
             // 
             // textBoxEmployerPhoneNumber
             // 
@@ -328,6 +330,16 @@
             this.splitContainerVacancies.SplitterDistance = 25;
             this.splitContainerVacancies.TabIndex = 8;
             // 
+            // buttonAddVacancy
+            // 
+            this.buttonAddVacancy.Location = new System.Drawing.Point(267, 0);
+            this.buttonAddVacancy.Name = "buttonAddVacancy";
+            this.buttonAddVacancy.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddVacancy.TabIndex = 8;
+            this.buttonAddVacancy.Text = "Добавить";
+            this.buttonAddVacancy.UseVisualStyleBackColor = true;
+            this.buttonAddVacancy.Click += new System.EventHandler(this.buttonAddVacancy_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -412,16 +424,6 @@
             this.ColumnDescription.HeaderText = "Описание";
             this.ColumnDescription.Name = "ColumnDescription";
             this.ColumnDescription.ReadOnly = true;
-            // 
-            // buttonAddVacancy
-            // 
-            this.buttonAddVacancy.Location = new System.Drawing.Point(267, 0);
-            this.buttonAddVacancy.Name = "buttonAddVacancy";
-            this.buttonAddVacancy.Size = new System.Drawing.Size(75, 23);
-            this.buttonAddVacancy.TabIndex = 8;
-            this.buttonAddVacancy.Text = "Добавить";
-            this.buttonAddVacancy.UseVisualStyleBackColor = true;
-            this.buttonAddVacancy.Click += new System.EventHandler(this.buttonAddVacancy_Click);
             // 
             // FormEmployers
             // 
