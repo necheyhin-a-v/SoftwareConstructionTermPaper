@@ -49,7 +49,7 @@ namespace ViewLayer
             {
                 if (ViewAuth.CanAuth(texBoxLogin.Text, textBoxPassword.Text))
                 {
-                    this.Hide();
+                    this.Close();
                 }
                 else
                     MessageBox.Show("Невозможно авторизоваться");
@@ -58,15 +58,6 @@ namespace ViewLayer
             {
                 MessageBox.Show(err.Message);
             }
-        }
-        /// <summary>
-        /// Удаление формы авторизации при закрытии дочерних форм
-        /// </summary>
-        /// <param name="sender">Объект вызвавший событие</param>
-        /// <param name="events"></param>
-        private void FormClosedClick(Object sender, EventArgs events)
-        {
-            this.Close();
         }
     }
 }

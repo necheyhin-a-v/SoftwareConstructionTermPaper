@@ -75,11 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormConsultant.cs">
+    <Compile Include="FormEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormConsultant.Designer.cs">
-      <DependentUpon>FormConsultant.cs</DependentUpon>
+    <Compile Include="FormEmployees.Designer.cs">
+      <DependentUpon>FormEmployees.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAuthorization.cs">
       <SubType>Form</SubType>
@@ -93,24 +93,24 @@
     <Compile Include="FormAddVacancy.Designer.cs">
       <DependentUpon>FormAddVacancy.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormModerator.cs">
+    <Compile Include="FormEmployers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormModerator.Designer.cs">
-      <DependentUpon>FormModerator.cs</DependentUpon>
+    <Compile Include="FormEmployers.Designer.cs">
+      <DependentUpon>FormEmployers.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAddVacancy.resx">
       <DependentUpon>FormAddVacancy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormConsultant.resx">
-      <DependentUpon>FormConsultant.cs</DependentUpon>
+    <EmbeddedResource Include="FormEmployees.resx">
+      <DependentUpon>FormEmployees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAuthorization.resx">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormModerator.resx">
-      <DependentUpon>FormModerator.cs</DependentUpon>
+    <EmbeddedResource Include="FormEmployers.resx">
+      <DependentUpon>FormEmployers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

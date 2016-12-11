@@ -23,6 +23,19 @@ namespace ViewLayer
         /// <param name="address">Адрес</param>
         /// <param name="phone"></param>
         void RegisterEmployer(string name, string itn, string address, string phone);
+        /// <summary>
+        /// Получить список работодателей
+        /// name1, itn1, address1, phone1
+        /// name2, itn2, address2, phone2
+        /// ...
+        /// </summary>
+        /// <returns></returns>
+        List<string[]> GetEmployers();
+        /// <summary>
+        /// Получить список вакансий
+        /// 
+        /// </summary>
+        List<string[]> GetVacancies();
     }
 
 
@@ -43,21 +56,19 @@ namespace ViewLayer
             InitializeComponent();
             //Установить размер формы начальный
             this.Size = new Size(377, 225);
-            dataGridInfo.RowCount = 5;
             //Создание объекта контекстного меню
             contextMenuInfoEmployer = new ContextMenuStrip();
             // Создание пунктов меню
             ToolStripMenuItem editMenuItem = new ToolStripMenuItem("Редактировать");
             ToolStripMenuItem watchVacancyMenuItem = new ToolStripMenuItem("Просмотр вакансии");
-            //Добавление пунктов меню в контекстное меню
-            contextMenuInfoEmployer.Items.Add(editMenuItem);
-            contextMenuInfoEmployer.Items.Add(watchVacancyMenuItem);
-            //Задать для каждой новой строки контекстное меню
-            foreach (DataGridViewRow row in dataGridInfo.Rows)
-                row.ContextMenuStrip = contextMenuInfoEmployer;
             // Установка обработчиков событий для пунктов меню
             editMenuItem.Click += EditMenuItemClick;
             watchVacancyMenuItem.Click += WatchVacancyMenuItemClick;
+
+            //Добавление пунктов меню в контекстное меню
+            contextMenuInfoEmployer.Items.Add(editMenuItem);
+            contextMenuInfoEmployer.Items.Add(watchVacancyMenuItem);
+
         }
         /// <summary>
         /// Обработчик событий для контекстного меню "Просмотр вакансий"
@@ -90,12 +101,40 @@ namespace ViewLayer
                     break;
                 case 1: //Вкладка сведения
                     this.Size = new Size(477, 400);
+                    UpdateInfo();
                     break;
                 case 2: //Вкладка вакансии
                     this.Size = new Size(777, 400);
                     break;
             }
         }
+        /// <summary>
+        /// Обновить таблицу с информацией о работодателях
+        /// </summary>
+        public void UpdateInfo()
+        {
+            this.dataGridInfo.SelectAll();
+            this.dataGridInfo.ClearSelection();
+            try
+            {
+                List<string[]> employers = View.GetEmployers();
+                int currentRow = 0;
+                foreach (string[] currentEmployer in employers)
+                {
+                    for (int i = 0; i < currentEmployer.Count(); i++)
+                        this.dataGridInfo.Rows[currentRow].Cells[i].Value = currentEmployer.ElementAt(i);
+                    currentRow++;
+
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка в получении данных");
+            }
+        }
+
+
+
         /// <summary>
         /// Блокировка ячейки в таблице "сведения о работодателе"
         /// при завершении редактирования ячейки

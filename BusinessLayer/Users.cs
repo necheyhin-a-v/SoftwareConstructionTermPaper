@@ -11,21 +11,13 @@ namespace BusinessLayer
     /// <summary>
     /// Класс авторизаци
     /// </summary>
-    public class UserAutorization : IViewAuth
+    public class Users : IViewAuth
     {
-        private User _user;
-        private bool canAuth = false;
+        private User CurrentUser;
         /// <summary>
         /// Конструктор по-умолчанию
         /// </summary>
-        public UserAutorization()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAuthorization(this));
-
-
-        }
+        public Users() { }
         /// <summary>
         /// Функция возвращает возможность авторизации с указанными логином и паролем
         /// и также запрашивает данные по пользователю из БД
@@ -35,17 +27,27 @@ namespace BusinessLayer
         /// <returns>Возвращает bool</returns>
         public bool CanAuth(String login, String password)
         {
-            canAuth = false;
+            bool canAuth = false;
             if(User.CanFindByLogin(login))
             {
-                _user = User.GetByLogin(login);
-                if(_user != null)
-                    if (_user.GetPassword() == password)
+                CurrentUser = User.GetByLogin(login);
+                if(CurrentUser != null)
+                    if (CurrentUser.GetPassword() == password)
                     {
                         canAuth = true;
                     }
             }
             return canAuth;
+        }
+        /// <summary>
+        /// Возвращает авторизованного пользователя, либо исключение
+        /// </summary>
+        public User GetAuthorizedUser()
+        {
+            if (CurrentUser != null)
+                return CurrentUser;
+            else
+                throw new Exception("Пользователь не авторизован");
         }
 
         /// <summary>
@@ -54,10 +56,10 @@ namespace BusinessLayer
         /// <returns>Возвращает UserRoles</returns>
         public UserRoles GetRole()
         {
-            if (canAuth)
-                return _user.GetRole();
+            if (CurrentUser != null)
+                return CurrentUser.GetRole();
             else
-                throw new Exception("Невозможно авторизоваться");
+                throw new Exception("Пользователь не авторизован");
         }
     }
 }
