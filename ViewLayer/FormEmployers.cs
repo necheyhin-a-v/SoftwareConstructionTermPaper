@@ -33,7 +33,8 @@ namespace ViewLayer
         List<string[]> GetEmployers();
         /// <summary>
         /// Получить список вакансий
-        /// 
+        /// В виде:
+        /// имя вакансии, специальность, предприятие, требуемый опыт, тип занятости, оплата, описание
         /// </summary>
         List<string[]> GetVacancies();
     }
@@ -89,6 +90,7 @@ namespace ViewLayer
         }
         /// <summary>
         /// Подстроить размеры формы под внутренний контент
+        /// Запуск подгрузки данных при переходе на другую вкладку
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -105,6 +107,7 @@ namespace ViewLayer
                     break;
                 case 2: //Вкладка вакансии
                     this.Size = new Size(777, 400);
+                    UpdateVacancies();
                     break;
             }
         }
@@ -113,28 +116,51 @@ namespace ViewLayer
         /// </summary>
         public void UpdateInfo()
         {
+            //TODO: FormEmployers.UpdateInfo() добавить инициализацию фильтра "информация работодателей"
             this.dataGridInfo.SelectAll();
             this.dataGridInfo.ClearSelection();
             try
             {
                 List<string[]> employers = View.GetEmployers();
+                this.dataGridInfo.RowCount = employers.Count;
                 int currentRow = 0;
                 foreach (string[] currentEmployer in employers)
                 {
                     for (int i = 0; i < currentEmployer.Count(); i++)
                         this.dataGridInfo.Rows[currentRow].Cells[i].Value = currentEmployer.ElementAt(i);
-                    currentRow++;
-
+                    currentRow ++;
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка в получении данных");
+                MessageBox.Show("Ошибка в получении данных о работодателях");
             }
         }
-
-
-
+        /// <summary>
+        /// Обновление таблицы с информацией о вакансиях
+        /// </summary>
+        public void UpdateVacancies()
+        {
+            //TODO: FormEmployers.UpdateVacancies() добавить инициализацию фильтра "вакансии работодателей"
+            this.dataGridVacancies.SelectAll();
+            this.dataGridVacancies.ClearSelection();
+            try
+            {
+                List<string[]> vacancies = View.GetVacancies();
+                this.dataGridVacancies.RowCount = vacancies.Count;
+                int currentRow = 0;
+                foreach (string[] currentVacancy in vacancies)
+                {
+                    for (int i = 0; i < vacancies.Count(); i++)
+                        this.dataGridVacancies.Rows[currentRow].Cells[i].Value = vacancies.ElementAt(i);
+                    currentRow++;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка в получении данных о вакансиях");
+            }
+        }
         /// <summary>
         /// Блокировка ячейки в таблице "сведения о работодателе"
         /// при завершении редактирования ячейки
@@ -189,11 +215,19 @@ namespace ViewLayer
         /// </summary>
         private void buttonAcceptRegistration_Click(object sender, EventArgs e)
         {
-            this.View.RegisterEmployer(
+            try
+            {
+                this.View.RegisterEmployer(
                 this.textBoxEmployerName.Text,
                 this.textBoxITN.Text,
                 this.textBoxEmployerAddress.Text,
                 this.textBoxEmployerPhoneNumber.Text);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
         }
         /// <summary>
         /// Очистить поля формы регистрация
