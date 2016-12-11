@@ -151,8 +151,8 @@ namespace ViewLayer
                 int currentRow = 0;
                 foreach (string[] currentVacancy in vacancies)
                 {
-                    for (int i = 0; i < vacancies.Count(); i++)
-                        this.dataGridVacancies.Rows[currentRow].Cells[i].Value = vacancies.ElementAt(i);
+                    for (int i = 0; i < currentVacancy.Count(); i++)
+                        this.dataGridVacancies.Rows[currentRow].Cells[i].Value = currentVacancy.ElementAt(i);
                     currentRow++;
                 }
             }
@@ -222,6 +222,9 @@ namespace ViewLayer
                 this.textBoxITN.Text,
                 this.textBoxEmployerAddress.Text,
                 this.textBoxEmployerPhoneNumber.Text);
+                MessageBox.Show("Предприятие зарегистрировано");
+                //Нажать на кнопку очищения формы
+                buttonClearRegistration.PerformClick();
             }
             catch (Exception err)
             {

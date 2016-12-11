@@ -265,6 +265,7 @@
             this.ColumnPhoneNumber});
             this.dataGridInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridInfo.Location = new System.Drawing.Point(0, 0);
+            this.dataGridInfo.MultiSelect = false;
             this.dataGridInfo.Name = "dataGridInfo";
             this.dataGridInfo.ReadOnly = true;
             this.dataGridInfo.Size = new System.Drawing.Size(744, 436);

@@ -28,12 +28,41 @@ namespace BusinessLayer
 
         public List<string[]> GetVacancies()
         {
-            throw new Exception("Нужно реализовать метод получения вакансий для работодателя");
+            List<Vacancy> vacancies = Vacancy.GetAll();
+            List<string[]> list = new List<string[]>();
+            foreach (Vacancy current in vacancies)
+            {
+                string[] tmp = new string[7];
+                tmp.SetValue(current.GetName(), 0);
+                tmp.SetValue(current.GetSpecialtyName(), 1);
+                tmp.SetValue(Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
+                //Перевод требуемого стажа в года
+                tmp.SetValue((current.GetRequiredExperience() / 12).ToString(), 3);
+                tmp.SetValue(current.GetEmploymentType().ToString(), 4);
+                tmp.SetValue(current.GetSalary().ToString(), 5);
+                tmp.SetValue(current.GetDescription(), 6);
+                list.Add(tmp);
+            }
+            return list;
         }
 
         public void RegisterEmployer(string name, string itn, string address, string phone)
         {
-            throw new Exception("Нужно реализовать регистрацию работодателя");
+            if (name.Equals(""))
+                throw new Exception("Нименование организации не может быть пустым");
+            else if (itn.Equals(""))
+                throw new Exception("ИНН не может быть пустым");
+            else if (address.Equals(""))
+                throw new Exception("Адрес не может быть пустым");
+            try
+            {
+                Employer newEmpoyer = new Employer(itn, name, address, phone);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ошибка базы данных при попытке добавить работодателя");
+            }
+
         }
     }
 }
