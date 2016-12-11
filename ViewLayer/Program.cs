@@ -20,7 +20,7 @@ namespace ViewLayer
             DataBase.Initialize("192.168.1.50", "1521");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Authorization());
+            Application.Run(new FormAuthorization());
         }
     }
 }

@@ -115,6 +115,17 @@ namespace ViewLayer
         private void buttonAddVacancy_Click(object sender, EventArgs e)
         {
 
+            FormAddVacancy form = new FormAddVacancy();
+            form.FormClosed += new FormClosedEventHandler(enableFormModerator);
+            form.Show();
+            this.Enabled = false;
+        }
+        /// <summary>
+        /// Включение формы при закрытии формы "добавить вакансию"
+        /// </summary>
+        private void enableFormModerator(object sender, FormClosedEventArgs e)
+        {
+            this.Enabled = true;
         }
     }
 }

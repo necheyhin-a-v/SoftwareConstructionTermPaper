@@ -72,34 +72,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsultantChoice.cs">
+    <Compile Include="FormConsultant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsultantChoice.Designer.cs">
-      <DependentUpon>ConsultantChoice.cs</DependentUpon>
+    <Compile Include="FormConsultant.Designer.cs">
+      <DependentUpon>FormConsultant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Authorization.cs">
+    <Compile Include="FormAuthorization.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Authorization.Designer.cs">
-      <DependentUpon>Authorization.cs</DependentUpon>
+    <Compile Include="FormAuthorization.Designer.cs">
+      <DependentUpon>FormAuthorization.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModeratorChoice.cs">
+    <Compile Include="FormAddVacancy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModeratorChoice.Designer.cs">
-      <DependentUpon>ModeratorChoice.cs</DependentUpon>
+    <Compile Include="FormAddVacancy.Designer.cs">
+      <DependentUpon>FormAddVacancy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModerator.Designer.cs">
+      <DependentUpon>FormModerator.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ConsultantChoice.resx">
-      <DependentUpon>ConsultantChoice.cs</DependentUpon>
+    <EmbeddedResource Include="FormConsultant.resx">
+      <DependentUpon>FormConsultant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Authorization.resx">
-      <DependentUpon>Authorization.cs</DependentUpon>
+    <EmbeddedResource Include="FormAuthorization.resx">
+      <DependentUpon>FormAuthorization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModeratorChoice.resx">
-      <DependentUpon>ModeratorChoice.cs</DependentUpon>
+    <EmbeddedResource Include="FormModerator.resx">
+      <DependentUpon>FormModerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,6 +1,6 @@
 ﻿namespace ViewLayer
 {
-    partial class Authorization
+    partial class FormAuthorization
     {
         /// <summary>
         /// Обязательная переменная конструктора.

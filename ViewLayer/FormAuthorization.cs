@@ -14,12 +14,12 @@ namespace ViewLayer
     /// <summary>    
     /// Класс авторизации
     /// </summary>
-    public partial class Authorization : Form
+    public partial class FormAuthorization : Form
     {
         /// <summary>
         /// Конструктор, который инициализирует форму
         /// </summary>
-        public Authorization()
+        public FormAuthorization()
         {
             InitializeComponent();
         }
