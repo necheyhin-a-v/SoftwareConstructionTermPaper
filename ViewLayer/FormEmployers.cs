@@ -30,7 +30,7 @@ namespace ViewLayer
         /// ...
         /// </summary>
         /// <returns></returns>
-        List<string[]> GetEmployers();
+        List<string[]> GetEmployers(string filter = "");
         /// <summary>
         /// Получить список вакансий
         /// В виде:
@@ -113,15 +113,19 @@ namespace ViewLayer
         }
         /// <summary>
         /// Обновить таблицу с информацией о работодателях
+        /// Пытается применить фильтр для показа
         /// </summary>
-        public void UpdateInfo()
+        public void UpdateInfo(string filter = "")
         {
             //TODO: FormEmployers.UpdateInfo() добавить инициализацию фильтра "информация работодателей"
             this.dataGridInfo.SelectAll();
             this.dataGridInfo.ClearSelection();
+            this.dataGridInfo.RowCount = 1;
             try
             {
-                List<string[]> employers = View.GetEmployers();
+                List<string[]> employers = View.GetEmployers(filter);
+                if (employers.Count == 0)
+                    return;
                 this.dataGridInfo.RowCount = employers.Count;
                 int currentRow = 0;
                 foreach (string[] currentEmployer in employers)
@@ -230,7 +234,6 @@ namespace ViewLayer
             {
                 MessageBox.Show(err.Message);
             }
-
         }
         /// <summary>
         /// Очистить поля формы регистрация
@@ -241,6 +244,18 @@ namespace ViewLayer
             this.textBoxITN.Text = "";
             this.textBoxEmployerAddress.Text = "";
             this.textBoxEmployerPhoneNumber.Text = "";
+        }
+
+        private void buttonSearchVacancy_Click(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// Применение фильтра к информации о работодателях
+        /// </summary>
+        private void buttonSearchInfo_Click(object sender, EventArgs e)
+        {
+            UpdateInfo(this.textBoxSearchInfo.Text);
         }
     }
 }

@@ -47,9 +47,8 @@ namespace BusinessLayer
             if (CurrentUser != null)
                 return CurrentUser;
             else
-                throw new Exception("Пользователь не авторизован");
+                return null;
         }
-
         /// <summary>
         /// Функция возвращает роль текущего авторизованного пользователя
         /// </summary>
@@ -60,6 +59,13 @@ namespace BusinessLayer
                 return CurrentUser.GetRole();
             else
                 throw new Exception("Пользователь не авторизован");
+        }
+        /// <summary>
+        /// Сбросить существующую авторизацию
+        /// </summary>
+        public void Unauthorize()
+        {
+            this.CurrentUser = null;
         }
     }
 }

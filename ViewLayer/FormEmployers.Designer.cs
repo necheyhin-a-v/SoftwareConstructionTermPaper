@@ -238,6 +238,7 @@
             this.buttonSearchInfo.TabIndex = 3;
             this.buttonSearchInfo.Text = "Найти";
             this.buttonSearchInfo.UseVisualStyleBackColor = true;
+            this.buttonSearchInfo.Click += new System.EventHandler(this.buttonSearchInfo_Click);
             // 
             // textBoxSearchInfo
             // 
@@ -358,6 +359,7 @@
             this.buttonSearchVacancy.TabIndex = 7;
             this.buttonSearchVacancy.Text = "Найти";
             this.buttonSearchVacancy.UseVisualStyleBackColor = true;
+            this.buttonSearchVacancy.Click += new System.EventHandler(this.buttonSearchVacancy_Click);
             // 
             // textBoxSearchVacancy
             // 

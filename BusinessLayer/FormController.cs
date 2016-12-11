@@ -27,17 +27,24 @@ namespace BusinessLayer
             form.FormClosed += FinishAuthorization;
             form.Show();
         }
+        /// <summary>
+        /// Запуск формы работы с предприятиями
+        /// </summary>
         public void RunFormEmployers()
         {
             ViewLayer.FormEmployers form = new ViewLayer.FormEmployers(Employers);
+            form.FormClosed += UnAuthorize;
             form.Show();
         }
+        /// <summary>
+        /// Запуск формы работы с населением (работодателями)
+        /// </summary>
         public void RunFormEmployees()
         {
             ViewLayer.FormEmployees form = new ViewLayer.FormEmployees();
+            form.FormClosed += UnAuthorize;
             form.Show();
         }
-
         /// <summary>
         /// Производится либо запуск других форм, либо завершение приложения
         /// </summary>
@@ -52,6 +59,15 @@ namespace BusinessLayer
             }
             else
                 Application.Exit();
+        }
+        /// <summary>
+        /// При закрытии окон показывать окно авторизации
+        /// </summary>
+        private void UnAuthorize(object sender, FormClosedEventArgs e)
+        {
+            Users.Unauthorize();
+            //Снова показать окно авторизации
+            Authorization();
         }
     }
 }
