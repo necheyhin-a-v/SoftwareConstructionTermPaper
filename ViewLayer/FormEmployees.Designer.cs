@@ -47,17 +47,21 @@
             this.tabInfoEmployees = new System.Windows.Forms.TabPage();
             this.tabWorkSearch = new System.Windows.Forms.TabPage();
             this.tabStatistic = new System.Windows.Forms.TabPage();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.splitContainerInfo = new System.Windows.Forms.SplitContainer();
             this.tcEmployees.SuspendLayout();
             this.tabRegEmployees.SuspendLayout();
+            this.tabInfoEmployees.SuspendLayout();
             this.tabStatistic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).BeginInit();
+            this.splitContainerInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcEmployees
@@ -214,6 +218,7 @@
             // 
             // tabInfoEmployees
             // 
+            this.tabInfoEmployees.Controls.Add(this.splitContainerInfo);
             this.tabInfoEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabInfoEmployees.Name = "tabInfoEmployees";
             this.tabInfoEmployees.Padding = new System.Windows.Forms.Padding(3);
@@ -249,37 +254,16 @@
             this.tabStatistic.Text = "Статистика";
             this.tabStatistic.UseVisualStyleBackColor = true;
             // 
-            // monthCalendar1
+            // radioButton2
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(12, 37);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "label7";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(314, 11);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "label8";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 211);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(535, 217);
-            this.dataGridView1.TabIndex = 3;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(388, 91);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(85, 17);
+            this.radioButton2.TabIndex = 6;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "radioButton2";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
@@ -292,22 +276,55 @@
             this.radioButton1.Text = "radioButton1";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // dataGridView1
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(388, 91);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 211);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(535, 217);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(314, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "label8";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "label7";
             // 
             // monthCalendar2
             // 
             this.monthCalendar2.Location = new System.Drawing.Point(185, 37);
             this.monthCalendar2.Name = "monthCalendar2";
             this.monthCalendar2.TabIndex = 0;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(12, 37);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            // 
+            // splitContainerInfo
+            // 
+            this.splitContainerInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerInfo.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainerInfo.IsSplitterFixed = true;
+            this.splitContainerInfo.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerInfo.Name = "splitContainerInfo";
+            this.splitContainerInfo.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainerInfo.Size = new System.Drawing.Size(838, 496);
+            this.splitContainerInfo.SplitterDistance = 26;
+            this.splitContainerInfo.TabIndex = 0;
             // 
             // FormEmployees
             // 
@@ -320,9 +337,12 @@
             this.tcEmployees.ResumeLayout(false);
             this.tabRegEmployees.ResumeLayout(false);
             this.tabRegEmployees.PerformLayout();
+            this.tabInfoEmployees.ResumeLayout(false);
             this.tabStatistic.ResumeLayout(false);
             this.tabStatistic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).EndInit();
+            this.splitContainerInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -354,5 +374,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.SplitContainer splitContainerInfo;
     }
 }
