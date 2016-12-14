@@ -58,22 +58,51 @@ namespace BusinessLayer
         /// <summary>
         /// Метод определяет получение списка вакансий для формы
         /// </summary>
-        public List<string[]> GetVacancies()
+        public List<string[]> GetVacancies(string filter)
         {
             List<Vacancy> vacancies = Vacancy.GetAll();
             List<string[]> list = new List<string[]>();
-            foreach (Vacancy current in vacancies)
+            //Не используется фильтр
+            if (filter.Equals(""))
             {
-                string[] tmp = new string[7];
-                tmp.SetValue(current.GetName(), 0);
-                tmp.SetValue(current.GetSpecialtyName(), 1);
-                tmp.SetValue(Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
-                //Перевод требуемого стажа в года
-                tmp.SetValue((current.GetRequiredExperience() / 12).ToString(), 3);
-                tmp.SetValue(current.GetEmploymentType().ToString(), 4);
-                tmp.SetValue(current.GetSalary().ToString(), 5);
-                tmp.SetValue(current.GetDescription(), 6);
-                list.Add(tmp);
+                foreach (Vacancy current in vacancies)
+                {
+                    string[] tmp = new string[7];
+                    tmp.SetValue(current.GetName(), 0);
+                    tmp.SetValue(current.GetSpecialtyName(), 1);
+                    tmp.SetValue(Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
+                    //Перевод требуемого стажа в года
+                    tmp.SetValue((current.GetRequiredExperience() / 12).ToString(), 3);
+                    tmp.SetValue(current.GetEmploymentType().ToString(), 4);
+                    tmp.SetValue(current.GetSalary().ToString(), 5);
+                    tmp.SetValue(current.GetDescription(), 6);
+                    list.Add(tmp);
+                }
+            }
+            //Используется фильтр
+            else
+            {
+                foreach (Vacancy current in vacancies)
+                {
+                    string[] tmp = new string[7];
+                    tmp.SetValue(current.GetName(), 0);
+                    tmp.SetValue(current.GetSpecialtyName(), 1);
+                    tmp.SetValue(Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
+                    //Перевод требуемого стажа в года
+                    tmp.SetValue((current.GetRequiredExperience() / 12).ToString(), 3);
+                    tmp.SetValue(current.GetEmploymentType().ToString(), 4);
+                    tmp.SetValue(current.GetSalary().ToString(), 5);
+                    tmp.SetValue(current.GetDescription(), 6);
+                    //Проверка каждого поля на соответствие фильтру
+                    for (int i = 0; i < tmp.Count(); i++)
+                    {
+                        if (tmp.ElementAt(i).IndexOf(filter, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                        {
+                            list.Add(tmp);
+                            break;
+                        }
+                    }
+                }
             }
             return list;
         }
@@ -97,6 +126,38 @@ namespace BusinessLayer
                 throw new Exception("Ошибка базы данных при попытке добавить работодателя");
             }
 
+        }
+
+        /// <summary>
+        /// Создать вакансию предпринимателя
+        /// </summary>
+        /// <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+        /// <param name="employerItn">ИНН работодателя, для которого создается вакансия.
+        /// ИНН должен существовать в базе данных</param>
+        /// <param name="specialty">Специальность для вакансии</param>
+        /// <param name="type">Тип занятости для вакансии</param>
+        /// <param name="description">Описание вакансии, может быть null</param>
+        /// <param name="salary">Заработная плата</param>
+        /// <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        public void CreateVacancy(String name, String employerItn, String specialty, int type,
+            String description, uint salary, uint requiredExperience)
+        {
+            if (name.Equals(""))
+                throw new Exception("Нименование вакансии не может быть пустым");
+            else if (employerItn.Equals(""))
+                throw new Exception("ИНН не может быть пустым");
+            else if (specialty.Equals(""))
+                throw new Exception("Поле специальность не может быть пустым");
+            try
+            {
+                Specialty _specialty = new Specialty(specialty);
+                Vacancy newVacancy = new Vacancy(name, employerItn, _specialty, (EmploymentType)type,
+            description, salary, requiredExperience);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ошибка базы данных при попытке добавить вакансию");
+            }
         }
     }
 }

@@ -59,7 +59,7 @@ namespace ModelLayer
         public Vacancy(String name, String employerItn, Specialty specialty, EmploymentType type,
             String description, uint salary, uint requiredExperience)
         {
-            this.Name = name;
+            this.Name = name;   
             this.EmployerItn = Employer.GetByItn(employerItn).GetItn();       //Проверка введенного имени работодателя
             this.CurrentSpecialty = specialty;                          //Установка специальности с проверкой в базе
             this.CurrentEmploymentType = type;

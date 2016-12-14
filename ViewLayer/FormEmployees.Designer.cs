@@ -45,6 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxEmployerName = new System.Windows.Forms.TextBox();
             this.tabInfoEmployees = new System.Windows.Forms.TabPage();
+            this.splitContainerInfo = new System.Windows.Forms.SplitContainer();
             this.tabWorkSearch = new System.Windows.Forms.TabPage();
             this.tabStatistic = new System.Windows.Forms.TabPage();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -54,14 +55,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.splitContainerInfo = new System.Windows.Forms.SplitContainer();
             this.tcEmployees.SuspendLayout();
             this.tabRegEmployees.SuspendLayout();
             this.tabInfoEmployees.SuspendLayout();
-            this.tabStatistic.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).BeginInit();
             this.splitContainerInfo.SuspendLayout();
+            this.tabStatistic.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcEmployees
@@ -227,6 +227,18 @@
             this.tabInfoEmployees.Text = "Сведения";
             this.tabInfoEmployees.UseVisualStyleBackColor = true;
             // 
+            // splitContainerInfo
+            // 
+            this.splitContainerInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerInfo.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainerInfo.IsSplitterFixed = true;
+            this.splitContainerInfo.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerInfo.Name = "splitContainerInfo";
+            this.splitContainerInfo.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainerInfo.Size = new System.Drawing.Size(838, 496);
+            this.splitContainerInfo.SplitterDistance = 26;
+            this.splitContainerInfo.TabIndex = 0;
+            // 
             // tabWorkSearch
             // 
             this.tabWorkSearch.Location = new System.Drawing.Point(4, 22);
@@ -314,35 +326,24 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             // 
-            // splitContainerInfo
-            // 
-            this.splitContainerInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerInfo.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainerInfo.IsSplitterFixed = true;
-            this.splitContainerInfo.Location = new System.Drawing.Point(3, 3);
-            this.splitContainerInfo.Name = "splitContainerInfo";
-            this.splitContainerInfo.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.splitContainerInfo.Size = new System.Drawing.Size(838, 496);
-            this.splitContainerInfo.SplitterDistance = 26;
-            this.splitContainerInfo.TabIndex = 0;
-            // 
             // FormEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 699);
             this.Controls.Add(this.tcEmployees);
+            this.DoubleBuffered = true;
             this.Name = "FormEmployees";
             this.Text = "Работа с работниками";
             this.tcEmployees.ResumeLayout(false);
             this.tabRegEmployees.ResumeLayout(false);
             this.tabRegEmployees.PerformLayout();
             this.tabInfoEmployees.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).EndInit();
+            this.splitContainerInfo.ResumeLayout(false);
             this.tabStatistic.ResumeLayout(false);
             this.tabStatistic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).EndInit();
-            this.splitContainerInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

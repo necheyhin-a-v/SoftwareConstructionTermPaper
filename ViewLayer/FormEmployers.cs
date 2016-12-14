@@ -24,6 +24,19 @@ namespace ViewLayer
         /// <param name="phone"></param>
         void RegisterEmployer(string name, string itn, string address, string phone);
         /// <summary>
+        /// Создать вакансию предпринимателя
+        /// </summary>
+        /// <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+        /// <param name="employerItn">ИНН работодателя, для которого создается вакансия.
+        /// ИНН должен существовать в базе данных</param>
+        /// <param name="specialty">Специальность для вакансии</param>
+        /// <param name="type">Тип занятости для вакансии</param>
+        /// <param name="description">Описание вакансии, может быть null</param>
+        /// <param name="salary">Заработная плата</param>
+        /// <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        void CreateVacancy(String name, String employerItn, String specialty, int type,
+            String description, uint salary, uint requiredExperience);
+        /// <summary>
         /// Получить список работодателей
         /// name1, itn1, address1, phone1
         /// name2, itn2, address2, phone2
@@ -36,7 +49,7 @@ namespace ViewLayer
         /// В виде:
         /// имя вакансии, специальность, предприятие, требуемый опыт, тип занятости, оплата, описание
         /// </summary>
-        List<string[]> GetVacancies();
+        List<string[]> GetVacancies(string filter = "");
     }
 
 
@@ -143,14 +156,14 @@ namespace ViewLayer
         /// <summary>
         /// Обновление таблицы с информацией о вакансиях
         /// </summary>
-        public void UpdateVacancies()
+        public void UpdateVacancies(string filter = "")
         {
             //TODO: FormEmployers.UpdateVacancies() добавить инициализацию фильтра "вакансии работодателей"
             this.dataGridVacancies.SelectAll();
             this.dataGridVacancies.ClearSelection();
             try
             {
-                List<string[]> vacancies = View.GetVacancies();
+                List<string[]> vacancies = View.GetVacancies(filter);
                 this.dataGridVacancies.RowCount = vacancies.Count;
                 int currentRow = 0;
                 foreach (string[] currentVacancy in vacancies)
@@ -201,8 +214,7 @@ namespace ViewLayer
         /// </summary>
         private void buttonAddVacancy_Click(object sender, EventArgs e)
         {
-
-            FormAddVacancy form = new FormAddVacancy();
+            FormAddVacancy form = new FormAddVacancy(this.View);
             form.FormClosed += new FormClosedEventHandler(enableFormModerator);
             form.Show();
             this.Enabled = false;
@@ -212,6 +224,7 @@ namespace ViewLayer
         /// </summary>
         private void enableFormModerator(object sender, FormClosedEventArgs e)
         {
+            UpdateVacancies();
             this.Enabled = true;
         }
         /// <summary>
@@ -248,7 +261,7 @@ namespace ViewLayer
 
         private void buttonSearchVacancy_Click(object sender, EventArgs e)
         {
-
+            UpdateVacancies(this.textBoxSearchVacancy.Text);
         }
         /// <summary>
         /// Применение фильтра к информации о работодателях

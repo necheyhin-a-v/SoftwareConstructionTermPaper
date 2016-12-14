@@ -28,44 +28,187 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonDeclineVacancy = new System.Windows.Forms.Button();
+            this.buttonAcceptVacancy = new System.Windows.Forms.Button();
+            this.textBoxExperience = new System.Windows.Forms.TextBox();
+            this.textBoxFirmINN = new System.Windows.Forms.TextBox();
+            this.textBoxSpecialty = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxRequire = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.textBoxSalary = new System.Windows.Forms.TextBox();
+            this.comboBoxEmploymentType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonDeclineVacancy
             // 
-            this.button1.Location = new System.Drawing.Point(41, 230);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonDeclineVacancy.Location = new System.Drawing.Point(261, 196);
+            this.buttonDeclineVacancy.Name = "buttonDeclineVacancy";
+            this.buttonDeclineVacancy.Size = new System.Drawing.Size(95, 23);
+            this.buttonDeclineVacancy.TabIndex = 19;
+            this.buttonDeclineVacancy.Text = "Отменить";
+            this.buttonDeclineVacancy.UseVisualStyleBackColor = true;
+            this.buttonDeclineVacancy.Click += new System.EventHandler(this.buttonDeclineVacancy_Click);
             // 
-            // button2
+            // buttonAcceptVacancy
             // 
-            this.button2.Location = new System.Drawing.Point(149, 226);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonAcceptVacancy.Location = new System.Drawing.Point(160, 196);
+            this.buttonAcceptVacancy.Name = "buttonAcceptVacancy";
+            this.buttonAcceptVacancy.Size = new System.Drawing.Size(95, 23);
+            this.buttonAcceptVacancy.TabIndex = 18;
+            this.buttonAcceptVacancy.Text = "Принять";
+            this.buttonAcceptVacancy.UseVisualStyleBackColor = true;
+            this.buttonAcceptVacancy.Click += new System.EventHandler(this.buttonAcceptVacancy_Click);
             // 
-            // textBox1
+            // textBoxExperience
             // 
-            this.textBox1.Location = new System.Drawing.Point(60, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBoxExperience.Location = new System.Drawing.Point(160, 90);
+            this.textBoxExperience.Name = "textBoxExperience";
+            this.textBoxExperience.Size = new System.Drawing.Size(196, 20);
+            this.textBoxExperience.TabIndex = 17;
+            // 
+            // textBoxFirmINN
+            // 
+            this.textBoxFirmINN.Location = new System.Drawing.Point(160, 64);
+            this.textBoxFirmINN.Name = "textBoxFirmINN";
+            this.textBoxFirmINN.Size = new System.Drawing.Size(196, 20);
+            this.textBoxFirmINN.TabIndex = 16;
+            // 
+            // textBoxSpecialty
+            // 
+            this.textBoxSpecialty.Location = new System.Drawing.Point(160, 38);
+            this.textBoxSpecialty.Name = "textBoxSpecialty";
+            this.textBoxSpecialty.Size = new System.Drawing.Size(196, 20);
+            this.textBoxSpecialty.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Требуемый опыт";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "ИНН предприятие";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(148, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Направление деятельности";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Требуется";
+            // 
+            // textBoxRequire
+            // 
+            this.textBoxRequire.Location = new System.Drawing.Point(160, 12);
+            this.textBoxRequire.Name = "textBoxRequire";
+            this.textBoxRequire.Size = new System.Drawing.Size(196, 20);
+            this.textBoxRequire.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 170);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Описание";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 144);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Оплата";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(12, 118);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Тип занятости";
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Location = new System.Drawing.Point(160, 170);
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(196, 20);
+            this.textBoxDescription.TabIndex = 25;
+            // 
+            // textBoxSalary
+            // 
+            this.textBoxSalary.Location = new System.Drawing.Point(160, 144);
+            this.textBoxSalary.Name = "textBoxSalary";
+            this.textBoxSalary.Size = new System.Drawing.Size(196, 20);
+            this.textBoxSalary.TabIndex = 24;
+            // 
+            // comboBoxEmploymentType
+            // 
+            this.comboBoxEmploymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEmploymentType.FormattingEnabled = true;
+            this.comboBoxEmploymentType.Items.AddRange(new object[] {
+            "FullTime",
+            "PartTime",
+            "Traineeship",
+            "Volunteering"});
+            this.comboBoxEmploymentType.Location = new System.Drawing.Point(160, 118);
+            this.comboBoxEmploymentType.Name = "comboBoxEmploymentType";
+            this.comboBoxEmploymentType.Size = new System.Drawing.Size(194, 21);
+            this.comboBoxEmploymentType.TabIndex = 26;
             // 
             // FormAddVacancy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(366, 225);
+            this.Controls.Add(this.comboBoxEmploymentType);
+            this.Controls.Add(this.textBoxDescription);
+            this.Controls.Add(this.textBoxSalary);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.buttonDeclineVacancy);
+            this.Controls.Add(this.buttonAcceptVacancy);
+            this.Controls.Add(this.textBoxExperience);
+            this.Controls.Add(this.textBoxFirmINN);
+            this.Controls.Add(this.textBoxSpecialty);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxRequire);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -78,8 +221,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonDeclineVacancy;
+        private System.Windows.Forms.Button buttonAcceptVacancy;
+        private System.Windows.Forms.TextBox textBoxExperience;
+        private System.Windows.Forms.TextBox textBoxFirmINN;
+        private System.Windows.Forms.TextBox textBoxSpecialty;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxRequire;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.TextBox textBoxSalary;
+        private System.Windows.Forms.ComboBox comboBoxEmploymentType;
     }
 }
