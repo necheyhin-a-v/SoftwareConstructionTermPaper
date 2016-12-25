@@ -75,6 +75,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddSpecialty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddSpecialty.Designer.cs">
+      <DependentUpon>FormAddSpecialty.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
       <DependentUpon>FormEmployers.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddSpecialty.resx">
+      <DependentUpon>FormAddSpecialty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddVacancy.resx">
       <DependentUpon>FormAddVacancy.cs</DependentUpon>
     </EmbeddedResource>

@@ -50,6 +50,14 @@ namespace ViewLayer
         /// имя вакансии, специальность, предприятие, требуемый опыт, тип занятости, оплата, описание
         /// </summary>
         List<string[]> GetVacancies(string filter = "");
+        /// <summary>
+        /// Получить список специальностей
+        /// </summary>
+        List<string> GetSpecialties();
+        /// <summary>
+        /// Добавить специальность
+        /// </summary>
+        void AddSpecialty(string name);
     }
 
 

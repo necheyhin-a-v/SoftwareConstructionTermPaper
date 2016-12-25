@@ -32,7 +32,6 @@
             this.buttonAcceptVacancy = new System.Windows.Forms.Button();
             this.textBoxExperience = new System.Windows.Forms.TextBox();
             this.textBoxFirmINN = new System.Windows.Forms.TextBox();
-            this.textBoxSpecialty = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +43,8 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.textBoxSalary = new System.Windows.Forms.TextBox();
             this.comboBoxEmploymentType = new System.Windows.Forms.ComboBox();
+            this.comboBoxSpecialty = new System.Windows.Forms.ComboBox();
+            this.specialtyAddButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonDeclineVacancy
@@ -79,13 +80,6 @@
             this.textBoxFirmINN.Name = "textBoxFirmINN";
             this.textBoxFirmINN.Size = new System.Drawing.Size(196, 20);
             this.textBoxFirmINN.TabIndex = 16;
-            // 
-            // textBoxSpecialty
-            // 
-            this.textBoxSpecialty.Location = new System.Drawing.Point(160, 38);
-            this.textBoxSpecialty.Name = "textBoxSpecialty";
-            this.textBoxSpecialty.Size = new System.Drawing.Size(196, 20);
-            this.textBoxSpecialty.TabIndex = 15;
             // 
             // label4
             // 
@@ -187,11 +181,32 @@
             this.comboBoxEmploymentType.Size = new System.Drawing.Size(194, 21);
             this.comboBoxEmploymentType.TabIndex = 26;
             // 
+            // comboBoxSpecialty
+            // 
+            this.comboBoxSpecialty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSpecialty.FormattingEnabled = true;
+            this.comboBoxSpecialty.Location = new System.Drawing.Point(160, 37);
+            this.comboBoxSpecialty.Name = "comboBoxSpecialty";
+            this.comboBoxSpecialty.Size = new System.Drawing.Size(194, 21);
+            this.comboBoxSpecialty.TabIndex = 27;
+            // 
+            // specialtyAddButton
+            // 
+            this.specialtyAddButton.Location = new System.Drawing.Point(360, 35);
+            this.specialtyAddButton.Name = "specialtyAddButton";
+            this.specialtyAddButton.Size = new System.Drawing.Size(66, 23);
+            this.specialtyAddButton.TabIndex = 28;
+            this.specialtyAddButton.Text = "Добавить";
+            this.specialtyAddButton.UseVisualStyleBackColor = true;
+            this.specialtyAddButton.Click += new System.EventHandler(this.specialtyAddButton_Click);
+            // 
             // FormAddVacancy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 225);
+            this.ClientSize = new System.Drawing.Size(429, 223);
+            this.Controls.Add(this.specialtyAddButton);
+            this.Controls.Add(this.comboBoxSpecialty);
             this.Controls.Add(this.comboBoxEmploymentType);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.textBoxSalary);
@@ -202,7 +217,6 @@
             this.Controls.Add(this.buttonAcceptVacancy);
             this.Controls.Add(this.textBoxExperience);
             this.Controls.Add(this.textBoxFirmINN);
-            this.Controls.Add(this.textBoxSpecialty);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -214,6 +228,7 @@
             this.MinimizeBox = false;
             this.Name = "FormAddVacancy";
             this.Text = "Добавление вакансии";
+            this.Load += new System.EventHandler(this.FormAddVacancy_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,7 +240,6 @@
         private System.Windows.Forms.Button buttonAcceptVacancy;
         private System.Windows.Forms.TextBox textBoxExperience;
         private System.Windows.Forms.TextBox textBoxFirmINN;
-        private System.Windows.Forms.TextBox textBoxSpecialty;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -237,5 +251,7 @@
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.TextBox textBoxSalary;
         private System.Windows.Forms.ComboBox comboBoxEmploymentType;
+        private System.Windows.Forms.ComboBox comboBoxSpecialty;
+        private System.Windows.Forms.Button specialtyAddButton;
     }
 }
