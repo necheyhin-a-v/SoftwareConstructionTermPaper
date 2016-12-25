@@ -74,9 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModelLayer\ModelLayer.csproj">
+    <ProjectReference Include="..\ModelLayer\ModelLayerMSSQL.csproj">
       <Project>{2828fe02-2cbe-4e5b-b365-a009911f6b13}</Project>
-      <Name>ModelLayer</Name>
+      <Name>ModelLayerMSSQL</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewLayer\ViewLayer.csproj">
       <Project>{efe8b644-6293-416e-b410-1dfae648bfc9}</Project>

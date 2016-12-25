@@ -75,6 +75,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddSpecialty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddSpecialty.Designer.cs">
+      <DependentUpon>FormAddSpecialty.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
       <DependentUpon>FormEmployers.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddSpecialty.resx">
+      <DependentUpon>FormAddSpecialty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddVacancy.resx">
       <DependentUpon>FormAddVacancy.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,9 +145,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModelLayer\ModelLayer.csproj">
+    <ProjectReference Include="..\ModelLayer\ModelLayerMSSQL.csproj">
       <Project>{2828FE02-2CBE-4E5B-B365-A009911F6B13}</Project>
-      <Name>ModelLayer</Name>
+      <Name>ModelLayerMSSQL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
