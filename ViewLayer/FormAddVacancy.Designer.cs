@@ -171,11 +171,6 @@
             // 
             this.comboBoxEmploymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEmploymentType.FormattingEnabled = true;
-            this.comboBoxEmploymentType.Items.AddRange(new object[] {
-            "FullTime",
-            "PartTime",
-            "Traineeship",
-            "Volunteering"});
             this.comboBoxEmploymentType.Location = new System.Drawing.Point(160, 118);
             this.comboBoxEmploymentType.Name = "comboBoxEmploymentType";
             this.comboBoxEmploymentType.Size = new System.Drawing.Size(194, 21);

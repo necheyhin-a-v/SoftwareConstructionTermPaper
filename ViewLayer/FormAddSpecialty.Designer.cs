@@ -36,7 +36,8 @@
             // 
             // buttonDeclineSpecialty
             // 
-            this.buttonDeclineSpecialty.Location = new System.Drawing.Point(256, 38);
+            this.buttonDeclineSpecialty.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonDeclineSpecialty.Location = new System.Drawing.Point(113, 32);
             this.buttonDeclineSpecialty.Name = "buttonDeclineSpecialty";
             this.buttonDeclineSpecialty.Size = new System.Drawing.Size(95, 23);
             this.buttonDeclineSpecialty.TabIndex = 23;
@@ -46,7 +47,7 @@
             // 
             // buttonAcceptSpecialty
             // 
-            this.buttonAcceptSpecialty.Location = new System.Drawing.Point(155, 38);
+            this.buttonAcceptSpecialty.Location = new System.Drawing.Point(12, 32);
             this.buttonAcceptSpecialty.Name = "buttonAcceptSpecialty";
             this.buttonAcceptSpecialty.Size = new System.Drawing.Size(95, 23);
             this.buttonAcceptSpecialty.TabIndex = 22;
@@ -58,24 +59,27 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(7, 15);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 21;
-            this.label1.Text = "Название специльности:";
+            this.label1.Text = "Название:";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(155, 12);
+            this.textBoxName.Location = new System.Drawing.Point(78, 6);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(196, 20);
+            this.textBoxName.Size = new System.Drawing.Size(130, 20);
             this.textBoxName.TabIndex = 20;
             // 
             // FormAddSpecialty
             // 
+            this.AcceptButton = this.buttonAcceptSpecialty;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 65);
+            this.CancelButton = this.buttonDeclineSpecialty;
+            this.ClientSize = new System.Drawing.Size(221, 64);
+            this.ControlBox = false;
             this.Controls.Add(this.buttonDeclineSpecialty);
             this.Controls.Add(this.buttonAcceptSpecialty);
             this.Controls.Add(this.label1);

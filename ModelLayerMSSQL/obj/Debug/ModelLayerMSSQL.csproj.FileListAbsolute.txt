@@ -1,0 +1,5 @@
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\bin\Debug\ModelLayerMSSQL.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\bin\Debug\ModelLayerMSSQL.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\bin\Debug\Oracle.DataAccess.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\Debug\ModelLayerMSSQL.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\Debug\ModelLayerMSSQL.pdb

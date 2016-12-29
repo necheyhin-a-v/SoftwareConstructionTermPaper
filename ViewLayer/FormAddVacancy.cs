@@ -21,7 +21,6 @@ namespace ViewLayer
         {
             this.View = view;
             InitializeComponent();
-            this.comboBoxEmploymentType.SelectedIndex = 0;
         }
         
         private void buttonAcceptVacancy_Click(object sender, EventArgs e)
@@ -37,12 +36,13 @@ namespace ViewLayer
                 Convert.ToUInt32(this.textBoxSalary.Text),
                 Convert.ToUInt32(this.textBoxExperience.Text));
                 MessageBox.Show("Вакансия зарегистрирована");
-                //Нажать на кнопку закрытия формы*/
+                //Нажать на кнопку закрытия формы
                 buttonDeclineVacancy.PerformClick();
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Невозможно добавить вакансию");
+                //MessageBox.Show(err.Message);
             }
         }
 
@@ -57,6 +57,12 @@ namespace ViewLayer
             {
                 this.comboBoxSpecialty.Items.Add(specialty);
             }
+            foreach (string employmentTypes in View.GetEmploymentTypes())
+            {
+                this.comboBoxEmploymentType.Items.Add(employmentTypes);
+            }
+
+
             this.Enabled = true;
         }
         /// <summary>
@@ -64,6 +70,7 @@ namespace ViewLayer
         /// </summary>
         private void specialtyAddButton_Click(object sender, EventArgs e)
         {
+            //TODO: FormAddVacancy.specialtyAddButton_Click() вынести в класс formController
             FormAddSpecialty form = new FormAddSpecialty(this.View);
             form.FormClosed += new FormClosedEventHandler(FormAddVacancy_Load);
             form.Show();

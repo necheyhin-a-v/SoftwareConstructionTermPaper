@@ -120,6 +120,19 @@ namespace BusinessLayer
             return list;
         }
         /// <summary>
+        /// Метод перебирает все возможные варианты типа занятости и формирует список
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetEmploymentTypes()        {
+            List<string> result = new List<string>();
+            foreach (var value in Enum.GetValues(typeof(EmploymentType)))
+            {
+                result.Add(value.ToString());
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Метод определяет добавление специальностей
         /// </summary>
         public void AddSpecialty(string name)
