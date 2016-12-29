@@ -107,26 +107,6 @@ namespace BusinessLayer
             return list;
         }
         /// <summary>
-        /// Метод определяет получение списка специальностей для формы
-        /// </summary>
-        public List<string> GetSpecialties()
-        {
-            List<Specialty> specialties = Specialty.GetAll();
-            List<string> list = new List<string>();
-            foreach (Specialty specialty in specialties)
-            {
-                list.Add(specialty.GetName());
-            }
-            return list;
-        }
-        /// <summary>
-        /// Метод определяет добавление специальностей
-        /// </summary>
-        public void AddSpecialty(string name)
-        {
-            Specialty specialties = new Specialty(name);
-        }
-        /// <summary>
         /// Метод определяет регистрацию работодателя для формы
         /// </summary>
         public void RegisterEmployer(string name, string itn, string address, string phone)

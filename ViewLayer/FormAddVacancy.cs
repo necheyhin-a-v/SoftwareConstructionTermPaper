@@ -31,7 +31,7 @@ namespace ViewLayer
                 this.View.CreateVacancy(
                 this.textBoxRequire.Text,
                 this.textBoxFirmINN.Text,
-                this.comboBoxSpecialty.SelectedItem.ToString(),
+                this.textBoxSpecialty.Text,
                 this.comboBoxEmploymentType.SelectedIndex + 1,
                 this.textBoxDescription.Text,
                 Convert.ToUInt32(this.textBoxSalary.Text),
@@ -49,25 +49,6 @@ namespace ViewLayer
         private void buttonDeclineVacancy_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void FormAddVacancy_Load(object sender, EventArgs e)
-        {
-            foreach(string specialty in View.GetSpecialties())
-            {
-                this.comboBoxSpecialty.Items.Add(specialty);
-            }
-            this.Enabled = true;
-        }
-        /// <summary>
-        /// Запуск добавления новой специальности
-        /// </summary>
-        private void specialtyAddButton_Click(object sender, EventArgs e)
-        {
-            FormAddSpecialty form = new FormAddSpecialty(this.View);
-            form.FormClosed += new FormClosedEventHandler(FormAddVacancy_Load);
-            form.Show();
-            this.Enabled = false;
         }
     }
 }
