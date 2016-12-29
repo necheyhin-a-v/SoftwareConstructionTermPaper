@@ -13,10 +13,10 @@ namespace ModelLayerMSSQL
     public static class DataBase
     {
         //Логин и пароль и схема для подключения к базе данных
-        private const String SCHEMA = "dbo.";               //Используется точка для конкатенации полного имени
+        private const String SCHEMA = "PERMANENT_USER";
         private const String USER_NAME = "PERMANENT_USER";
         private const String PASSWORD = "password";
-        private const String DB_NAME = "TermPaper.";        //Используется точка для конкатенации полного имени
+        private const String DB_NAME = "TermPaper";
 
         private static SqlConnection Connection;            //Объект подключения к базе данных
         private static SqlCommand Command;                  //Объект выполнения запроса
@@ -34,14 +34,11 @@ namespace ModelLayerMSSQL
             HostName = host;
             Port = port;
             //Настройки можно посмотреть в файле tnsnames.ora
-            ConnectionString = "Data Source=tcp:"
+            ConnectionString = "Server=tcp:"
                 + HostName + "," + Port + ";"
                 + "Initial Catalog = " + DB_NAME + ";"
-                + "(CONNECT_DATA ="
-                + "(SERVER = DEDICATED)"
-                + "(SERVICE_NAME = XE)));"
                 + "User Id=" + USER_NAME + ";"
-                + "Password=" + PASSWORD + ";";
+                 + "Password=" + PASSWORD + ";";
 
 
             Connection = new SqlConnection(ConnectionString);

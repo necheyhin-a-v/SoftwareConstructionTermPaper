@@ -60,7 +60,7 @@ namespace ModelLayerMSSQL
         /// <returns>true, если пользователь с таким логином существует</returns>
         public static Boolean CanFindByLogin(String login)
         {
-            String query = "SELECT * FROM " + DataBase.GetShema() + "USERS "
+            String query = "SELECT * FROM " + DataBase.GetShema() + ".USERS "
                 + "WHERE USERLOGIN = '" + login + "'";
             try
             {
@@ -85,7 +85,7 @@ namespace ModelLayerMSSQL
         public static User GetByLogin(String login)
         {
             String query = "SELECT USERS.USERLOGIN, USERS.USERPASSWORD, USERROLES.ROLEID "
-                + "FROM PERMANENT_USER.USERS, PERMANENT_USER.USERROLES "
+                + "FROM " + DataBase.GetShema() + ".USERS, " + DataBase.GetShema() + ".USERROLES "
                 + "WHERE USERS.USERLOGIN = '" + login + "' "
                 + "AND USERROLES.USERLOGIN = USERS.USERLOGIN";
             User newUser = new User();
@@ -114,7 +114,7 @@ namespace ModelLayerMSSQL
         /// <param name="newPassword">Новый пароль для записи в базу данных</param>
         public void ChangePassword(String newPassword)
         {
-            String query = "UPDATE PERMANENT_USER.USERS "
+            String query = "UPDATE " + DataBase.GetShema() + ".USERS "
                 + "SET USERPASSWORD = '" + newPassword + "'"
                 + "WHERE USERPASSWORD = '" + this.Password + "'";
             try
@@ -143,7 +143,7 @@ namespace ModelLayerMSSQL
             try
             {
                 //Проверка существует ли роль, которую пользователь пытается добавить
-                String query = "SELECT * FROM PERMANENT_USER.ROLES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".ROLES "
                     + "WHERE ROLEID = '" + (int)newRole + "'";
                 //Проверить сначала на существование текущей роли в базе данных
                 list = ExecuteSelect(query);
@@ -151,7 +151,7 @@ namespace ModelLayerMSSQL
                 if (list.Count == 0)
                 {
                     queries = new String[2];
-                    queries[indexQuery++] = "INSERT INTO PERMANENT_USER.ROLES "
+                    queries[indexQuery++] = "INSERT INTO " + DataBase.GetShema() + ".ROLES "
                         + "(ROLEID, ROLENAME) "
                         + "VALUES ("
                         + "'" + (int)newRole + "', "
@@ -159,7 +159,7 @@ namespace ModelLayerMSSQL
                 }
                 else
                     queries = new String[1];
-                queries[indexQuery++] = "UPDATE PERMANENT_USER.USERROLES " 
+                queries[indexQuery++] = "UPDATE " + DataBase.GetShema() + ".USERROLES " 
                     + "SET ROLEID = '" + (int)newRole + "'"
                     + "WHERE USERLOGIN = '" + this.Login + "'";
                 //Выполнение транзакции
@@ -189,7 +189,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = @"DELETE FROM PERMANENT_USER.USERS "
+                String query = @"DELETE FROM " + DataBase.GetShema() + ".USERS "
                 + "WHERE USERLOGIN = "
                 + "'" + this.Login + "'";
                 ExecuteNonSelectQuery(query);
@@ -212,7 +212,7 @@ namespace ModelLayerMSSQL
             try
             {
                 //Проверка существует ли роль, которую пользователь пытается добавить
-                String query = "SELECT * FROM PERMANENT_USER.ROLES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".ROLES "
                     + "WHERE ROLEID = '" + this.RoleId + "'";
                 //Проверить сначала на существование текущей роли в базе данных
                 list = ExecuteSelect(query);
@@ -222,7 +222,7 @@ namespace ModelLayerMSSQL
                     queries = new String[3];
                     //Попытка преобразовать индекс роли в ее имя для занесения в базу данных
                     UserRoles currentRole = (UserRoles)Enum.Parse(typeof(UserRoles), this.RoleId.ToString());
-                    queries[indexQuery++] = "INSERT INTO PERMANENT_USER.ROLES "
+                    queries[indexQuery++] = "INSERT INTO " + DataBase.GetShema() + ".ROLES "
                         + "(ROLEID, ROLENAME) "
                         + "VALUES ("
                         + "'" + this.RoleId + "', "
@@ -231,12 +231,12 @@ namespace ModelLayerMSSQL
                 else
                     queries = new String[2];
 
-                queries[indexQuery++] = @"INSERT INTO PERMANENT_USER.USERS "
+                queries[indexQuery++] = @"INSERT INTO " + DataBase.GetShema() + ".USERS "
                     + "(USERLOGIN, USERPASSWORD)"
                     + "VALUES ("
                     + "'" + this.Login + "',"
                     + "'" + this.Password + "')";
-                queries[indexQuery++] = @"INSERT INTO PERMANENT_USER.USERROLES"
+                queries[indexQuery++] = @"INSERT INTO " + DataBase.GetShema() + ".USERROLES"
                     + "(ROLEID, USERLOGIN)"
                     + "VALUES ("
                     + "'" + this.RoleId + "',"
@@ -292,7 +292,9 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT * FROM "+"PERMANENT_USER.USERS";
+                String query = "SELECT USERS.USERLOGIN, USERS.USERPASSWORD, USERROLES.ROLEID "
+                    + "FROM " + DataBase.GetShema() + ".USERS, " + DataBase.GetShema() + ".USERROLES "
+                    + "WHERE USERROLES.USERLOGIN = USERS.USERLOGIN";
                 //Временный пользователь для вызова методов базового класса
                 User temp = new User();
                 List<Object[]> list = temp.ExecuteSelect(query);
@@ -303,6 +305,7 @@ namespace ModelLayerMSSQL
                     User newUser = new User();
                     newUser.Login = currentUser.ElementAt(0).ToString();
                     newUser.Password = currentUser.ElementAt(1).ToString();
+                    newUser.RoleId = Convert.ToInt32(currentUser.ElementAt(2));
                     result.Add(newUser);
                 }
                 return result;
