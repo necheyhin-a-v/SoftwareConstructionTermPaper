@@ -57,7 +57,7 @@ namespace ModelLayerMSSQL
             try
             {
                 //Удалить самого работодателя а с ним каскадно удалятся вакансии
-                String query = "DELETE FROM PERMANENT_USER.EMPLOYER "
+                String query = "DELETE FROM " + DataBase.GetShema() + ".EMPLOYER "
                     + "WHERE ITN = '" + this.Itn + "'";
                 ExecuteNonSelectQuery(query);
                 //Удаление объекта после успешного запроса
@@ -77,7 +77,7 @@ namespace ModelLayerMSSQL
             try
             {
                 //q используется для экранирования символов
-                String query = "INSERT INTO PERMANENT_USER.EMPLOYER "
+                String query = "INSERT INTO " + DataBase.GetShema() + ".EMPLOYER "
                     + "(ITN, NAME, ADDRESS, PHONE) VALUES ("
                     + "" + this.Itn + ", "
                     + "'" + this.Name + "', "
@@ -102,7 +102,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT * FROM PERMANENT_USER.EMPLOYER "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".EMPLOYER "
                     + "WHERE ITN = '" + itn + "'";
                 //Временный объект для доступа к функциям базового класса
                 Employer temp = new Employer();
@@ -135,7 +135,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "UPDATE PERMANENT_USER.EMPLOYER "
+                String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYER "
                     + "SET NAME = '" + newName + "' "
                     + "WHERE ITN = '" + this.Itn + "'";
                 ExecuteNonSelectQuery(query);
@@ -158,7 +158,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "UPDATE PERMANENT_USER.EMPLOYER "
+                String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYER "
                     + "SET ADDRESS = '" + newAddress + "'"
                     + "WHERE ITN = '" + this.Itn + "'";
                 ExecuteNonSelectQuery(query);
@@ -180,7 +180,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "UPDATE PERMANENT_USER.EMPLOYER "
+                String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYER "
                     + "SET PHONE = '" + newPhone + "'"
                     + "WHERE ITN = '" + this.Itn + "'";
                 ExecuteNonSelectQuery(query);
@@ -206,7 +206,7 @@ namespace ModelLayerMSSQL
             try
             {
                 Employer result = new Employer();
-                String query = "SELECT * FROM PERMANENT_USER.EMPLOYER "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".EMPLOYER "
                     + "WHERE ITN = '" + itn + "'";
                 List<Object[]> list = result.ExecuteSelect(query);
                 if (list.Count == 0)
@@ -269,7 +269,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT * FROM PERMANENT_USER.EMPLOYER";
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".EMPLOYER";
                 //Временный объект для использования функционала базового класса
                 Employer temp = new Employer();
                 List<Object[]> list = temp.ExecuteSelect(query);

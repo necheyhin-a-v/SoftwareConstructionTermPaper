@@ -58,7 +58,7 @@ namespace ModelLayerMSSQL
         /// <returns>True если запись в базе данных существует</returns>
         public static Boolean CanFindByPassport(String passport)
         {
-            String query = "SELECT * FROM PERMANENT_USER.EMPLOYEE "
+            String query = "SELECT * FROM " + DataBase.GetShema() + ".EMPLOYEE "
                 + "WHERE PASSPORT = '" + passport + "'";
             Employee newEmployee = new Employee();
             if (newEmployee.ExecuteSelect(query).Count != 0)
@@ -75,7 +75,7 @@ namespace ModelLayerMSSQL
         /// <returns>Или возвращает ссылку на null если данных нет в базе данных</returns>
         public static Employee GetByPassport(String passport)
         {
-            String query = "SELECT * FROM PERMANENT_USER.EMPLOYEE "
+            String query = "SELECT * FROM " + DataBase.GetShema() + ".EMPLOYEE "
                 + "WHERE PASSPORT = '" + passport + "'";
             Employee newEmployee = new Employee();
             List<Object[]> list = newEmployee.ExecuteSelect(query);
@@ -117,7 +117,7 @@ namespace ModelLayerMSSQL
         /// </summary>
         protected override void AddEntityToDB()
         {
-            String query = "INSERT INTO PERMANENT_USER.EMPLOYEE"
+            String query = "INSERT INTO " + DataBase.GetShema() + ".EMPLOYEE"
                 + "(PASSPORT, FIRSTNAME, SECONDNAME, MIDDLENAME, ADDRESS, PHONE, HASFOUNDJOB, EXPERIENCE)"
                 + "VALUES ("
                 + "'" + this.PassportNumber + "',"
@@ -156,7 +156,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "DELETE FROM PERMANENT_USER.EMPLOYEE "
+                String query = "DELETE FROM " + DataBase.GetShema() + ".EMPLOYEE "
                     + "WHERE PASSPORT = "
                     + "'" + this.PassportNumber + "'";
                 ExecuteNonSelectQuery(query);
@@ -175,7 +175,7 @@ namespace ModelLayerMSSQL
         /// <param name="newPassportNumber">Серия и номер паспорта для смены старого</param>
         public void ChangePassport(String newPassportNumber)
         {
-            String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+            String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                 + "SET PASSPORT = '" + newPassportNumber + "'"
                 + "WHERE PASSPORT = '" + this.PassportNumber + "'";
             try
@@ -199,7 +199,7 @@ namespace ModelLayerMSSQL
         /// <param name="newFirstName">Новое имя</param>
         public void ChangeFirstName(String newFirstName)
         {
-            String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+            String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                 + "SET FIRSTNAME = '" + newFirstName + "'"
                 + "WHERE PASSPORT = '" + this.PassportNumber + "'";
             try
@@ -223,7 +223,7 @@ namespace ModelLayerMSSQL
         /// <param name="newSecondName">Новая фамилия</param>
         public void ChangeSecondName(String newSecondName)
         {
-            String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+            String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                 + "SET SECONDNAME = '" + newSecondName + "'"
                 + "WHERE PASSPORT = '" + this.PassportNumber + "'";
             try
@@ -247,7 +247,7 @@ namespace ModelLayerMSSQL
         /// <param name="newMiddleName">Новое отчество</param>
         public void ChangeMiddleName(String newMiddleName)
         {
-            String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+            String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                 + "SET MIDDLENAME = '" + newMiddleName + "'"
                 + "WHERE PASSPORT = '" + this.PassportNumber + "'";
             try
@@ -270,7 +270,7 @@ namespace ModelLayerMSSQL
         /// <param name="newAddress">Новый адрес</param>
         public void ChangeAddress(String newAddress)
         {
-            String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+            String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                 + "SET ADDRESS = '" + newAddress + "'"
                 + "WHERE PASSPORT = '" + this.PassportNumber + "'";
             try
@@ -293,7 +293,7 @@ namespace ModelLayerMSSQL
         /// <param name="newPhone">Новый номер телефона</param>
         public void ChangePhone(String newPhone)
         {
-            String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+            String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                 + "SET PHONE = '" + newPhone + "'"
                 + "WHERE PASSPORT = '" + this.PassportNumber + "'";
             try
@@ -315,7 +315,7 @@ namespace ModelLayerMSSQL
         /// </summary>
         public void ChangeDateWhenJobFounded(DateTime newDate)
         {
-            String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+            String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                 + "SET HASFOUNDJOB = :newDate "
                 + "WHERE PASSPORT = '" + this.PassportNumber + "'";
             DataBase.GetCommand().Parameters.Add(new OracleParameter("newDate",
@@ -450,7 +450,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT * FROM PERMANENT_USER.EMPLOYEE";
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".EMPLOYEE";
                 //Временный объект для получения функционала базового класса
                 Employee temp = new Employee();
                 List<Object[]> list = temp.ExecuteSelect(query);
@@ -499,7 +499,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "UPDATE PERMANENT_USER.EMPLOYEE "
+                String query = "UPDATE " + DataBase.GetShema() + ".EMPLOYEE "
                     +"SET EXPERIENCE = " + newExperience + " "
                     + "WHERE PASSPORT = '" + this.PassportNumber + "'";
                 ExecuteNonSelectQuery(query);
@@ -523,12 +523,12 @@ namespace ModelLayerMSSQL
             try
             {
                 //Проверка существующей записи
-                String query = "SELECT * FROM PERMANENT_USER.ETOF "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".ETOF "
                     + "WHERE TYPEID = " + (int)type + " "
                     + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 if (ExecuteSelect(query).Count > 0) return; //Запись уже существует
                 //Добавление записи о предпочтительном типе занятости
-                query = "INSERT INTO PERMANENT_USER.ETOF (TYPEID, EMPLOYEEPASSPORT) VALUES ( "
+                query = "INSERT INTO " + DataBase.GetShema() + ".ETOF (TYPEID, EMPLOYEEPASSPORT) VALUES ( "
                     + (int)type + ", "
                     + "'" + this.PassportNumber + "')";
                 ExecuteNonSelectQuery(query);
@@ -549,7 +549,7 @@ namespace ModelLayerMSSQL
             try
             {
                 //Проверка существующей записи
-                String query = "SELECT * FROM PERMANENT_USER.ETOF "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".ETOF "
                     + "WHERE TYPEID = " + (int)type + " "
                     + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 if (ExecuteSelect(query).Count == 0)
@@ -557,7 +557,7 @@ namespace ModelLayerMSSQL
                     Console.WriteLine("Предпочитаемый тип занятости удален из списка работника");
                     return; //Удалять нечего
                 }
-                query = "DELETE FROM PERMANENT_USER.ETOF WHERE "
+                query = "DELETE FROM " + DataBase.GetShema() + ".ETOF WHERE "
                     + "TYPEID = " + (int)type + " "
                     + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 ExecuteNonSelectQuery(query);
@@ -577,7 +577,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT TYPEID FROM PERMANENT_USER.ETOF "
+                String query = "SELECT TYPEID FROM " + DataBase.GetShema() + ".ETOF "
                     + "WHERE EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 List<Object[]> list = ExecuteSelect(query);
                 List<EmploymentType> result = new List<EmploymentType>();
@@ -602,12 +602,12 @@ namespace ModelLayerMSSQL
             try
             {
                 //Проверка существования записи
-                String query = "SELECT * FROM PERMANENT_USER.ES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".ES "
                     + "WHERE SPECIALTYID =" + specialty.GetId() + " " 
                     + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 if (ExecuteSelect(query).Count > 0) return; //Запись существует
                 //Добавление записи о предпочтительной специальности
-                query = "INSERT INTO PERMANENT_USER.ES (SPECIALTYID, EMPLOYEEPASSPORT) VALUES ("
+                query = "INSERT INTO " + DataBase.GetShema() + ".ES (SPECIALTYID, EMPLOYEEPASSPORT) VALUES ("
                     +  specialty.GetId() + ", "
                     + "'" + this.PassportNumber + "')";
                 ExecuteNonSelectQuery(query);
@@ -638,12 +638,12 @@ namespace ModelLayerMSSQL
             try
             {
                 //Проверка существования записи
-                String query = "SELECT * FROM PERMANENT_USER.ES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".ES "
                     + "WHERE SPECIALTYID =" + specialty.GetId() + " "
                     + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 if (ExecuteSelect(query).Count == 0) return; //Нечего удалять
                 //Удаление записи о предпочтительной специальности
-                query = "DELETE FROM PERMANENT_USER.ES WHERE "
+                query = "DELETE FROM " + DataBase.GetShema() + ".ES WHERE "
                     + "SPECIALTYID =" + specialty.GetId() + " "
                     + "AND EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 ExecuteNonSelectQuery(query);
@@ -673,7 +673,7 @@ namespace ModelLayerMSSQL
             try
             {
                 //Выбрать все Id специальностей
-                String query = "SELECT SPECIALTYID FROM PERMANENT_USER.ES "
+                String query = "SELECT SPECIALTYID FROM " + DataBase.GetShema() + ".ES "
                     + "WHERE EMPLOYEEPASSPORT = '" + this.PassportNumber + "'";
                 List<Object[]> list = ExecuteSelect(query);
                 List<Specialty> result = new List<Specialty>();

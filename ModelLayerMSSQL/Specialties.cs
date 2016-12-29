@@ -51,7 +51,7 @@ namespace ModelLayerMSSQL
         /// <returns>Список всех записей (специальностей) в БД</returns>
         public static List<Specialty> GetAll()
         {
-            String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES";
+            String query = "SELECT * FROM " + DataBase.GetShema() + ".SPECIALTIES";
             List<Specialty> result = new List<Specialty>();
             try
             {
@@ -87,7 +87,7 @@ namespace ModelLayerMSSQL
             try
             {
                 Specialty specialty = new Specialty();
-                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".SPECIALTIES "
                     + "WHERE SPECIALTY = '" + name +"'";
                 List<Object[]> list = specialty.ExecuteSelect(query);
                 if (list.Count == 0) throw new Exception("Запрос вернул 0 строк");
@@ -111,7 +111,7 @@ namespace ModelLayerMSSQL
             try
             {
                 Specialty specialty = new Specialty();
-                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".SPECIALTIES "
                     + "WHERE ID = " + id ;
                 List<Object[]> list = specialty.ExecuteSelect(query);
                 if (list.Count == 0) throw new Exception("Запрос вернул 0 строк");
@@ -135,7 +135,7 @@ namespace ModelLayerMSSQL
             try
             {
                 Specialty specialty = new Specialty();
-                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".SPECIALTIES "
                     + "WHERE ID = " + id;
                 List<Object[]> list = specialty.ExecuteSelect(query);
                 if (list.Count > 0)
@@ -160,7 +160,7 @@ namespace ModelLayerMSSQL
             try
             {
                 Specialty specialty = new Specialty();
-                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".SPECIALTIES "
                     + "WHERE SPECIALTY = '" + name + "'";
                 if (specialty.ExecuteSelect(query).Count > 0)
                     return true;
@@ -183,7 +183,7 @@ namespace ModelLayerMSSQL
             List<Object[]> list;
             try
             {
-                String query = "INSERT INTO PERMANENT_USER.SPECIALTIES "
+                String query = "INSERT INTO " + DataBase.GetShema() + ".SPECIALTIES "
                     + "(SPECIALTY) VALUES ("
                     + "'" + this.Name + "')";
                 ExecuteNonSelectQuery(query);
@@ -197,7 +197,7 @@ namespace ModelLayerMSSQL
             try
             {
                 //Проверка существует ли специальность, которую пользователь пытался добавить
-                String query = "SELECT * FROM PERMANENT_USER.SPECIALTIES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".SPECIALTIES "
                     + "WHERE SPECIALTY = '" + this.Name + "'";
                 //Проверить сначала на существование текущей роли в базе данных
                 list = ExecuteSelect(query);

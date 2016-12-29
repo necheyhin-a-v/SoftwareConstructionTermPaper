@@ -189,7 +189,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT * FROM PERMANENT_USER.VACANCIES "
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".VACANCIES "
                     + "WHERE EMPLOYERITN = '" + employerITN + "'";
                 //Создание временного объекта для получения функционала базового класса
                 Vacancy temp = new Vacancy();
@@ -225,7 +225,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT * FROM PERMANENT_USER.VACANCIES";
+                String query = "SELECT * FROM " + DataBase.GetShema() + ".VACANCIES";
                 //Создание временного объекта для получения функционала базового класса
                 Vacancy temp = new Vacancy();
                 List<Object[]> list = temp.ExecuteSelect(query);
@@ -263,7 +263,7 @@ namespace ModelLayerMSSQL
             {
                 if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
                     throw new Exception("Не задан работодатель");
-                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                String query = "UPDATE " + DataBase.GetShema() + ".VACANCIES "
                     + "SET NAME = '" + newName + "' "
                     + "WHERE NAME = '" + this.Name + "' "
                     + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
@@ -289,7 +289,7 @@ namespace ModelLayerMSSQL
             {
                 if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
                     throw new Exception("Не задан работодатель");
-                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                String query = "UPDATE " + DataBase.GetShema() + ".VACANCIES "
                     + "SET IDSPECIALTY = " + specialty.GetId() + " "
                     + "WHERE NAME = '" + this.Name + "' "
                     + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
@@ -316,7 +316,7 @@ namespace ModelLayerMSSQL
                     throw new Exception("Не задан работодатель");
                 //Получить объект по имени специальности
                 Specialty specialty = Specialty.GetByName(specialtyName);
-                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                String query = "UPDATE " + DataBase.GetShema() + ".VACANCIES "
                     + "SET IDSPECIALTY = " + specialty.GetId() + " "
                     + "WHERE NAME = '" + this.Name + "' "
                     + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
@@ -342,7 +342,7 @@ namespace ModelLayerMSSQL
                     throw new Exception("Не задан работодатель");
 
                 int idEmploymentType = Convert.ToInt32(Enum.Parse(typeof(EmploymentType), newType.ToString()));
-                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                String query = "UPDATE " + DataBase.GetShema() + ".VACANCIES "
                     + "SET IDTOF = " + idEmploymentType + " "
                     + "WHERE NAME = '" + this.Name + "' "
                     + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
@@ -366,7 +366,7 @@ namespace ModelLayerMSSQL
             {
                 if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
                     throw new Exception("Не задан работодатель");
-                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                String query = "UPDATE " + DataBase.GetShema() + ".VACANCIES "
                     + "SET DESCRIPTION = '" + newDescription + "' "
                     + "WHERE NAME = '" + this.Name + "' "
                     + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
@@ -390,7 +390,7 @@ namespace ModelLayerMSSQL
             {
                 if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
                     throw new Exception("Не задан работодатель");
-                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                String query = "UPDATE " + DataBase.GetShema() + ".VACANCIES "
                     + "SET SALARY = " + newSalary + " "
                     + "WHERE NAME = '" + this.Name + "' "
                     + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
@@ -414,7 +414,7 @@ namespace ModelLayerMSSQL
             {
                 if (this.EmployerItn == null || this.EmployerItn.CompareTo("") == 0)
                     throw new Exception("Не задан работодатель");
-                String query = "UPDATE PERMANENT_USER.VACANCIES "
+                String query = "UPDATE " + DataBase.GetShema() + ".VACANCIES "
                     + "SET REQUIREDEXPERIENCE = " + newExperience + " "
                     + "WHERE NAME = '" + this.Name + "' "
                     + "AND EMPLOYERITN = '" + this.EmployerItn + "'";
@@ -442,7 +442,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "DELETE FROM PERMANENT_USER.VACANCIES "
+                String query = "DELETE FROM " + DataBase.GetShema() + ".VACANCIES "
                 + "WHERE NAME = '" + this.GetName() + "' "
                 + "AND EMPLOYERITN = '" + this.GetEmployerItn() + "'";
                 this.ExecuteNonSelectQuery(query);
@@ -463,7 +463,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "INSERT INTO PERMANENT_USER.VACANCIES "
+                String query = "INSERT INTO " + DataBase.GetShema() + ".VACANCIES "
                     + "(NAME, EMPLOYERITN, IDSPECIALTY, IDTOF, DESCRIPTION, SALARY, REQUIREDEXPERIENCE) "
                     + "VALUES ("
                     + "'" + this.Name + "', "
