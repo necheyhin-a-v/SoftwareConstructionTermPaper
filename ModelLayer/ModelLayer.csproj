@@ -7,7 +7,7 @@
     <ProjectGuid>{2828FE02-2CBE-4E5B-B365-A009911F6B13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModelLayerMSSQL</RootNamespace>
+    <RootNamespace>ModelLayer</RootNamespace>
     <AssemblyName>ModelLayer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
