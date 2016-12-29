@@ -18,8 +18,8 @@ namespace Programm
         static void Main()
         {
             //Программа требует предварительной настройки
-            ModelLayer.DataBase.Initialize("necheukhin.ddns.net", "1521");
-            //ModelLayer.DataBase.Initialize("192.168.1.50", "1521");
+            ModelLayerMSSQL.DataBase.Initialize("necheukhin.ddns.net", "1433");
+            //ModelLayer.DataBase.Initialize("192.168.1.50", "1433");
             //Создание нового контроллера форм
             BusinessLayer.FormController controller = new BusinessLayer.FormController();
             //Передать дальнейшее управление контролееру форм

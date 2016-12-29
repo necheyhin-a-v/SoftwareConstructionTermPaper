@@ -52,7 +52,7 @@ namespace BusinessLayer
         {
             if (this.Users.GetAuthorizedUser() != null)
             {
-                if (Users.GetRole() == ModelLayer.UserRoles.Consultant)
+                if (Users.GetRole() == ModelLayerMSSQL.UserRoles.Consultant)
                     RunFormEmployees();
                 else
                     RunFormEmployers();
