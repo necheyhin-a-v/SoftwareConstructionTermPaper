@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Data;
-using Oracle.DataAccess.Client;
 
 namespace ModelLayerMSSQL
 {
@@ -64,7 +64,7 @@ namespace ModelLayerMSSQL
                 List<Object[]> returnedData = new List<object[]>();
                 DataBase.OpenConnection();
                 DataBase.GetCommand().CommandText = query;
-                OracleDataReader reader = DataBase.GetCommand().ExecuteReader();
+                SqlDataReader reader = DataBase.GetCommand().ExecuteReader();
                 if (!reader.HasRows)
                     return returnedData;
                 while (reader.Read())
@@ -98,7 +98,7 @@ namespace ModelLayerMSSQL
             //Создание транзакции для изменения состояния 3 таблиц
             //Если что-то пошло не так, то все изменения откатываются
             DataBase.OpenConnection();
-            OracleTransaction transaction = DataBase.GetConnection().BeginTransaction(IsolationLevel.ReadCommitted);
+            SqlTransaction transaction = DataBase.GetConnection().BeginTransaction(IsolationLevel.ReadCommitted);
             DataBase.GetCommand().Transaction = transaction;
             try
             {

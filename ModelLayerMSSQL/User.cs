@@ -60,7 +60,7 @@ namespace ModelLayerMSSQL
         /// <returns>true, если пользователь с таким логином существует</returns>
         public static Boolean CanFindByLogin(String login)
         {
-            String query = "SELECT * FROM PERMANENT_USER.USERS "
+            String query = "SELECT * FROM " + DataBase.GetShema() + "USERS "
                 + "WHERE USERLOGIN = '" + login + "'";
             try
             {
@@ -292,7 +292,7 @@ namespace ModelLayerMSSQL
         {
             try
             {
-                String query = "SELECT * FROM PERMANENT_USER.USERS";
+                String query = "SELECT * FROM "+"PERMANENT_USER.USERS";
                 //Временный пользователь для вызова методов базового класса
                 User temp = new User();
                 List<Object[]> list = temp.ExecuteSelect(query);

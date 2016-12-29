@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Oracle.DataAccess.Client;         //Using oracle DB
+using System.Data.SqlClient;         //Using oracle DB
 
 namespace ModelLayerMSSQL
 {
@@ -13,14 +13,14 @@ namespace ModelLayerMSSQL
     public static class DataBase
     {
         //Логин и пароль и схема для подключения к базе данных
-        private const String SCHEMA = "dbo";
+        private const String SCHEMA = "dbo.";               //Используется точка для конкатенации полного имени
         private const String USER_NAME = "PERMANENT_USER";
         private const String PASSWORD = "password";
-        private const String DB_NAME = "TermPaper";
+        private const String DB_NAME = "TermPaper.";        //Используется точка для конкатенации полного имени
 
-        private static OracleConnection Connection;             //Объект подключения к базе данных
-        private static OracleCommand Command;                   //Объект выполнения запроса
-        private static String ConnectionString;                 //Строка подключения
+        private static SqlConnection Connection;            //Объект подключения к базе данных
+        private static SqlCommand Command;                  //Объект выполнения запроса
+        private static String ConnectionString;             //Строка подключения
         private static String HostName;
         private static String Port;
 
@@ -44,8 +44,8 @@ namespace ModelLayerMSSQL
                 + "Password=" + PASSWORD + ";";
 
 
-            Connection = new OracleConnection(ConnectionString);
-            Command = new OracleCommand();
+            Connection = new SqlConnection(ConnectionString);
+            Command = new SqlCommand();
             Command.Connection = DataBase.GetConnection();
         }
         /// <summary>
@@ -74,7 +74,7 @@ namespace ModelLayerMSSQL
         /// Возвращает объект подключения к базе данных
         /// </summary>
         /// <returns>Возвращает объект подключения к базе данных</returns>
-        public static OracleConnection GetConnection()
+        public static SqlConnection GetConnection()
         {
             return Connection;
         }
@@ -82,7 +82,7 @@ namespace ModelLayerMSSQL
         /// Возвращает объект выполнения запроса
         /// </summary>
         /// <returns>Возвращает объект выполнения запроса</returns>
-        public static OracleCommand GetCommand()
+        public static SqlCommand GetCommand()
         {
             return Command;
         }

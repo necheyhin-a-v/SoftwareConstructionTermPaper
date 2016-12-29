@@ -39,6 +39,16 @@
             </summary>
             <returns>Возвращает объект выполнения запроса</returns>
         </member>
+        <member name="M:ModelLayerMSSQL.DataBase.GetShema">
+            <summary>
+            Возвращает схему базы данных
+            </summary>
+        </member>
+        <member name="M:ModelLayerMSSQL.DataBase.GetDBName">
+            <summary>
+            Возвращает имя базы данных
+            </summary>
+        </member>
         <member name="T:ModelLayerMSSQL.DBEntity">
             <summary>
             Абстрактный класс, выполняющий подключение к базе данных
