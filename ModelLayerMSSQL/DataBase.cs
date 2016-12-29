@@ -13,9 +13,10 @@ namespace ModelLayerMSSQL
     public static class DataBase
     {
         //Логин и пароль и схема для подключения к базе данных
-        private const String SCHEMA = "PERMANENT_USER";
+        private const String SCHEMA = "dbo";
         private const String USER_NAME = "PERMANENT_USER";
         private const String PASSWORD = "password";
+        private const String DB_NAME = "TermPaper";
 
         private static OracleConnection Connection;             //Объект подключения к базе данных
         private static OracleCommand Command;                   //Объект выполнения запроса
@@ -33,15 +34,16 @@ namespace ModelLayerMSSQL
             HostName = host;
             Port = port;
             //Настройки можно посмотреть в файле tnsnames.ora
-            ConnectionString = "Data Source=(DESCRIPTION ="
-                + "(ADDRESS=(PROTOCOL = TCP)"
-                + "(HOST=" + HostName + ")"
-                + "(PORT=" + Port + "))"
+            ConnectionString = "Data Source=tcp:"
+                + HostName + "," + Port + ";"
+                + "Initial Catalog = " + DB_NAME + ";"
                 + "(CONNECT_DATA ="
                 + "(SERVER = DEDICATED)"
                 + "(SERVICE_NAME = XE)));"
                 + "User Id=" + USER_NAME + ";"
                 + "Password=" + PASSWORD + ";";
+
+
             Connection = new OracleConnection(ConnectionString);
             Command = new OracleCommand();
             Command.Connection = DataBase.GetConnection();
@@ -83,6 +85,20 @@ namespace ModelLayerMSSQL
         public static OracleCommand GetCommand()
         {
             return Command;
+        }
+        /// <summary>
+        /// Возвращает схему базы данных
+        /// </summary>
+        public static String GetShema()
+        {
+            return SCHEMA;
+        }
+        /// <summary>
+        /// Возвращает имя базы данных
+        /// </summary>
+        public static String GetDBName()
+        {
+            return DB_NAME;
         }
     }
 }
