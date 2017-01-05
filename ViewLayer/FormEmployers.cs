@@ -31,7 +31,7 @@ namespace ViewLayer
             contextMenuInfoEmployer = new ContextMenuStrip();
             // Создание пунктов меню
             ToolStripMenuItem editMenuItem = new ToolStripMenuItem("Редактировать");
-            ToolStripMenuItem watchVacancyMenuItem = new ToolStripMenuItem("Просмотр вакансии");
+            ToolStripMenuItem watchVacancyMenuItem = new ToolStripMenuItem("Просмотр вакансий");
             // Установка обработчиков событий для пунктов меню
             editMenuItem.Click += EditMenuItemClick;
             watchVacancyMenuItem.Click += WatchVacancyMenuItemClick;
@@ -40,14 +40,19 @@ namespace ViewLayer
             contextMenuInfoEmployer.Items.Add(editMenuItem);
             contextMenuInfoEmployer.Items.Add(watchVacancyMenuItem);
 
+            //Скрытие первого столбца
+            this.dataGridInfo.RowHeadersVisible = false;
+            this.dataGridVacancies.RowHeadersVisible = false;
+
         }
         /// <summary>
         /// Обработчик событий для контекстного меню "Просмотр вакансий"
         /// </summary>
         void WatchVacancyMenuItemClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Просмотр вакансий");
-            dataGridInfo.RowCount += 1;
+            this.textBoxSearchVacancy.Text = this.dataGridInfo.CurrentRow.Cells[0].Value.ToString();
+            //Показать вкладку вакансий
+            this.tabControlEmployers.SelectedIndex = 2;
         }
         /// <summary>
         /// Обработчик событий для контекстного меню "Редактирование"
@@ -72,12 +77,12 @@ namespace ViewLayer
                     this.Size = new Size(377, 225);
                     break;
                 case 1: //Вкладка сведения
-                    this.Size = new Size(477, 400);
-                    UpdateInfo();
+                    this.Size = new Size(600, 400);
+                    UpdateInfo(this.textBoxSearchInfo.Text);
                     break;
                 case 2: //Вкладка вакансии
                     this.Size = new Size(777, 400);
-                    UpdateVacancies();
+                    UpdateVacancies(this.textBoxSearchVacancy.Text);
                     break;
             }
         }
@@ -87,7 +92,6 @@ namespace ViewLayer
         /// </summary>
         public void UpdateInfo(string filter = "")
         {
-            //TODO: FormEmployers.UpdateInfo() добавить инициализацию фильтра "информация работодателей"
             this.dataGridInfo.SelectAll();
             this.dataGridInfo.ClearSelection();
             this.dataGridInfo.RowCount = 1;
@@ -115,7 +119,6 @@ namespace ViewLayer
         /// </summary>
         public void UpdateVacancies(string filter = "")
         {
-            //TODO: FormEmployers.UpdateVacancies() добавить инициализацию фильтра "вакансии работодателей"
             this.dataGridVacancies.SelectAll();
             this.dataGridVacancies.ClearSelection();
             try
@@ -132,7 +135,7 @@ namespace ViewLayer
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка в получении данных о вакансиях");
+                MessageBox.Show("Невозможно получить данные о вакансиях.\nПри выполнении поиска проверьте результаты");
             }
         }
         /// <summary>
@@ -226,6 +229,54 @@ namespace ViewLayer
         private void buttonSearchInfo_Click(object sender, EventArgs e)
         {
             UpdateInfo(this.textBoxSearchInfo.Text);
+        }
+        /// <summary>
+        /// Сбросить результаты поиска информации о работодателях
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonClearSearchInfo_Click(object sender, EventArgs e)
+        {
+            UpdateInfo(this.textBoxSearchInfo.Text="");
+        }
+
+        private void buttonClearSearchVacancy_Click(object sender, EventArgs e)
+        {
+            UpdateVacancies(this.textBoxSearchVacancy.Text = "");
+        }
+
+        private void tabControlEmployers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                switch (tabControlEmployers.SelectedIndex)
+                {
+                    case 0: //Вкладка Регистрация
+                        this.buttonAcceptRegistration.PerformClick();
+                        break;
+                    case 1: //Вкладка сведения
+                        this.buttonSearchInfo.PerformClick();
+                        break;
+                    case 2: //Вкладка вакансии
+                        this.buttonSearchVacancy.PerformClick();
+                        break;
+                }
+            }
+            if(e.KeyCode == Keys.Escape)
+            {
+                switch (tabControlEmployers.SelectedIndex)
+                {
+                    case 0: //Вкладка Регистрация
+                        this.buttonClearRegistration.PerformClick();
+                        break;
+                    case 1: //Вкладка сведения
+                        this.buttonClearSearchInfo.PerformClick();
+                        break;
+                    case 2: //Вкладка вакансии
+                        this.buttonClearSearchVacancy.PerformClick();
+                        break;
+                }
+            }
         }
     }
 }

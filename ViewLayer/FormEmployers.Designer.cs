@@ -46,10 +46,6 @@
             this.textBoxSearchInfo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridInfo = new System.Windows.Forms.DataGridView();
-            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnITN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabVacancies = new System.Windows.Forms.TabPage();
             this.splitContainerVacancies = new System.Windows.Forms.SplitContainer();
             this.buttonAddVacancy = new System.Windows.Forms.Button();
@@ -57,6 +53,10 @@
             this.buttonSearchVacancy = new System.Windows.Forms.Button();
             this.textBoxSearchVacancy = new System.Windows.Forms.TextBox();
             this.dataGridVacancies = new System.Windows.Forms.DataGridView();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnITN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnVacancyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSpecialty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEmployer = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +64,8 @@
             this.ColumnEmploymentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonClearSearchVacancy = new System.Windows.Forms.Button();
+            this.buttonClearSearchInfo = new System.Windows.Forms.Button();
             this.tabControlEmployers.SuspendLayout();
             this.tabRegEmployers.SuspendLayout();
             this.tabInfoEmployers.SuspendLayout();
@@ -92,6 +94,7 @@
             this.tabControlEmployers.Size = new System.Drawing.Size(758, 498);
             this.tabControlEmployers.TabIndex = 4;
             this.tabControlEmployers.SelectedIndexChanged += new System.EventHandler(this.TabControlEmployersSelectedIndexChanged);
+            this.tabControlEmployers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControlEmployers_KeyDown);
             // 
             // tabRegEmployers
             // 
@@ -219,6 +222,7 @@
             // 
             // splitContainerInfo.Panel1
             // 
+            this.splitContainerInfo.Panel1.Controls.Add(this.buttonClearSearchInfo);
             this.splitContainerInfo.Panel1.Controls.Add(this.buttonSearchInfo);
             this.splitContainerInfo.Panel1.Controls.Add(this.textBoxSearchInfo);
             this.splitContainerInfo.Panel1.Controls.Add(this.label5);
@@ -275,30 +279,6 @@
             this.dataGridInfo.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridInfo_CellMouseUp);
             this.dataGridInfo.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridInfo_RowsAdded);
             // 
-            // ColumnName
-            // 
-            this.ColumnName.HeaderText = "Имя предприятия";
-            this.ColumnName.Name = "ColumnName";
-            this.ColumnName.ReadOnly = true;
-            // 
-            // ColumnITN
-            // 
-            this.ColumnITN.HeaderText = "ИНН";
-            this.ColumnITN.Name = "ColumnITN";
-            this.ColumnITN.ReadOnly = true;
-            // 
-            // ColumnAddress
-            // 
-            this.ColumnAddress.HeaderText = "Адрес";
-            this.ColumnAddress.Name = "ColumnAddress";
-            this.ColumnAddress.ReadOnly = true;
-            // 
-            // ColumnPhoneNumber
-            // 
-            this.ColumnPhoneNumber.HeaderText = "Номер телефона";
-            this.ColumnPhoneNumber.Name = "ColumnPhoneNumber";
-            this.ColumnPhoneNumber.ReadOnly = true;
-            // 
             // tabVacancies
             // 
             this.tabVacancies.Controls.Add(this.splitContainerVacancies);
@@ -320,6 +300,7 @@
             // 
             // splitContainerVacancies.Panel1
             // 
+            this.splitContainerVacancies.Panel1.Controls.Add(this.buttonClearSearchVacancy);
             this.splitContainerVacancies.Panel1.Controls.Add(this.buttonAddVacancy);
             this.splitContainerVacancies.Panel1.Controls.Add(this.label6);
             this.splitContainerVacancies.Panel1.Controls.Add(this.buttonSearchVacancy);
@@ -334,11 +315,11 @@
             // 
             // buttonAddVacancy
             // 
-            this.buttonAddVacancy.Location = new System.Drawing.Point(267, 0);
+            this.buttonAddVacancy.Location = new System.Drawing.Point(348, 0);
             this.buttonAddVacancy.Name = "buttonAddVacancy";
-            this.buttonAddVacancy.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddVacancy.Size = new System.Drawing.Size(118, 23);
             this.buttonAddVacancy.TabIndex = 8;
-            this.buttonAddVacancy.Text = "Добавить";
+            this.buttonAddVacancy.Text = "Добавить вакансию";
             this.buttonAddVacancy.UseVisualStyleBackColor = true;
             this.buttonAddVacancy.Click += new System.EventHandler(this.buttonAddVacancy_Click);
             // 
@@ -386,8 +367,34 @@
             this.dataGridVacancies.Size = new System.Drawing.Size(744, 437);
             this.dataGridVacancies.TabIndex = 5;
             // 
+            // ColumnName
+            // 
+            this.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnName.HeaderText = "Имя предприятия";
+            this.ColumnName.Name = "ColumnName";
+            this.ColumnName.ReadOnly = true;
+            // 
+            // ColumnITN
+            // 
+            this.ColumnITN.HeaderText = "ИНН";
+            this.ColumnITN.Name = "ColumnITN";
+            this.ColumnITN.ReadOnly = true;
+            // 
+            // ColumnAddress
+            // 
+            this.ColumnAddress.HeaderText = "Адрес";
+            this.ColumnAddress.Name = "ColumnAddress";
+            this.ColumnAddress.ReadOnly = true;
+            // 
+            // ColumnPhoneNumber
+            // 
+            this.ColumnPhoneNumber.HeaderText = "Номер телефона";
+            this.ColumnPhoneNumber.Name = "ColumnPhoneNumber";
+            this.ColumnPhoneNumber.ReadOnly = true;
+            // 
             // ColumnVacancyName
             // 
+            this.ColumnVacancyName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnVacancyName.HeaderText = "Требуется";
             this.ColumnVacancyName.Name = "ColumnVacancyName";
             this.ColumnVacancyName.ReadOnly = true;
@@ -427,6 +434,26 @@
             this.ColumnDescription.HeaderText = "Описание";
             this.ColumnDescription.Name = "ColumnDescription";
             this.ColumnDescription.ReadOnly = true;
+            // 
+            // buttonClearSearchVacancy
+            // 
+            this.buttonClearSearchVacancy.Location = new System.Drawing.Point(267, 0);
+            this.buttonClearSearchVacancy.Name = "buttonClearSearchVacancy";
+            this.buttonClearSearchVacancy.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearSearchVacancy.TabIndex = 9;
+            this.buttonClearSearchVacancy.Text = "Сбросить";
+            this.buttonClearSearchVacancy.UseVisualStyleBackColor = true;
+            this.buttonClearSearchVacancy.Click += new System.EventHandler(this.buttonClearSearchVacancy_Click);
+            // 
+            // buttonClearSearchInfo
+            // 
+            this.buttonClearSearchInfo.Location = new System.Drawing.Point(267, 0);
+            this.buttonClearSearchInfo.Name = "buttonClearSearchInfo";
+            this.buttonClearSearchInfo.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearSearchInfo.TabIndex = 4;
+            this.buttonClearSearchInfo.Text = "Сбросить";
+            this.buttonClearSearchInfo.UseVisualStyleBackColor = true;
+            this.buttonClearSearchInfo.Click += new System.EventHandler(this.buttonClearSearchInfo_Click);
             // 
             // FormEmployers
             // 
@@ -480,16 +507,17 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridInfo;
         private System.Windows.Forms.TextBox textBoxSearchInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnITN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPhoneNumber;
         private System.Windows.Forms.Button buttonSearchVacancy;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridVacancies;
         private System.Windows.Forms.TextBox textBoxSearchVacancy;
         private System.Windows.Forms.SplitContainer splitContainerInfo;
         private System.Windows.Forms.SplitContainer splitContainerVacancies;
+        private System.Windows.Forms.Button buttonAddVacancy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnITN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVacancyName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSpecialty;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmployer;
@@ -497,6 +525,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmploymentType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalary;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
-        private System.Windows.Forms.Button buttonAddVacancy;
+        private System.Windows.Forms.Button buttonClearSearchInfo;
+        private System.Windows.Forms.Button buttonClearSearchVacancy;
     }
 }
