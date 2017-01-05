@@ -11,9 +11,17 @@ namespace BusinessLayer
     {
         private BusinessLayer.Users Users;
         private BusinessLayer.Employers Employers;
+        private BusinessLayer.Vacancies Vacancies;
+        private BusinessLayer.Specialties Specialties;
+        private ViewLayer.FormAddVacancy VacancyForm;
+        private ViewLayer.FormAddSpecialty SpecialtyForm;
+        private ViewLayer.FormEmployers EmployerForm;
+        private ViewLayer.FormEmployees EmployeesForm;
 
         public FormController()
         {
+            Specialties = new Specialties();
+            Vacancies = new Vacancies();
             Users = new Users();
             Employers = new Employers();
         }
@@ -32,19 +40,37 @@ namespace BusinessLayer
         /// </summary>
         public void RunFormEmployers()
         {
-            ViewLayer.FormEmployers form = new ViewLayer.FormEmployers(Employers);
-            form.FormClosed += UnAuthorize;
-            form.Show();
+            EmployerForm = new ViewLayer.FormEmployers(Employers, Vacancies);
+            EmployerForm.FormClosed += UnAuthorize;
+            EmployerForm.ButtonAddVacancyClicked += AddVacancy;
+            EmployerForm.Show();
         }
         /// <summary>
         /// Запуск формы работы с населением (работодателями)
         /// </summary>
         public void RunFormEmployees()
         {
-            ViewLayer.FormEmployees form = new ViewLayer.FormEmployees();
-            form.FormClosed += UnAuthorize;
-            form.Show();
+            EmployeesForm = new ViewLayer.FormEmployees();
+            EmployeesForm.FormClosed += UnAuthorize;
+            EmployeesForm.Show();
         }
+        private void AddVacancy (object sender, EventArgs e)
+        {
+            VacancyForm = new ViewLayer.FormAddVacancy(this.Vacancies);
+            EmployerForm.Hide();
+            VacancyForm.Show();
+            VacancyForm.FormClosed += FinishAuthorization;
+            VacancyForm.ButtonAddSpecialtyClicked += AddSpecialty;
+        }
+
+        private void AddSpecialty(object sender, EventArgs e)
+        {
+            SpecialtyForm = new ViewLayer.FormAddSpecialty(this.Specialties);
+            VacancyForm.Hide();
+            SpecialtyForm.Show();
+            SpecialtyForm.FormClosed += AddVacancy;
+        }
+
         /// <summary>
         /// Производится либо запуск других форм, либо завершение приложения
         /// </summary>

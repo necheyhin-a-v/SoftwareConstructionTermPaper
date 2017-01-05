@@ -12,14 +12,15 @@ namespace ViewLayer
 {
     public partial class FormAddVacancy : Form
     {
-        private IViewEmployer View;
+        public event EventHandler ButtonAddSpecialtyClicked;
+        private IViewVacancy ViewVacancy;
         /// <summary>
         /// Конструктор формы.
         /// Инициализирует все графические объекты формы
         /// </summary>
-        public FormAddVacancy(IViewEmployer view)
+        public FormAddVacancy(IViewVacancy viewVacancy)
         {
-            this.View = view;
+            this.ViewVacancy = viewVacancy;
             InitializeComponent();
         }
         
@@ -27,11 +28,11 @@ namespace ViewLayer
         {
             try
             {
-                this.View.CreateVacancy(
+                this.ViewVacancy.CreateVacancy(
                 this.textBoxRequire.Text,
                 this.textBoxFirmINN.Text,
                 this.comboBoxSpecialty.SelectedItem.ToString(),
-                this.comboBoxEmploymentType.SelectedIndex + 1,
+                this.comboBoxEmploymentType.SelectedValue.ToString(),
                 this.textBoxDescription.Text,
                 Convert.ToUInt32(this.textBoxSalary.Text),
                 Convert.ToUInt32(this.textBoxExperience.Text));
@@ -41,8 +42,8 @@ namespace ViewLayer
             }
             catch (Exception err)
             {
-                MessageBox.Show("Невозможно добавить вакансию");
-                //MessageBox.Show(err.Message);
+                //MessageBox.Show("Невозможно добавить вакансию");
+                MessageBox.Show(err.Message);
             }
         }
 
@@ -50,31 +51,23 @@ namespace ViewLayer
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Загрузка данных в комбобоксы перед показом формы
+        /// </summary>
         private void FormAddVacancy_Load(object sender, EventArgs e)
         {
-            foreach(string specialty in View.GetSpecialties())
-            {
-                this.comboBoxSpecialty.Items.Add(specialty);
-            }
-            foreach (string employmentTypes in View.GetEmploymentTypes())
-            {
-                this.comboBoxEmploymentType.Items.Add(employmentTypes);
-            }
-
-
+            this.comboBoxEmploymentType.Items.Clear();
+            this.comboBoxEmploymentType.Items.AddRange(ViewVacancy.GetEmploymentTypes().ToArray());
+            this.comboBoxSpecialty.Items.Clear();
+            this.comboBoxSpecialty.Items.AddRange(ViewVacancy.GetSpecialties().ToArray());
             this.Enabled = true;
         }
         /// <summary>
-        /// Запуск добавления новой специальности
+        /// Широкое вещание нажатия по кнопке
         /// </summary>
         private void specialtyAddButton_Click(object sender, EventArgs e)
         {
-            //TODO: FormAddVacancy.specialtyAddButton_Click() вынести в класс formController
-            FormAddSpecialty form = new FormAddSpecialty(this.View);
-            form.FormClosed += new FormClosedEventHandler(FormAddVacancy_Load);
-            form.Show();
-            this.Enabled = false;
+            ButtonAddSpecialtyClicked(sender, e);
         }
     }
 }

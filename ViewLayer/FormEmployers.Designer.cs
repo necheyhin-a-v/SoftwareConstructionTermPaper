@@ -321,7 +321,6 @@
             this.buttonAddVacancy.TabIndex = 8;
             this.buttonAddVacancy.Text = "Добавить вакансию";
             this.buttonAddVacancy.UseVisualStyleBackColor = true;
-            this.buttonAddVacancy.Click += new System.EventHandler(this.buttonAddVacancy_Click);
             // 
             // label6
             // 

@@ -10,20 +10,6 @@ using System.Windows.Forms;
 
 namespace ViewLayer
 {
-    /// <summary>
-    /// Интерфейс для взаимодейтсвия с формой авторизации
-    /// </summary>
-    public interface IViewAuth
-    {
-        /// <summary>
-        /// Проверка возможности авторизации
-        /// </summary>
-        /// <param name="login"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        bool CanAuth(String login, String password);
-    }
-    
     /// <summary>    
     /// Класс авторизации
     /// </summary>
@@ -41,16 +27,12 @@ namespace ViewLayer
         /// <summary>
         /// Обработчик входа в систему по клику 
         /// </summary>
-        /// <param name="sender">Отправитель события</param>
-        /// <param name="e">Аргументы события</param>
         private void EnterInSystemClick(object sender, EventArgs e)
         {
             try
             {
                 if (ViewAuth.CanAuth(texBoxLogin.Text, textBoxPassword.Text))
-                {
                     this.Close();
-                }
                 else
                     MessageBox.Show("Невозможно авторизоваться");
             }

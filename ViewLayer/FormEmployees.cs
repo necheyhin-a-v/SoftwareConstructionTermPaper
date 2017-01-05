@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace ViewLayer
 {
+    /// <summary>
+    /// Класс формы работников
+    /// </summary>
     public partial class FormEmployees : Form
     {
+        /// <summary>
+        /// Конструктор формы работников
+        /// </summary>
         public FormEmployees()
         {
             InitializeComponent();

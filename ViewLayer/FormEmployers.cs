@@ -15,15 +15,22 @@ namespace ViewLayer
     /// </summary>
     public partial class FormEmployers : Form
     {
+        /// <summary>
+        /// Событие, которое происходит при нажатии на кнопку Добавить вакансию
+        /// </summary>
+        public event EventHandler ButtonAddVacancyClicked;
+
         ContextMenuStrip contextMenuInfoEmployer;
-        private IViewEmployer View;
+        private IViewEmployer ViewEmployer;
+        private IViewVacancy ViewVacancy;
         /// <summary>
         /// Конструктор формы.
         /// Инициализирует все графические объекты формы
         /// </summary>
-        public FormEmployers(IViewEmployer view)
+        public FormEmployers(IViewEmployer viewEmployer, IViewVacancy viewVacancy)
         {
-            this.View = view;
+            this.ViewEmployer = viewEmployer;
+            this.ViewVacancy = viewVacancy;
             InitializeComponent();
             //Установить размер формы начальный
             this.Size = new Size(377, 225);
@@ -35,6 +42,8 @@ namespace ViewLayer
             // Установка обработчиков событий для пунктов меню
             editMenuItem.Click += EditMenuItemClick;
             watchVacancyMenuItem.Click += WatchVacancyMenuItemClick;
+            //Подключить обработчик при нажатии на кнопку добавления вакансии
+            this.buttonAddVacancy.Click += ButtonAddVacancyClick;
 
             //Добавление пунктов меню в контекстное меню
             contextMenuInfoEmployer.Items.Add(editMenuItem);
@@ -43,12 +52,18 @@ namespace ViewLayer
             //Скрытие первого столбца
             this.dataGridInfo.RowHeadersVisible = false;
             this.dataGridVacancies.RowHeadersVisible = false;
-
+        }
+        /// <summary>
+        /// Вещание собственного события нажания кнопки, которое является публичным
+        /// </summary>
+        private void ButtonAddVacancyClick(object sender, EventArgs e)
+        {
+            ButtonAddVacancyClicked(sender, e);
         }
         /// <summary>
         /// Обработчик событий для контекстного меню "Просмотр вакансий"
         /// </summary>
-        void WatchVacancyMenuItemClick(object sender, EventArgs e)
+        private void WatchVacancyMenuItemClick(object sender, EventArgs e)
         {
             this.textBoxSearchVacancy.Text = this.dataGridInfo.CurrentRow.Cells[0].Value.ToString();
             //Показать вкладку вакансий
@@ -58,7 +73,7 @@ namespace ViewLayer
         /// Обработчик событий для контекстного меню "Редактирование"
         /// включает изменение текущей ячейки
         /// </summary>
-        void EditMenuItemClick(object sender, EventArgs e)
+        private void EditMenuItemClick(object sender, EventArgs e)
         {
             dataGridInfo.ReadOnly = false;  //Открытие режима редактирования
             dataGridInfo.BeginEdit(false);  //Не выбирать все ячейки для редактирования
@@ -97,7 +112,7 @@ namespace ViewLayer
             this.dataGridInfo.RowCount = 1;
             try
             {
-                List<string[]> employers = View.GetEmployers(filter);
+                List<string[]> employers = ViewEmployer.GetEmployers(filter);
                 if (employers.Count == 0)
                     return;
                 this.dataGridInfo.RowCount = employers.Count;
@@ -123,7 +138,7 @@ namespace ViewLayer
             this.dataGridVacancies.ClearSelection();
             try
             {
-                List<string[]> vacancies = View.GetVacancies(filter);
+                List<string[]> vacancies = ViewVacancy.GetVacancies(filter);
                 this.dataGridVacancies.RowCount = vacancies.Count;
                 int currentRow = 0;
                 foreach (string[] currentVacancy in vacancies)
@@ -170,31 +185,13 @@ namespace ViewLayer
             }
         }
         /// <summary>
-        /// Запуск добавления новой вакансии
-        /// </summary>
-        private void buttonAddVacancy_Click(object sender, EventArgs e)
-        {
-            FormAddVacancy form = new FormAddVacancy(this.View);
-            form.FormClosed += new FormClosedEventHandler(enableFormModerator);
-            form.Show();
-            this.Enabled = false;
-        }
-        /// <summary>
-        /// Включение формы при закрытии формы "добавить вакансию"
-        /// </summary>
-        private void enableFormModerator(object sender, FormClosedEventArgs e)
-        {
-            UpdateVacancies();
-            this.Enabled = true;
-        }
-        /// <summary>
         /// Регистрация предприятия
         /// </summary>
         private void buttonAcceptRegistration_Click(object sender, EventArgs e)
         {
             try
             {
-                this.View.RegisterEmployer(
+                this.ViewEmployer.RegisterEmployer(
                 this.textBoxEmployerName.Text,
                 this.textBoxITN.Text,
                 this.textBoxEmployerAddress.Text,
@@ -218,7 +215,9 @@ namespace ViewLayer
             this.textBoxEmployerAddress.Text = "";
             this.textBoxEmployerPhoneNumber.Text = "";
         }
-
+        /// <summary>
+        /// Поиск вакансии
+        /// </summary>
         private void buttonSearchVacancy_Click(object sender, EventArgs e)
         {
             UpdateVacancies(this.textBoxSearchVacancy.Text);
@@ -233,18 +232,20 @@ namespace ViewLayer
         /// <summary>
         /// Сбросить результаты поиска информации о работодателях
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void buttonClearSearchInfo_Click(object sender, EventArgs e)
         {
             UpdateInfo(this.textBoxSearchInfo.Text="");
         }
-
+        /// <summary>
+        /// Сброс параметров поиска вакансий
+        /// </summary>
         private void buttonClearSearchVacancy_Click(object sender, EventArgs e)
         {
             UpdateVacancies(this.textBoxSearchVacancy.Text = "");
         }
-
+        /// <summary>
+        /// Использование быстрых клавиш Enter и Escape
+        /// </summary>
         private void tabControlEmployers_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)

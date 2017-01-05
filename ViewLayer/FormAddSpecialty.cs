@@ -10,19 +10,24 @@ using System.Windows.Forms;
 
 namespace ViewLayer
 {
+    /// <summary>
+    /// Форма добавления новой специальности в базу данных
+    /// </summary>
     public partial class FormAddSpecialty : Form
     {
-        private IViewEmployer View;
+        private IViewSpecialty View;
         /// <summary>
         /// Конструктор формы.
         /// Инициализирует все графические объекты формы
         /// </summary>
-        public FormAddSpecialty(IViewEmployer view)
+        public FormAddSpecialty(IViewSpecialty view)
         {
             this.View = view;
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Обработчик нажатия на кнопку добавить специальность
+        /// </summary>
         private void buttonAcceptSpecialty_Click(object sender, EventArgs e)
         {
             try
@@ -37,7 +42,9 @@ namespace ViewLayer
                 MessageBox.Show(err.Message);
             }
         }
-
+        /// <summary>
+        /// Обработчик отмены добавления специальности
+        /// </summary>
         private void buttonDeclineSpecialty_Click(object sender, EventArgs e)
         {
             this.Close();
