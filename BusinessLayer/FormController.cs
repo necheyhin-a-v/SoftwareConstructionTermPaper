@@ -11,36 +11,43 @@ namespace BusinessLayer
     {
         private BusinessLayer.Users Users;
         private BusinessLayer.Employers Employers;
+        private BusinessLayer.Employees Employees;
         private BusinessLayer.Vacancies Vacancies;
         private BusinessLayer.Specialties Specialties;
         private ViewLayer.FormAddVacancy VacancyForm;
         private ViewLayer.FormAddSpecialty SpecialtyForm;
         private ViewLayer.FormEmployers EmployerForm;
         private ViewLayer.FormEmployees EmployeesForm;
-
+        private ViewLayer.FormAuthorization AuthorizationForm;
         public FormController()
         {
             Specialties = new Specialties();
             Vacancies = new Vacancies();
             Users = new Users();
             Employers = new Employers();
+            Employees = new Employees();
+            EmployeesForm = new ViewLayer.FormEmployees();
+            EmployerForm = new ViewLayer.FormEmployers(Employers, Vacancies);
+            VacancyForm = new ViewLayer.FormAddVacancy(this.Vacancies);
+            SpecialtyForm = new ViewLayer.FormAddSpecialty(this.Specialties);
+            AuthorizationForm = new ViewLayer.FormAuthorization(this.Users);
         }
         /// <summary>
         /// Процесс авторизации
         /// </summary>
         public void Authorization()
         {
-            ViewLayer.FormAuthorization form = new ViewLayer.FormAuthorization(Users);
+            if (AuthorizationForm.IsDisposed) AuthorizationForm = new ViewLayer.FormAuthorization(this.Users);
             //Подключиться к форме и отлавливать ее закрытие для того, чтобы запустить другие формы
-            form.FormClosed += FinishAuthorization;
-            form.Show();
+            AuthorizationForm.FormClosed += FinishAuthorization;
+            AuthorizationForm.Show();
         }
         /// <summary>
         /// Запуск формы работы с предприятиями
         /// </summary>
         public void RunFormEmployers()
         {
-            EmployerForm = new ViewLayer.FormEmployers(Employers, Vacancies);
+            if (EmployerForm.IsDisposed) EmployerForm = new ViewLayer.FormEmployers(this.Employers, this.Vacancies);
             EmployerForm.FormClosed += UnAuthorize;
             EmployerForm.ButtonAddVacancyClicked += AddVacancy;
             EmployerForm.Show();
@@ -50,13 +57,14 @@ namespace BusinessLayer
         /// </summary>
         public void RunFormEmployees()
         {
-            EmployeesForm = new ViewLayer.FormEmployees();
-            EmployeesForm.FormClosed += UnAuthorize;
+            //TODO: Раскомментировать когда будет реализация
+            //if (EmployeesForm.IsDisposed) EmployeesForm = new ViewLayer.FormEmployees(this.Employees);
             EmployeesForm.Show();
+            EmployeesForm.FormClosed += UnAuthorize;
         }
         private void AddVacancy (object sender, EventArgs e)
         {
-            VacancyForm = new ViewLayer.FormAddVacancy(this.Vacancies);
+            if(VacancyForm.IsDisposed) VacancyForm = new ViewLayer.FormAddVacancy(this.Vacancies);
             EmployerForm.Hide();
             VacancyForm.Show();
             VacancyForm.FormClosed += FinishAuthorization;
@@ -65,7 +73,7 @@ namespace BusinessLayer
 
         private void AddSpecialty(object sender, EventArgs e)
         {
-            SpecialtyForm = new ViewLayer.FormAddSpecialty(this.Specialties);
+            if (SpecialtyForm.IsDisposed) SpecialtyForm = new ViewLayer.FormAddSpecialty(this.Specialties);
             VacancyForm.Hide();
             SpecialtyForm.Show();
             SpecialtyForm.FormClosed += AddVacancy;

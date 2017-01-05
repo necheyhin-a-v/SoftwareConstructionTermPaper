@@ -12,6 +12,9 @@ namespace ViewLayer
 {
     public partial class FormAddVacancy : Form
     {
+        /// <summary>
+        /// Событие широковещательное переопределяющее действие нажатия на кнопку добавления специальности
+        /// </summary>
         public event EventHandler ButtonAddSpecialtyClicked;
         private IViewVacancy ViewVacancy;
         /// <summary>
