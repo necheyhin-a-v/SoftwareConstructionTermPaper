@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BusinessLayer</name>
+    </assembly>
+    <members>
+        <member name="M:BusinessLayer.Employers.GetEmployers(System.String)">
+            <summary>
+            Метод определяет получение списка работодателей для формы
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Employers.GetVacancies(System.String)">
+            <summary>
+            Метод определяет получение списка вакансий для формы
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Employers.GetSpecialties">
+            <summary>
+            Метод определяет получение списка специальностей для формы
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Employers.GetEmploymentTypes">
+            <summary>
+            Метод перебирает все возможные варианты типа занятости и формирует список
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BusinessLayer.Employers.AddSpecialty(System.String)">
+            <summary>
+            Метод определяет добавление специальностей
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Employers.RegisterEmployer(System.String,System.String,System.String,System.String)">
+            <summary>
+            Метод определяет регистрацию работодателя для формы
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Employers.CreateVacancy(System.String,System.String,System.String,System.Int32,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создать вакансию предпринимателя
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="employerItn">ИНН работодателя, для которого создается вакансия.
+            ИНН должен существовать в базе данных</param>
+            <param name="specialty">Специальность для вакансии</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:BusinessLayer.FormController.Authorization">
+            <summary>
+            Процесс авторизации
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.FormController.RunFormEmployers">
+            <summary>
+            Запуск формы работы с предприятиями
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.FormController.RunFormEmployees">
+            <summary>
+            Запуск формы работы с населением (работодателями)
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.FormController.FinishAuthorization(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Производится либо запуск других форм, либо завершение приложения
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.FormController.UnAuthorize(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            При закрытии окон показывать окно авторизации
+            </summary>
+        </member>
+        <member name="T:BusinessLayer.Users">
+            <summary>
+            Класс авторизаци
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Users.#ctor">
+            <summary>
+            Конструктор по-умолчанию
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Users.CanAuth(System.String,System.String)">
+            <summary>
+            Функция возвращает возможность авторизации с указанными логином и паролем
+            и также запрашивает данные по пользователю из БД
+            </summary>
+            <param name="login">Логин пользователя из базы данных</param>
+            <param name="password">Пароль пользователя из базы данных</param>
+            <returns>Возвращает bool</returns>
+        </member>
+        <member name="M:BusinessLayer.Users.GetAuthorizedUser">
+            <summary>
+            Возвращает авторизованного пользователя, либо исключение
+            </summary>
+        </member>
+        <member name="M:BusinessLayer.Users.GetRole">
+            <summary>
+            Функция возвращает роль текущего авторизованного пользователя
+            </summary>
+            <returns>Возвращает UserRoles</returns>
+        </member>
+        <member name="M:BusinessLayer.Users.Unauthorize">
+            <summary>
+            Сбросить существующую авторизацию
+            </summary>
+        </member>
+        <member name="M:Programm.Programm.Main">
+            <summary>
+            Главная точка входа для приложения.
+            </summary>
+        </member>
+    </members>
+</doc>

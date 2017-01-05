@@ -11,3 +11,4 @@ D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstr
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\bin\x64\Debug\Oracle.DataAccess.dll
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\x64\Debug\ModelLayerMSSQL.dll
 D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\x64\Debug\ModelLayerMSSQL.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\x64\Debug\ModelLayerMSSQL.csprojResolveAssemblyReference.cache

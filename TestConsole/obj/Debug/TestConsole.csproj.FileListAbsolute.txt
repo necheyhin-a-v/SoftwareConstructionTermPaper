@@ -1,0 +1,14 @@
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\TestConsole.exe.config
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\TestConsole.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\TestConsole.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\BusinessLayer.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\ModelLayerMSSQL.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\ViewLayer.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\BusinessLayer.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\BusinessLayer.xml
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\ModelLayerMSSQL.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\ViewLayer.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\Debug\ViewLayer.xml
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\obj\Debug\TestConsole.csprojResolveAssemblyReference.cache
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\obj\Debug\TestConsole.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\obj\Debug\TestConsole.pdb
