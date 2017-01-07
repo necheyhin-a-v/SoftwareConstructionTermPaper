@@ -106,6 +106,7 @@
       <DependentUpon>FormEmployers.cs</DependentUpon>
     </Compile>
     <Compile Include="IViewAuth.cs" />
+    <Compile Include="IViewEmployee.cs" />
     <Compile Include="IViewVacancy.cs" />
     <Compile Include="IViewEmployer.cs" />
     <Compile Include="IViewSpecialty.cs" />

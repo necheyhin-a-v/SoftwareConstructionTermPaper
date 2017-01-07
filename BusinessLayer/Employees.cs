@@ -8,7 +8,7 @@ using ModelLayerMSSQL;
 
 namespace BusinessLayer
 {
-    class Employees
+    class Employees : IViewEmployee
     {
         public List<string[]> GetEmployees(string filter)
         {
@@ -19,14 +19,12 @@ namespace BusinessLayer
             {
                 foreach (Employee current in employees)
                 {
-                    string[] tmp = new string[7];
-                    tmp.SetValue(current.GetPassport(), 0);
-                    tmp.SetValue(current.GetFirstName(), 1);
-                    tmp.SetValue(current.GetSecondName(), 2);
-                    tmp.SetValue(current.GetMiddleName(), 3);
-                    tmp.SetValue(current.GetAddress(), 4);
-                    tmp.SetValue(current.GetPhone(), 5);
-                    tmp.SetValue(current.GetExperience(), 6);
+                    string[] tmp = new string[5];
+                    tmp.SetValue(current.ToString(), 0);
+                    tmp.SetValue(current.GetPassport(), 1);
+                    tmp.SetValue(current.GetAddress(), 2);
+                    tmp.SetValue(current.GetPhone(), 3);
+                    tmp.SetValue(Convert.ToString(current.GetExperience()), 4);
                     list.Add(tmp);
                 }
             }
@@ -35,15 +33,12 @@ namespace BusinessLayer
             {
                 foreach (Employee current in employees)
                 {
-                    string[] tmp = new string[7];
-
-                    tmp.SetValue(current.GetPassport(), 0);
-                    tmp.SetValue(current.GetFirstName(), 1);
-                    tmp.SetValue(current.GetSecondName(), 2);
-                    tmp.SetValue(current.GetMiddleName(), 3);
-                    tmp.SetValue(current.GetAddress(), 4);
-                    tmp.SetValue(current.GetPhone(), 5);
-                    tmp.SetValue(current.GetExperience(), 6);
+                    string[] tmp = new string[5];
+                    tmp.SetValue(current.ToString(), 0);
+                    tmp.SetValue(current.GetPassport(), 1);
+                    tmp.SetValue(current.GetAddress(), 2);
+                    tmp.SetValue(current.GetPhone(), 3);
+                    tmp.SetValue(Convert.ToString(current.GetExperience()), 4);
                     //Проверка каждого поля на соответствие фильтру
                     for (int i = 0; i < tmp.Count(); i++)
                     {
@@ -59,23 +54,29 @@ namespace BusinessLayer
         }
  
         public void RegisterEmployee(string passport, string firstName, string secondName, string middleName, string address,
-                                        string phone, string experience)
+                                        string phone, string experience, string specialty)
         {
             if (passport.Equals(""))
                 throw new Exception("Данные о паспорте не могут быть пустыми");
             else if (firstName.Equals(""))
-                throw new Exception("");
+                throw new Exception("Имя не может быть пустым");
+            else if (secondName.Equals(""))
+                throw new Exception("Фамилия не может быть пустым");
+            else if (middleName.Equals(""))
+                throw new Exception("Отчество не может быть пустым");
             else if (address.Equals(""))
                 throw new Exception("Адрес не может быть пустым");
+            else if (address.Equals(""))
+                throw new Exception("Телефон не может быть пустым");
             try
             {
-                
+                Employee newEmpoyee = new Employee(passport, firstName, secondName, middleName, address, phone, Convert.ToUInt32(experience));
+                newEmpoyee.AddPriorSpecialty(specialty);
             }
             catch (Exception)
             {
-               
+                throw new Exception("Ошибка базы данных при попытке добавить работника");
             }
-
         }
     }
 }

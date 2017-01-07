@@ -30,22 +30,31 @@
         {
             this.tcEmployees = new System.Windows.Forms.TabControl();
             this.tabRegEmployees = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxEmployerSecondName = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxEmployerLastName = new System.Windows.Forms.TextBox();
+            this.comboBoxSpecialty = new System.Windows.Forms.ComboBox();
+            this.textBoxEmployerExperience = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
+            this.buttonCreate = new System.Windows.Forms.Button();
             this.textBoxEmployerPhoneNumber = new System.Windows.Forms.TextBox();
             this.textBoxEmployerAddress = new System.Windows.Forms.TextBox();
-            this.textBoxITN = new System.Windows.Forms.TextBox();
+            this.textBoxPassport = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxEmployerName = new System.Windows.Forms.TextBox();
+            this.textBoxEmployerFirstName = new System.Windows.Forms.TextBox();
             this.tabInfoEmployees = new System.Windows.Forms.TabPage();
             this.splitContainerInfo = new System.Windows.Forms.SplitContainer();
+            this.buttonClearSearchInfo = new System.Windows.Forms.Button();
+            this.buttonSearchInfo = new System.Windows.Forms.Button();
+            this.textBoxSearchInfo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dataGridInfo = new System.Windows.Forms.DataGridView();
             this.tabWorkSearch = new System.Windows.Forms.TabPage();
             this.tabStatistic = new System.Windows.Forms.TabPage();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -55,11 +64,19 @@
             this.label7 = new System.Windows.Forms.Label();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.ColumnFIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPassport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnExperience = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcEmployees.SuspendLayout();
             this.tabRegEmployees.SuspendLayout();
             this.tabInfoEmployees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).BeginInit();
+            this.splitContainerInfo.Panel1.SuspendLayout();
+            this.splitContainerInfo.Panel2.SuspendLayout();
             this.splitContainerInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).BeginInit();
             this.tabStatistic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -75,23 +92,28 @@
             this.tcEmployees.SelectedIndex = 0;
             this.tcEmployees.Size = new System.Drawing.Size(852, 528);
             this.tcEmployees.TabIndex = 4;
+            this.tcEmployees.SelectedIndexChanged += new System.EventHandler(this.tcEmployees_SelectedIndexChanged);
             // 
             // tabRegEmployees
             // 
-            this.tabRegEmployees.Controls.Add(this.comboBox1);
-            this.tabRegEmployees.Controls.Add(this.textBox1);
+            this.tabRegEmployees.Controls.Add(this.label10);
+            this.tabRegEmployees.Controls.Add(this.textBoxEmployerSecondName);
+            this.tabRegEmployees.Controls.Add(this.label9);
+            this.tabRegEmployees.Controls.Add(this.textBoxEmployerLastName);
+            this.tabRegEmployees.Controls.Add(this.comboBoxSpecialty);
+            this.tabRegEmployees.Controls.Add(this.textBoxEmployerExperience);
             this.tabRegEmployees.Controls.Add(this.label6);
             this.tabRegEmployees.Controls.Add(this.label5);
-            this.tabRegEmployees.Controls.Add(this.button2);
-            this.tabRegEmployees.Controls.Add(this.button1);
+            this.tabRegEmployees.Controls.Add(this.buttonClear);
+            this.tabRegEmployees.Controls.Add(this.buttonCreate);
             this.tabRegEmployees.Controls.Add(this.textBoxEmployerPhoneNumber);
             this.tabRegEmployees.Controls.Add(this.textBoxEmployerAddress);
-            this.tabRegEmployees.Controls.Add(this.textBoxITN);
+            this.tabRegEmployees.Controls.Add(this.textBoxPassport);
             this.tabRegEmployees.Controls.Add(this.label4);
             this.tabRegEmployees.Controls.Add(this.label3);
             this.tabRegEmployees.Controls.Add(this.label2);
             this.tabRegEmployees.Controls.Add(this.label1);
-            this.tabRegEmployees.Controls.Add(this.textBoxEmployerName);
+            this.tabRegEmployees.Controls.Add(this.textBoxEmployerFirstName);
             this.tabRegEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabRegEmployees.Name = "tabRegEmployees";
             this.tabRegEmployees.Padding = new System.Windows.Forms.Padding(3);
@@ -100,25 +122,60 @@
             this.tabRegEmployees.Text = "Регистрация";
             this.tabRegEmployees.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // label10
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(144, 140);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(196, 21);
-            this.comboBox1.TabIndex = 23;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(6, 65);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(110, 13);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Отчество работника";
             // 
-            // textBox1
+            // textBoxEmployerSecondName
             // 
-            this.textBox1.Location = new System.Drawing.Point(144, 114);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(196, 20);
-            this.textBox1.TabIndex = 22;
+            this.textBoxEmployerSecondName.Location = new System.Drawing.Point(144, 62);
+            this.textBoxEmployerSecondName.Name = "textBoxEmployerSecondName";
+            this.textBoxEmployerSecondName.Size = new System.Drawing.Size(196, 20);
+            this.textBoxEmployerSecondName.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(6, 39);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(112, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Фамилия работника";
+            // 
+            // textBoxEmployerLastName
+            // 
+            this.textBoxEmployerLastName.Location = new System.Drawing.Point(144, 36);
+            this.textBoxEmployerLastName.Name = "textBoxEmployerLastName";
+            this.textBoxEmployerLastName.Size = new System.Drawing.Size(196, 20);
+            this.textBoxEmployerLastName.TabIndex = 24;
+            // 
+            // comboBoxSpecialty
+            // 
+            this.comboBoxSpecialty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSpecialty.FormattingEnabled = true;
+            this.comboBoxSpecialty.Location = new System.Drawing.Point(144, 192);
+            this.comboBoxSpecialty.Name = "comboBoxSpecialty";
+            this.comboBoxSpecialty.Size = new System.Drawing.Size(196, 21);
+            this.comboBoxSpecialty.TabIndex = 23;
+            // 
+            // textBoxEmployerExperience
+            // 
+            this.textBoxEmployerExperience.Location = new System.Drawing.Point(144, 166);
+            this.textBoxEmployerExperience.Name = "textBoxEmployerExperience";
+            this.textBoxEmployerExperience.Size = new System.Drawing.Size(196, 20);
+            this.textBoxEmployerExperience.TabIndex = 22;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 143);
+            this.label6.Location = new System.Drawing.Point(6, 195);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 26);
             this.label6.TabIndex = 21;
@@ -127,55 +184,57 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 117);
+            this.label5.Location = new System.Drawing.Point(6, 169);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 20;
             this.label5.Text = "Стаж работы";
             // 
-            // button2
+            // buttonClear
             // 
-            this.button2.Location = new System.Drawing.Point(245, 167);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 23);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Очистить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonClear.Location = new System.Drawing.Point(245, 219);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(95, 23);
+            this.buttonClear.TabIndex = 19;
+            this.buttonClear.Text = "Очистить";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // button1
+            // buttonCreate
             // 
-            this.button1.Location = new System.Drawing.Point(144, 167);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Принять";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonCreate.Location = new System.Drawing.Point(144, 219);
+            this.buttonCreate.Name = "buttonCreate";
+            this.buttonCreate.Size = new System.Drawing.Size(95, 23);
+            this.buttonCreate.TabIndex = 18;
+            this.buttonCreate.Text = "Принять";
+            this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // textBoxEmployerPhoneNumber
             // 
-            this.textBoxEmployerPhoneNumber.Location = new System.Drawing.Point(144, 88);
+            this.textBoxEmployerPhoneNumber.Location = new System.Drawing.Point(144, 140);
             this.textBoxEmployerPhoneNumber.Name = "textBoxEmployerPhoneNumber";
             this.textBoxEmployerPhoneNumber.Size = new System.Drawing.Size(196, 20);
             this.textBoxEmployerPhoneNumber.TabIndex = 17;
             // 
             // textBoxEmployerAddress
             // 
-            this.textBoxEmployerAddress.Location = new System.Drawing.Point(144, 62);
+            this.textBoxEmployerAddress.Location = new System.Drawing.Point(144, 114);
             this.textBoxEmployerAddress.Name = "textBoxEmployerAddress";
             this.textBoxEmployerAddress.Size = new System.Drawing.Size(196, 20);
             this.textBoxEmployerAddress.TabIndex = 16;
             // 
-            // textBoxITN
+            // textBoxPassport
             // 
-            this.textBoxITN.Location = new System.Drawing.Point(144, 36);
-            this.textBoxITN.Name = "textBoxITN";
-            this.textBoxITN.Size = new System.Drawing.Size(196, 20);
-            this.textBoxITN.TabIndex = 15;
+            this.textBoxPassport.Location = new System.Drawing.Point(144, 88);
+            this.textBoxPassport.Name = "textBoxPassport";
+            this.textBoxPassport.Size = new System.Drawing.Size(196, 20);
+            this.textBoxPassport.TabIndex = 15;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 91);
+            this.label4.Location = new System.Drawing.Point(6, 143);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 13);
             this.label4.TabIndex = 14;
@@ -184,7 +243,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 65);
+            this.label3.Location = new System.Drawing.Point(6, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 13);
             this.label3.TabIndex = 13;
@@ -193,7 +252,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 39);
+            this.label2.Location = new System.Drawing.Point(6, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 12;
@@ -205,16 +264,16 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(6, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 11;
-            this.label1.Text = "ФИО работника";
+            this.label1.Text = "Имя работника";
             // 
-            // textBoxEmployerName
+            // textBoxEmployerFirstName
             // 
-            this.textBoxEmployerName.Location = new System.Drawing.Point(144, 10);
-            this.textBoxEmployerName.Name = "textBoxEmployerName";
-            this.textBoxEmployerName.Size = new System.Drawing.Size(196, 20);
-            this.textBoxEmployerName.TabIndex = 10;
+            this.textBoxEmployerFirstName.Location = new System.Drawing.Point(144, 10);
+            this.textBoxEmployerFirstName.Name = "textBoxEmployerFirstName";
+            this.textBoxEmployerFirstName.Size = new System.Drawing.Size(196, 20);
+            this.textBoxEmployerFirstName.TabIndex = 10;
             // 
             // tabInfoEmployees
             // 
@@ -235,9 +294,73 @@
             this.splitContainerInfo.Location = new System.Drawing.Point(3, 3);
             this.splitContainerInfo.Name = "splitContainerInfo";
             this.splitContainerInfo.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerInfo.Panel1
+            // 
+            this.splitContainerInfo.Panel1.Controls.Add(this.buttonClearSearchInfo);
+            this.splitContainerInfo.Panel1.Controls.Add(this.buttonSearchInfo);
+            this.splitContainerInfo.Panel1.Controls.Add(this.textBoxSearchInfo);
+            this.splitContainerInfo.Panel1.Controls.Add(this.label11);
+            // 
+            // splitContainerInfo.Panel2
+            // 
+            this.splitContainerInfo.Panel2.Controls.Add(this.dataGridInfo);
             this.splitContainerInfo.Size = new System.Drawing.Size(838, 496);
             this.splitContainerInfo.SplitterDistance = 26;
             this.splitContainerInfo.TabIndex = 0;
+            // 
+            // buttonClearSearchInfo
+            // 
+            this.buttonClearSearchInfo.Location = new System.Drawing.Point(269, 1);
+            this.buttonClearSearchInfo.Name = "buttonClearSearchInfo";
+            this.buttonClearSearchInfo.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearSearchInfo.TabIndex = 8;
+            this.buttonClearSearchInfo.Text = "Сбросить";
+            this.buttonClearSearchInfo.UseVisualStyleBackColor = true;
+            this.buttonClearSearchInfo.Click += new System.EventHandler(this.buttonClearSearchInfo_Click);
+            // 
+            // buttonSearchInfo
+            // 
+            this.buttonSearchInfo.Location = new System.Drawing.Point(188, 1);
+            this.buttonSearchInfo.Name = "buttonSearchInfo";
+            this.buttonSearchInfo.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearchInfo.TabIndex = 7;
+            this.buttonSearchInfo.Text = "Найти";
+            this.buttonSearchInfo.UseVisualStyleBackColor = true;
+            this.buttonSearchInfo.Click += new System.EventHandler(this.buttonSearchInfo_Click);
+            // 
+            // textBoxSearchInfo
+            // 
+            this.textBoxSearchInfo.Location = new System.Drawing.Point(52, 3);
+            this.textBoxSearchInfo.Name = "textBoxSearchInfo";
+            this.textBoxSearchInfo.Size = new System.Drawing.Size(130, 20);
+            this.textBoxSearchInfo.TabIndex = 5;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(39, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Поиск";
+            // 
+            // dataGridInfo
+            // 
+            this.dataGridInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnFIO,
+            this.ColumnPassport,
+            this.ColumnAddress,
+            this.ColumnPhoneNumber,
+            this.ColumnExperience});
+            this.dataGridInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridInfo.Location = new System.Drawing.Point(0, 0);
+            this.dataGridInfo.MultiSelect = false;
+            this.dataGridInfo.Name = "dataGridInfo";
+            this.dataGridInfo.ReadOnly = true;
+            this.dataGridInfo.Size = new System.Drawing.Size(838, 466);
+            this.dataGridInfo.TabIndex = 2;
             // 
             // tabWorkSearch
             // 
@@ -326,21 +449,58 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             // 
+            // ColumnFIO
+            // 
+            this.ColumnFIO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnFIO.HeaderText = "ФИО";
+            this.ColumnFIO.Name = "ColumnFIO";
+            this.ColumnFIO.ReadOnly = true;
+            // 
+            // ColumnPassport
+            // 
+            this.ColumnPassport.HeaderText = "Паспорт";
+            this.ColumnPassport.Name = "ColumnPassport";
+            this.ColumnPassport.ReadOnly = true;
+            this.ColumnPassport.Width = 120;
+            // 
+            // ColumnAddress
+            // 
+            this.ColumnAddress.HeaderText = "Адрес";
+            this.ColumnAddress.Name = "ColumnAddress";
+            this.ColumnAddress.ReadOnly = true;
+            // 
+            // ColumnPhoneNumber
+            // 
+            this.ColumnPhoneNumber.HeaderText = "Номер телефона";
+            this.ColumnPhoneNumber.Name = "ColumnPhoneNumber";
+            this.ColumnPhoneNumber.ReadOnly = true;
+            // 
+            // ColumnExperience
+            // 
+            this.ColumnExperience.HeaderText = "Опыт работы";
+            this.ColumnExperience.Name = "ColumnExperience";
+            this.ColumnExperience.ReadOnly = true;
+            // 
             // FormEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1223, 699);
+            this.ClientSize = new System.Drawing.Size(868, 541);
             this.Controls.Add(this.tcEmployees);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FormEmployees";
             this.Text = "Работа с работниками";
             this.tcEmployees.ResumeLayout(false);
             this.tabRegEmployees.ResumeLayout(false);
             this.tabRegEmployees.PerformLayout();
             this.tabInfoEmployees.ResumeLayout(false);
+            this.splitContainerInfo.Panel1.ResumeLayout(false);
+            this.splitContainerInfo.Panel1.PerformLayout();
+            this.splitContainerInfo.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).EndInit();
             this.splitContainerInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).EndInit();
             this.tabStatistic.ResumeLayout(false);
             this.tabStatistic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -354,18 +514,18 @@
         private System.Windows.Forms.TabPage tabInfoEmployees;
         private System.Windows.Forms.TabPage tabWorkSearch;
         private System.Windows.Forms.TabPage tabStatistic;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.TextBox textBoxEmployerPhoneNumber;
         private System.Windows.Forms.TextBox textBoxEmployerAddress;
-        private System.Windows.Forms.TextBox textBoxITN;
+        private System.Windows.Forms.TextBox textBoxPassport;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxEmployerName;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxEmployerFirstName;
+        private System.Windows.Forms.ComboBox comboBoxSpecialty;
+        private System.Windows.Forms.TextBox textBoxEmployerExperience;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radioButton2;
@@ -376,5 +536,19 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
         private System.Windows.Forms.SplitContainer splitContainerInfo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxEmployerSecondName;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxEmployerLastName;
+        private System.Windows.Forms.Button buttonClearSearchInfo;
+        private System.Windows.Forms.Button buttonSearchInfo;
+        private System.Windows.Forms.TextBox textBoxSearchInfo;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridView dataGridInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPassport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPhoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnExperience;
     }
 }
