@@ -11,6 +11,14 @@ namespace BusinessLayer
 {
     class Employers : IViewEmployer
     {
+        public void ChangeEmployerInfo(string Itn, string newName, string newAddress, string newPhone)
+        {
+            Employer employer = Employer.GetByItn(Itn);
+            employer.ChangeAddress(newAddress);
+            employer.ChangeName(newName);
+            employer.ChangePhone(newPhone);
+        }
+
         /// <summary>
         /// Метод определяет получение списка работодателей для формы
         /// </summary>

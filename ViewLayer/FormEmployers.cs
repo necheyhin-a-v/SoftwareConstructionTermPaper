@@ -19,8 +19,9 @@ namespace ViewLayer
         /// Событие, которое происходит при нажатии на кнопку Добавить вакансию
         /// </summary>
         public event EventHandler ButtonAddVacancyClicked;
-
-        ContextMenuStrip contextMenuInfoEmployer;
+        //Закрытые поля
+        private DataGridViewRow RowBeforeEditing;
+        private ContextMenuStrip contextMenuInfoEmployer;
         private IViewEmployer ViewEmployer;
         private IViewVacancy ViewVacancy;
         /// <summary>
@@ -77,6 +78,7 @@ namespace ViewLayer
         {
             dataGridInfo.ReadOnly = false;  //Открытие режима редактирования
             dataGridInfo.BeginEdit(false);  //Не выбирать все ячейки для редактирования
+            RowBeforeEditing = dataGridInfo.CurrentRow;
         }
         /// <summary>
         /// Подстроить размеры формы под внутренний контент
@@ -86,7 +88,7 @@ namespace ViewLayer
         /// <param name="e"></param>
         private void TabControlEmployersSelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(tabControlEmployers.SelectedIndex)
+            switch (tabControlEmployers.SelectedIndex)
             {
                 case 0: //Вкладка Регистрация
                     this.Size = new Size(377, 225);
@@ -121,7 +123,7 @@ namespace ViewLayer
                 {
                     for (int i = 0; i < currentEmployer.Count(); i++)
                         this.dataGridInfo.Rows[currentRow].Cells[i].Value = currentEmployer.ElementAt(i);
-                    currentRow ++;
+                    currentRow++;
                 }
             }
             catch (Exception)
@@ -156,10 +158,29 @@ namespace ViewLayer
         /// <summary>
         /// Блокировка ячейки в таблице "сведения о работодателе"
         /// при завершении редактирования ячейки
+        /// Обновление данных после изменения
         /// </summary>
         private void dataGridInfo_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             dataGridInfo.ReadOnly = true;
+            try
+            {
+
+                if (RowBeforeEditing.Cells[0].Value.ToString().CompareTo(
+                    dataGridInfo.Rows[e.RowIndex].Cells[0].Value.ToString()) != 0)
+                    throw new Exception("Невозможно изменить ИНН");
+                ViewEmployer.ChangeEmployerInfo(
+                    RowBeforeEditing.Cells[1].Value.ToString(),                 //Инн                    
+                    dataGridInfo.Rows[e.RowIndex].Cells[0].Value.ToString(),    //Новое имя
+                    dataGridInfo.Rows[e.RowIndex].Cells[2].Value.ToString(),    //Новый адрес
+                    dataGridInfo.Rows[e.RowIndex].Cells[3].Value.ToString());   //Новый телефон
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Ошибка при изменении данных");
+            }
+            //Обновить информацию после изменения
+            UpdateInfo(this.textBoxSearchInfo.Text);
         }
         /// <summary>
         /// Обработчик события на добавление новой строки в таблицу
@@ -179,7 +200,7 @@ namespace ViewLayer
         /// </summary>
         private void dataGridInfo_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right && e.ColumnIndex >= 0 && e.RowIndex >=0 )
+            if (e.Button == MouseButtons.Right && e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
                 dataGridInfo.CurrentCell = dataGridInfo[e.ColumnIndex, e.RowIndex];
             }
@@ -234,7 +255,7 @@ namespace ViewLayer
         /// </summary>
         private void buttonClearSearchInfo_Click(object sender, EventArgs e)
         {
-            UpdateInfo(this.textBoxSearchInfo.Text="");
+            UpdateInfo(this.textBoxSearchInfo.Text = "");
         }
         /// <summary>
         /// Сброс параметров поиска вакансий
@@ -248,7 +269,7 @@ namespace ViewLayer
         /// </summary>
         private void tabControlEmployers_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 switch (tabControlEmployers.SelectedIndex)
                 {
@@ -263,7 +284,7 @@ namespace ViewLayer
                         break;
                 }
             }
-            if(e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 switch (tabControlEmployers.SelectedIndex)
                 {

@@ -27,5 +27,13 @@ namespace ViewLayer
         /// </summary>
         /// <returns></returns>
         List<string[]> GetEmployers(string filter = "");
+        /// <summary>
+        /// Сменить информацию о работодателе
+        /// </summary>
+        /// <param name="Itn">ИНН</param>
+        /// <param name="newName">Имя работодателя</param>
+        /// <param name="newAddress">Адрес</param>
+        /// <param name="newPhone">Номер телефона</param>
+        void ChangeEmployerInfo(String Itn, String newName, String newAddress, String newPhone);
     }
 }
