@@ -26,7 +26,7 @@ namespace BusinessLayer
             Users = new Users();
             Employers = new Employers();
             Employees = new Employees();
-            EmployeesForm = new ViewLayer.FormEmployees();
+            EmployeesForm = new ViewLayer.FormEmployees(Employees, Vacancies);
             EmployerForm = new ViewLayer.FormEmployers(Employers, Vacancies);
             VacancyForm = new ViewLayer.FormAddVacancy(this.Vacancies);
             SpecialtyForm = new ViewLayer.FormAddSpecialty(this.Specialties);
@@ -58,7 +58,7 @@ namespace BusinessLayer
         public void RunFormEmployees()
         {
             //TODO: Раскомментировать когда будет реализация
-            //if (EmployeesForm.IsDisposed) EmployeesForm = new ViewLayer.FormEmployees(this.Employees);
+           // if (EmployeesForm.IsDisposed) EmployeesForm = new ViewLayer.FormEmployees(this.Employees);
             EmployeesForm.Show();
             EmployeesForm.FormClosed += UnAuthorize;
         }
