@@ -20,8 +20,9 @@ namespace ViewLayer
         /// </summary>
         public event EventHandler ButtonAddVacancyClicked;
         //Закрытые поля
-        private DataGridViewRow RowBeforeEditing;
+        private String DataBeforeEditing;
         private ContextMenuStrip contextMenuInfoEmployer;
+        private ContextMenuStrip contextMenuVacancies;
         private IViewEmployer ViewEmployer;
         private IViewVacancy ViewVacancy;
         /// <summary>
@@ -35,21 +36,23 @@ namespace ViewLayer
             InitializeComponent();
             //Установить размер формы начальный
             this.Size = new Size(377, 225);
-            //Создание объекта контекстного меню
+            //Создание объектов контекстного меню для вакансий и информации о работодателях
             contextMenuInfoEmployer = new ContextMenuStrip();
+            contextMenuVacancies = new ContextMenuStrip();
             // Создание пунктов меню
-            ToolStripMenuItem editMenuItem = new ToolStripMenuItem("Редактировать");
+            ToolStripMenuItem editMenuInfoItem = new ToolStripMenuItem("Редактировать");
+            ToolStripMenuItem editMenuVacancyItem = new ToolStripMenuItem("Редактировать");
             ToolStripMenuItem watchVacancyMenuItem = new ToolStripMenuItem("Просмотр вакансий");
             // Установка обработчиков событий для пунктов меню
-            editMenuItem.Click += EditMenuItemClick;
+            editMenuInfoItem.Click += EditMenuInfoItemClick;
+            editMenuVacancyItem.Click += EditMenuVacanciesClick;
             watchVacancyMenuItem.Click += WatchVacancyMenuItemClick;
+            //Добавление пунктов меню в контекстное меню
+            contextMenuInfoEmployer.Items.Add(editMenuInfoItem);
+            contextMenuInfoEmployer.Items.Add(watchVacancyMenuItem);
+            contextMenuVacancies.Items.Add(editMenuVacancyItem);
             //Подключить обработчик при нажатии на кнопку добавления вакансии
             this.buttonAddVacancy.Click += ButtonAddVacancyClick;
-
-            //Добавление пунктов меню в контекстное меню
-            contextMenuInfoEmployer.Items.Add(editMenuItem);
-            contextMenuInfoEmployer.Items.Add(watchVacancyMenuItem);
-
             //Скрытие первого столбца
             this.dataGridInfo.RowHeadersVisible = false;
             this.dataGridVacancies.RowHeadersVisible = false;
@@ -71,14 +74,45 @@ namespace ViewLayer
             this.tabControlEmployers.SelectedIndex = 2;
         }
         /// <summary>
-        /// Обработчик событий для контекстного меню "Редактирование"
+        /// Обработчик событий для контекстного меню "Редактирование" по таблице инфо
         /// включает изменение текущей ячейки
         /// </summary>
-        private void EditMenuItemClick(object sender, EventArgs e)
+        private void EditMenuInfoItemClick(object sender, EventArgs e)
         {
             dataGridInfo.ReadOnly = false;  //Открытие режима редактирования
             dataGridInfo.BeginEdit(false);  //Не выбирать все ячейки для редактирования
-            RowBeforeEditing = dataGridInfo.CurrentRow;
+            DataBeforeEditing = dataGridInfo.CurrentCell.Value.ToString();
+        }
+        /// <summary>
+        /// Обработчик событий для контекстного меню "Редактирование" по таблице вакансии
+        /// включает изменение текущей ячейки, также добавляет комбобоксы к двум столбцам
+        /// </summary>
+        private void EditMenuVacanciesClick(object sende, EventArgs e)
+        {
+            //Установка comboBox в ячейке для специальности и типа занятости
+            if (dataGridVacancies.CurrentCell.ColumnIndex == 1)  //Смена специальности
+            {
+                //Создание новой ячейки-комбоБокса
+                DataGridViewComboBoxCell comboBoxSpecialties = new DataGridViewComboBoxCell();
+                comboBoxSpecialties.Items.AddRange(ViewVacancy.GetSpecialties().ToArray());
+                comboBoxSpecialties.Value = dataGridVacancies.CurrentCell.Value;
+                //Установить новую ячейку в нужное место
+                dataGridVacancies.Rows[dataGridVacancies.CurrentRow.Index].Cells[dataGridVacancies.CurrentCell.ColumnIndex] = comboBoxSpecialties;
+                dataGridVacancies.Update();
+            }
+            if (dataGridVacancies.CurrentCell.ColumnIndex == 4)  //Смена типа занятости
+            {
+                //Создание новой ячейки-комбоБокса
+                DataGridViewComboBoxCell comboBoxEmploymentTypes = new DataGridViewComboBoxCell();
+                comboBoxEmploymentTypes.Items.AddRange(ViewVacancy.GetEmploymentTypes().ToArray());
+                comboBoxEmploymentTypes.Value = dataGridVacancies.CurrentCell.Value;
+                //Установить новую ячейку в нужное место
+                dataGridVacancies.Rows[dataGridVacancies.CurrentRow.Index].Cells[dataGridVacancies.CurrentCell.ColumnIndex] = comboBoxEmploymentTypes;
+                dataGridVacancies.Update();
+            }
+            dataGridVacancies.ReadOnly = false;  //Открытие режима редактирования
+            dataGridVacancies.BeginEdit(false);  //Не выбирать все ячейки для редактирования
+            DataBeforeEditing = dataGridVacancies.CurrentCell.Value.ToString(); ;
         }
         /// <summary>
         /// Подстроить размеры формы под внутренний контент
@@ -109,11 +143,10 @@ namespace ViewLayer
         /// </summary>
         public void UpdateInfo(string filter = "")
         {
-            this.dataGridInfo.SelectAll();
-            this.dataGridInfo.ClearSelection();
-            this.dataGridInfo.RowCount = 1;
             try
             {
+                this.dataGridInfo.SelectAll();
+                this.dataGridInfo.ClearSelection();
                 List<string[]> employers = ViewEmployer.GetEmployers(filter);
                 if (employers.Count == 0)
                     return;
@@ -165,22 +198,66 @@ namespace ViewLayer
             dataGridInfo.ReadOnly = true;
             try
             {
-
-                if (RowBeforeEditing.Cells[0].Value.ToString().CompareTo(
-                    dataGridInfo.Rows[e.RowIndex].Cells[0].Value.ToString()) != 0)
+                if (e.ColumnIndex == 1)
                     throw new Exception("Невозможно изменить ИНН");
                 ViewEmployer.ChangeEmployerInfo(
-                    RowBeforeEditing.Cells[1].Value.ToString(),                 //Инн                    
+                    dataGridInfo.Rows[e.RowIndex].Cells[1].Value.ToString(),    //Инн                    
                     dataGridInfo.Rows[e.RowIndex].Cells[0].Value.ToString(),    //Новое имя
                     dataGridInfo.Rows[e.RowIndex].Cells[2].Value.ToString(),    //Новый адрес
                     dataGridInfo.Rows[e.RowIndex].Cells[3].Value.ToString());   //Новый телефон
             }
             catch (Exception err)
             {
-                MessageBox.Show("Ошибка при изменении данных");
+                MessageBox.Show(err.Message);
+                //MessageBox.Show("Ошибка при изменении данных");
             }
             //Обновить информацию после изменения
             UpdateInfo(this.textBoxSearchInfo.Text);
+        }
+        /// <summary>
+        /// Блокировка ячейки в таблице "Вакансии"
+        /// при завершении редактирования ячейки
+        /// Обновление данных после изменения
+        /// </summary>
+        private void dataGridVacancies_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridVacancies.ReadOnly = true;
+            try
+            {
+                //Преобразование комбобоксов назад в обычное поле после редактирования
+                if (dataGridVacancies.Rows[e.RowIndex].Cells[e.ColumnIndex].GetType() == typeof(DataGridViewComboBoxCell))
+                {
+                    DataGridViewTextBoxCell cell = new DataGridViewTextBoxCell();
+                    cell.Value = dataGridVacancies.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    //Данная заплатка используется для того, чтобы избежать бесконечного цикла
+                    //Сотрудники компании Microsoft не имеют другого выхода как запускать асинхронно метод
+                    this.BeginInvoke(new MethodInvoker(() =>
+                    {
+                        dataGridVacancies.Rows[e.RowIndex].Cells[e.ColumnIndex] = cell;
+                    }));
+
+                }
+                if (e.ColumnIndex == 2)
+                    throw new Exception("Для изменения работодателя воспользуйтесь\nсоответствующей вкладкой");
+                ViewVacancy.ChangeVacancy(
+                    dataGridVacancies.Rows[e.RowIndex].Cells[2].Value.ToString(),       //Имя работодателя
+                    (e.ColumnIndex == 0) ?
+                        DataBeforeEditing :
+                        dataGridVacancies.Rows[e.RowIndex].Cells[0].Value.ToString(),   //Старое имя вакансии
+                    dataGridVacancies.Rows[e.RowIndex].Cells[1].Value.ToString(),       //Специальность   
+                    dataGridVacancies.Rows[e.RowIndex].Cells[0].Value.ToString(),       //Новое имя вакансии
+                    Convert.ToUInt32(dataGridVacancies.Rows[e.RowIndex].Cells[3].Value.ToString()),//Новый опыт работы
+                    dataGridVacancies.Rows[e.RowIndex].Cells[4].Value.ToString(),       //Новый тип занятости
+                    Convert.ToUInt32(dataGridVacancies.Rows[e.RowIndex].Cells[5].Value.ToString()),//Новая зарплата
+                    dataGridVacancies.Rows[e.RowIndex].Cells[6].Value.ToString());       //Новое описание
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+                //MessageBox.Show("Ошибка при изменении данных");
+            }
+            //Обновить информацию после изменения
+            UpdateVacancies(this.textBoxSearchVacancy.Text);
         }
         /// <summary>
         /// Обработчик события на добавление новой строки в таблицу
@@ -189,13 +266,24 @@ namespace ViewLayer
         private void dataGridInfo_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             //Перебрать все строки и установить для каждой контекстное меню
-            for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
+            for (int i = 0; i < dataGridInfo.RowCount; i++)
             {
                 dataGridInfo.Rows[i].ContextMenuStrip = contextMenuInfoEmployer;
             }
         }
         /// <summary>
-        /// Выделение ячейки в таблице "сведения о работодателе
+        /// Обработчик события на добавление новой строки в таблицу "вакансии"
+        /// </summary>
+        private void dataGridVacancies_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            //Перебрать все строки и установить для каждой контекстное меню
+            for (int i = 0; i < dataGridVacancies.RowCount; i++)
+            {
+                dataGridVacancies.Rows[i].ContextMenuStrip = contextMenuVacancies;
+            }
+        }
+        /// <summary>
+        /// Выделение ячейки в таблице "Сведения о работодателе"
         /// при нажании правой кнопки мыши
         /// </summary>
         private void dataGridInfo_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -203,6 +291,17 @@ namespace ViewLayer
             if (e.Button == MouseButtons.Right && e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
                 dataGridInfo.CurrentCell = dataGridInfo[e.ColumnIndex, e.RowIndex];
+            }
+        }
+        /// <summary>
+        /// Выделение ячейки в таблице "Вакансии"
+        /// при нажании правой кнопки мыши
+        /// </summary>
+        private void dataGridVacancies_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.ColumnIndex >= 0 && e.RowIndex >= 0)
+            {
+                dataGridVacancies.CurrentCell = dataGridVacancies[e.ColumnIndex, e.RowIndex];
             }
         }
         /// <summary>

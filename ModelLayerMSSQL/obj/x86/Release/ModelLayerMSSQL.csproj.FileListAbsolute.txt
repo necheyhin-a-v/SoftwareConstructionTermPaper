@@ -1,0 +1,5 @@
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\bin\x86\Release\ModelLayerMSSQL.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\x86\Release\ModelLayerMSSQL.csprojResolveAssemblyReference.cache
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\x86\Release\ModelLayerMSSQL.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\bin\x86\Release\ModelLayerMSSQL.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\ModelLayerMSSQL\obj\x86\Release\ModelLayerMSSQL.pdb

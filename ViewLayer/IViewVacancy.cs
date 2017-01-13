@@ -39,5 +39,18 @@ namespace ViewLayer
         /// Получить список специальностей
         /// </summary>
         List<string> GetSpecialties();
+        /// <summary>
+        /// Изменить параметры вакансии с именем oldName
+        /// </summary>
+        /// <param name="oldEmployerName">Старое наименование работодателя</param>
+        /// <param name="oldName">Старое наименование вакансии</param>
+        /// <param name="newSpecialty">Специальность в строковом формате</param>
+        /// <param name="newName">Имя вакансии</param>
+        /// <param name="newExperience">Опыт работы в месяцах</param>
+        /// <param name="newEmploymentType">Тип занятости</param>
+        /// <param name="newSalary">Зарплата</param>
+        /// <param name="newDescription">Описание вакансии</param>
+        void ChangeVacancy(string oldEmployerName, string oldName, string newSpecialty, string newName, uint newExperience,
+    string newEmploymentType, uint newSalary, string newDescription);
     }
 }

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ModelLayerMSSQL.DataBase">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAUECAACABBAACQAAQIABACAAABBAAAA=</HashCode>
+      <FileName>DataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelLayerMSSQL.DBEntity" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAIAAAAAAAAAAAAAAAAAEABAAIAAAACAAAAA=</HashCode>
+      <FileName>DBEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelLayerMSSQL.Employee">
+    <Position X="7.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QFABQkgAAIGAABBEAAAQAAQEABEOAEAjMhgAoIIAQIA=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelLayerMSSQL.Employer">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIiAAAAAAAAAAAQAAoAEAAAiIgAAMEIABQA=</HashCode>
+      <FileName>Employer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelLayerMSSQL.Specialty">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAAAAAAAAAAAAQAAAAEACAAIgAAgAIABIg=</HashCode>
+      <FileName>Specialties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelLayerMSSQL.User">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAMAAIAAgAgFAACAAIAAAAAEAAACIgAQAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelLayerMSSQL.Vacancy">
+    <Position X="9.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>FgABACAAAoAgAAEAIAADAAQQSAEEBIAA4gSAAEAABAA=</HashCode>
+      <FileName>Vacancy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ModelLayerMSSQL.UserRoles">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ModelLayerMSSQL.EmploymentType">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAIACAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Vacancy.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

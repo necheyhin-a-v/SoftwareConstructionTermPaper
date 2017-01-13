@@ -4,11 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewLayer;
+using System.Windows.Forms;
 
 namespace BusinessLayer
 {
     class Vacancies : IViewVacancy
     {
+        public void ChangeVacancy(string oldEmployerName, string oldName, string newSpecialty, string newName, uint newExperience,
+            string newEmploymentType, uint newSalary, string newDescription)
+        {
+            //TODO: рассмотреть вариант использования hash-таблиц вместо множества параметров
+            List<ModelLayerMSSQL.Vacancy> vacancies = ModelLayerMSSQL.Vacancy.GetAll();
+            //Найти вакансии которые удовлетворяют условиям изменения и заменить
+            //старые поля на новые
+            foreach (ModelLayerMSSQL.Vacancy vacancy in vacancies)
+            {
+                if(ModelLayerMSSQL.Employer.GetByItn(vacancy.GetEmployerItn()).GetName().Equals(oldEmployerName) &&
+                    vacancy.GetName().Equals(oldName))
+                {
+                    string employerItn = vacancy.GetEmployerItn();
+                    //удаление и создание новой вакансии
+                    vacancy.Delete();
+                    ModelLayerMSSQL.Vacancy newVacancy = new ModelLayerMSSQL.Vacancy(newName, employerItn, newSpecialty,
+                        (ModelLayerMSSQL.EmploymentType)Enum.Parse(typeof(ModelLayerMSSQL.EmploymentType), newEmploymentType),
+                        newDescription, newSalary, newExperience);
+                }
+            }
+        }
         public void CreateVacancy(string name, string employerItn, string specialty, String type, string description, uint salary, uint requiredExperience)
         {
             if (name.Equals(""))
@@ -49,8 +71,7 @@ namespace BusinessLayer
                     tmp.SetValue(current.GetName(), 0);
                     tmp.SetValue(current.GetSpecialtyName(), 1);
                     tmp.SetValue(ModelLayerMSSQL.Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
-                    //Перевод требуемого стажа в года
-                    tmp.SetValue((current.GetRequiredExperience() / 12d).ToString(), 3);
+                    tmp.SetValue((current.GetRequiredExperience()).ToString(), 3);
                     tmp.SetValue(current.GetEmploymentType().ToString(), 4);
                     tmp.SetValue(current.GetSalary().ToString(), 5);
                     tmp.SetValue(current.GetDescription(), 6);
@@ -66,8 +87,7 @@ namespace BusinessLayer
                     tmp.SetValue(current.GetName(), 0);
                     tmp.SetValue(current.GetSpecialtyName(), 1);
                     tmp.SetValue(ModelLayerMSSQL.Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
-                    //Перевод требуемого стажа в года
-                    tmp.SetValue((current.GetRequiredExperience() / 12d).ToString(), 3);
+                    tmp.SetValue((current.GetRequiredExperience()).ToString(), 3);
                     tmp.SetValue(current.GetEmploymentType().ToString(), 4);
                     tmp.SetValue(current.GetSalary().ToString(), 5);
                     tmp.SetValue(current.GetDescription(), 6);

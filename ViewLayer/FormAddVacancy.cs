@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace ViewLayer
 {
+    /// <summary>
+    /// Форма добавления вакансий
+    /// </summary>
     public partial class FormAddVacancy : Form
     {
         /// <summary>
