@@ -126,6 +126,12 @@
     <Compile Include="FormEmployers.Designer.cs">
       <DependentUpon>FormEmployers.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSelectSpecialties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectSpecialties.Designer.cs">
+      <DependentUpon>FormSelectSpecialties.cs</DependentUpon>
+    </Compile>
     <Compile Include="IViewAuth.cs" />
     <Compile Include="IViewEmployee.cs" />
     <Compile Include="IViewVacancy.cs" />
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployers.resx">
       <DependentUpon>FormEmployers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectSpecialties.resx">
+      <DependentUpon>FormSelectSpecialties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

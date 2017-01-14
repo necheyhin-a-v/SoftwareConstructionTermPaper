@@ -13,22 +13,25 @@ namespace Programm
         [STAThread]
         static void Main()
         {
-            //Программа требует предварительной настройки
-            //ModelLayerMSSQL.DataBase.Initialize("necheukhin.ddns.net", "1433");
-            ModelLayerMSSQL.DataBase.Initialize("192.168.1.50", "1433");
-            //Создание нового контроллера форм
-            BusinessLayer.FormController controller = new BusinessLayer.FormController();
-            //Передать дальнейшее управление контролееру форм
-            controller.Authorization();
-            Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run();
+            try
+            {
+                //Программа требует предварительной настройки
+                //ModelLayerMSSQL.DataBase.Initialize("necheukhin.ddns.net", "1433");
+                ModelLayerMSSQL.DataBase.Initialize("192.168.1.50", "1433");
+                //Создание нового контроллера форм
+                BusinessLayer.FormController controller = new BusinessLayer.FormController();
+                //Передать дальнейшее управление контролееру форм
+                controller.Authorization();
+                Application.EnableVisualStyles();
+                //Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+                Main();
+            }
+
         }
     }
-
-
-
-
-
-
 }

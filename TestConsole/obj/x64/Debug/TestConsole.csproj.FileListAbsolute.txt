@@ -1,0 +1,15 @@
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\TestConsole.exe.config
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\TestConsole.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\TestConsole.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\BusinessLayer.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\ModelLayerMSSQL.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\ViewLayer.dll
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\BusinessLayer.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\BusinessLayer.xml
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\ModelLayerMSSQL.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\ModelLayerMSSQL.xml
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\ViewLayer.pdb
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\bin\x64\Debug\ViewLayer.xml
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\obj\x64\Debug\TestConsole.csprojResolveAssemblyReference.cache
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\obj\x64\Debug\TestConsole.exe
+D:\Aleksandr\Projects\VSProjects\SoftwareDevelompentTPU\TermPaper\SoftwareConstructionTermPaper\TestConsole\obj\x64\Debug\TestConsole.pdb

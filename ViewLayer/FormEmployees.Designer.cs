@@ -30,11 +30,13 @@
         {
             this.tcEmployees = new System.Windows.Forms.TabControl();
             this.tabRegEmployees = new System.Windows.Forms.TabPage();
+            this.buttonSelectEmploymentTypes = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.buttonSelectSpecialties = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxEmployerSecondName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxEmployerLastName = new System.Windows.Forms.TextBox();
-            this.comboBoxSpecialty = new System.Windows.Forms.ComboBox();
             this.textBoxEmployerExperience = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,7 +66,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.ColumnFIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPassport = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,20 +91,24 @@
             this.tcEmployees.Controls.Add(this.tabInfoEmployees);
             this.tcEmployees.Controls.Add(this.tabWorkSearch);
             this.tcEmployees.Controls.Add(this.tabStatistic);
-            this.tcEmployees.Location = new System.Drawing.Point(12, 12);
+            this.tcEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcEmployees.Location = new System.Drawing.Point(0, 0);
             this.tcEmployees.Name = "tcEmployees";
             this.tcEmployees.SelectedIndex = 0;
-            this.tcEmployees.Size = new System.Drawing.Size(852, 528);
+            this.tcEmployees.Size = new System.Drawing.Size(868, 541);
             this.tcEmployees.TabIndex = 4;
             this.tcEmployees.SelectedIndexChanged += new System.EventHandler(this.tcEmployees_SelectedIndexChanged);
+            this.tcEmployees.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tcEmployees_KeyDown);
             // 
             // tabRegEmployees
             // 
+            this.tabRegEmployees.Controls.Add(this.buttonSelectEmploymentTypes);
+            this.tabRegEmployees.Controls.Add(this.label12);
+            this.tabRegEmployees.Controls.Add(this.buttonSelectSpecialties);
             this.tabRegEmployees.Controls.Add(this.label10);
             this.tabRegEmployees.Controls.Add(this.textBoxEmployerSecondName);
             this.tabRegEmployees.Controls.Add(this.label9);
             this.tabRegEmployees.Controls.Add(this.textBoxEmployerLastName);
-            this.tabRegEmployees.Controls.Add(this.comboBoxSpecialty);
             this.tabRegEmployees.Controls.Add(this.textBoxEmployerExperience);
             this.tabRegEmployees.Controls.Add(this.label6);
             this.tabRegEmployees.Controls.Add(this.label5);
@@ -117,10 +125,38 @@
             this.tabRegEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabRegEmployees.Name = "tabRegEmployees";
             this.tabRegEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRegEmployees.Size = new System.Drawing.Size(844, 502);
+            this.tabRegEmployees.Size = new System.Drawing.Size(860, 515);
             this.tabRegEmployees.TabIndex = 0;
             this.tabRegEmployees.Text = "Регистрация";
             this.tabRegEmployees.UseVisualStyleBackColor = true;
+            // 
+            // buttonSelectEmploymentTypes
+            // 
+            this.buttonSelectEmploymentTypes.Location = new System.Drawing.Point(144, 233);
+            this.buttonSelectEmploymentTypes.Name = "buttonSelectEmploymentTypes";
+            this.buttonSelectEmploymentTypes.Size = new System.Drawing.Size(95, 23);
+            this.buttonSelectEmploymentTypes.TabIndex = 30;
+            this.buttonSelectEmploymentTypes.Text = "Выбрать";
+            this.buttonSelectEmploymentTypes.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 230);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(92, 26);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Препочитаемые \r\nтипы занятости";
+            // 
+            // buttonSelectSpecialties
+            // 
+            this.buttonSelectSpecialties.Location = new System.Drawing.Point(144, 198);
+            this.buttonSelectSpecialties.Name = "buttonSelectSpecialties";
+            this.buttonSelectSpecialties.Size = new System.Drawing.Size(95, 23);
+            this.buttonSelectSpecialties.TabIndex = 28;
+            this.buttonSelectSpecialties.Text = "Выбрать";
+            this.buttonSelectSpecialties.UseVisualStyleBackColor = true;
+            this.buttonSelectSpecialties.Click += new System.EventHandler(this.buttonSelectSpecialties_Click);
             // 
             // label10
             // 
@@ -156,15 +192,6 @@
             this.textBoxEmployerLastName.Size = new System.Drawing.Size(196, 20);
             this.textBoxEmployerLastName.TabIndex = 24;
             // 
-            // comboBoxSpecialty
-            // 
-            this.comboBoxSpecialty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSpecialty.FormattingEnabled = true;
-            this.comboBoxSpecialty.Location = new System.Drawing.Point(144, 192);
-            this.comboBoxSpecialty.Name = "comboBoxSpecialty";
-            this.comboBoxSpecialty.Size = new System.Drawing.Size(196, 21);
-            this.comboBoxSpecialty.TabIndex = 23;
-            // 
             // textBoxEmployerExperience
             // 
             this.textBoxEmployerExperience.Location = new System.Drawing.Point(144, 166);
@@ -186,13 +213,13 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 169);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.Size = new System.Drawing.Size(122, 13);
             this.label5.TabIndex = 20;
-            this.label5.Text = "Стаж работы";
+            this.label5.Text = "Стаж работы (месяцы)";
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(245, 219);
+            this.buttonClear.Location = new System.Drawing.Point(245, 276);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(95, 23);
             this.buttonClear.TabIndex = 19;
@@ -202,7 +229,7 @@
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(144, 219);
+            this.buttonCreate.Location = new System.Drawing.Point(144, 276);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(95, 23);
             this.buttonCreate.TabIndex = 18;
@@ -281,7 +308,7 @@
             this.tabInfoEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabInfoEmployees.Name = "tabInfoEmployees";
             this.tabInfoEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfoEmployees.Size = new System.Drawing.Size(844, 502);
+            this.tabInfoEmployees.Size = new System.Drawing.Size(860, 515);
             this.tabInfoEmployees.TabIndex = 1;
             this.tabInfoEmployees.Text = "Сведения";
             this.tabInfoEmployees.UseVisualStyleBackColor = true;
@@ -305,7 +332,7 @@
             // splitContainerInfo.Panel2
             // 
             this.splitContainerInfo.Panel2.Controls.Add(this.dataGridInfo);
-            this.splitContainerInfo.Size = new System.Drawing.Size(838, 496);
+            this.splitContainerInfo.Size = new System.Drawing.Size(854, 509);
             this.splitContainerInfo.SplitterDistance = 26;
             this.splitContainerInfo.TabIndex = 0;
             // 
@@ -347,9 +374,12 @@
             // 
             // dataGridInfo
             // 
+            this.dataGridInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnFIO,
+            this.ColumnFirstName,
+            this.ColumnMiddleName,
+            this.ColumnSecondName,
             this.ColumnPassport,
             this.ColumnAddress,
             this.ColumnPhoneNumber,
@@ -359,15 +389,17 @@
             this.dataGridInfo.MultiSelect = false;
             this.dataGridInfo.Name = "dataGridInfo";
             this.dataGridInfo.ReadOnly = true;
-            this.dataGridInfo.Size = new System.Drawing.Size(838, 466);
+            this.dataGridInfo.Size = new System.Drawing.Size(854, 479);
             this.dataGridInfo.TabIndex = 2;
+            this.dataGridInfo.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridInfo_CellMouseUp);
+            this.dataGridInfo.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridInfo_RowsAdded);
             // 
             // tabWorkSearch
             // 
             this.tabWorkSearch.Location = new System.Drawing.Point(4, 22);
             this.tabWorkSearch.Name = "tabWorkSearch";
             this.tabWorkSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWorkSearch.Size = new System.Drawing.Size(844, 502);
+            this.tabWorkSearch.Size = new System.Drawing.Size(860, 515);
             this.tabWorkSearch.TabIndex = 2;
             this.tabWorkSearch.Text = "Поиск работы";
             this.tabWorkSearch.UseVisualStyleBackColor = true;
@@ -384,7 +416,7 @@
             this.tabStatistic.Location = new System.Drawing.Point(4, 22);
             this.tabStatistic.Name = "tabStatistic";
             this.tabStatistic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatistic.Size = new System.Drawing.Size(844, 502);
+            this.tabStatistic.Size = new System.Drawing.Size(860, 515);
             this.tabStatistic.TabIndex = 3;
             this.tabStatistic.Text = "Статистика";
             this.tabStatistic.UseVisualStyleBackColor = true;
@@ -449,19 +481,29 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             // 
-            // ColumnFIO
+            // ColumnFirstName
             // 
-            this.ColumnFIO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnFIO.HeaderText = "ФИО";
-            this.ColumnFIO.Name = "ColumnFIO";
-            this.ColumnFIO.ReadOnly = true;
+            this.ColumnFirstName.HeaderText = "Имя";
+            this.ColumnFirstName.Name = "ColumnFirstName";
+            this.ColumnFirstName.ReadOnly = true;
+            // 
+            // ColumnMiddleName
+            // 
+            this.ColumnMiddleName.HeaderText = "Отчество";
+            this.ColumnMiddleName.Name = "ColumnMiddleName";
+            this.ColumnMiddleName.ReadOnly = true;
+            // 
+            // ColumnSecondName
+            // 
+            this.ColumnSecondName.HeaderText = "Фамилия";
+            this.ColumnSecondName.Name = "ColumnSecondName";
+            this.ColumnSecondName.ReadOnly = true;
             // 
             // ColumnPassport
             // 
             this.ColumnPassport.HeaderText = "Паспорт";
             this.ColumnPassport.Name = "ColumnPassport";
             this.ColumnPassport.ReadOnly = true;
-            this.ColumnPassport.Width = 120;
             // 
             // ColumnAddress
             // 
@@ -524,7 +566,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxEmployerFirstName;
-        private System.Windows.Forms.ComboBox comboBoxSpecialty;
         private System.Windows.Forms.TextBox textBoxEmployerExperience;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -545,7 +586,12 @@
         private System.Windows.Forms.TextBox textBoxSearchInfo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridView dataGridInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFIO;
+        private System.Windows.Forms.Button buttonSelectSpecialties;
+        private System.Windows.Forms.Button buttonSelectEmploymentTypes;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMiddleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSecondName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPassport;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPhoneNumber;

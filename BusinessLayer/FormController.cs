@@ -19,6 +19,7 @@ namespace BusinessLayer
         private ViewLayer.FormEmployers EmployerForm;
         private ViewLayer.FormEmployees EmployeesForm;
         private ViewLayer.FormAuthorization AuthorizationForm;
+        private ViewLayer.FormSelectSpecialties SelectSpecialtiesForm;
         public FormController()
         {
             Specialties = new Specialties();
@@ -31,6 +32,7 @@ namespace BusinessLayer
             VacancyForm = new ViewLayer.FormAddVacancy(this.Vacancies);
             SpecialtyForm = new ViewLayer.FormAddSpecialty(this.Specialties);
             AuthorizationForm = new ViewLayer.FormAuthorization(this.Users);
+            SelectSpecialtiesForm = new ViewLayer.FormSelectSpecialties(this.Specialties, this.Employees);
         }
         /// <summary>
         /// Процесс авторизации
@@ -58,8 +60,9 @@ namespace BusinessLayer
         public void RunFormEmployees()
         {
             if (EmployeesForm.IsDisposed) EmployeesForm = new ViewLayer.FormEmployees(this.Employees, this.Vacancies);
-            EmployeesForm.Show();
             EmployeesForm.FormClosed += UnAuthorize;
+            EmployeesForm.ButtonSelectSpecialtiesClicked += SelectSpecialties;
+            EmployeesForm.Show();
         }
         private void AddVacancy (object sender, EventArgs e)
         {
@@ -76,6 +79,14 @@ namespace BusinessLayer
             VacancyForm.Hide();
             SpecialtyForm.Show();
             SpecialtyForm.FormClosed += AddVacancy;
+        }
+
+        private void SelectSpecialties(object sender, EventArgs e)
+        {
+            if (SelectSpecialtiesForm.IsDisposed) SelectSpecialtiesForm = new ViewLayer.FormSelectSpecialties(this.Specialties, this.Employees);
+            EmployeesForm.Hide();
+            SelectSpecialtiesForm.Show();
+            SelectSpecialtiesForm.FormClosed += FinishAuthorization;
         }
 
         /// <summary>

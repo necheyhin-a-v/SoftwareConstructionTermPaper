@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ViewLayer</name>
+    </assembly>
+    <members>
+        <member name="T:ViewLayer.FormAddSpecialty">
+            <summary>
+            Форма добавления новой специальности в базу данных
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddSpecialty.#ctor(ViewLayer.IViewSpecialty)">
+            <summary>
+            Конструктор формы.
+            Инициализирует все графические объекты формы
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddSpecialty.buttonAcceptSpecialty_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия на кнопку добавить специальность
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddSpecialty.buttonDeclineSpecialty_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик отмены добавления специальности
+            </summary>
+        </member>
+        <member name="F:ViewLayer.FormAddSpecialty.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddSpecialty.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ViewLayer.FormAddSpecialty.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ViewLayer.FormEmployees">
+            <summary>
+            Класс формы работников
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.#ctor(ViewLayer.IViewEmployee,ViewLayer.IViewVacancy)">
+            <summary>
+            Конструктор формы работников
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.tcEmployees_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Подстроить размеры формы под внутренний контент
+            Запуск подгрузки данных при переходе на другую вкладку
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.UpdateInfo(System.String)">
+            <summary>
+            Обновить таблицу с информацией о работниках
+            Пытается применить фильтр для показа
+            </summary>
+        </member>
+        <member name="F:ViewLayer.FormEmployees.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ViewLayer.FormAuthorization">
+            <summary>    
+            Класс авторизации
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAuthorization.#ctor(ViewLayer.IViewAuth)">
+            <summary>
+            Конструктор, который инициализирует форму
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAuthorization.EnterInSystemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик входа в систему по клику 
+            </summary>
+        </member>
+        <member name="F:ViewLayer.FormAuthorization.components">
+            <summary>
+            Обязательная переменная конструктора.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAuthorization.Dispose(System.Boolean)">
+            <summary>
+            Освободить все используемые ресурсы.
+            </summary>
+            <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        </member>
+        <member name="M:ViewLayer.FormAuthorization.InitializeComponent">
+            <summary>
+            Требуемый метод для поддержки конструктора — не изменяйте 
+            содержимое этого метода с помощью редактора кода.
+            </summary>
+        </member>
+        <member name="T:ViewLayer.FormAddVacancy">
+            <summary>
+            Форма добавления вакансий
+            </summary>
+        </member>
+        <member name="E:ViewLayer.FormAddVacancy.ButtonAddSpecialtyClicked">
+            <summary>
+            Событие широковещательное переопределяющее действие нажатия на кнопку добавления специальности
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddVacancy.#ctor(ViewLayer.IViewVacancy)">
+            <summary>
+            Конструктор формы.
+            Инициализирует все графические объекты формы
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddVacancy.FormAddVacancy_Load(System.Object,System.EventArgs)">
+            <summary>
+            Загрузка данных в комбобоксы перед показом формы
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddVacancy.specialtyAddButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Широкое вещание нажатия по кнопке
+            </summary>
+        </member>
+        <member name="F:ViewLayer.FormAddVacancy.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormAddVacancy.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ViewLayer.FormAddVacancy.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ViewLayer.FormEmployers">
+            <summary>
+            Класс формы работы с работодателями
+            </summary>
+        </member>
+        <member name="E:ViewLayer.FormEmployers.ButtonAddVacancyClicked">
+            <summary>
+            Событие, которое происходит при нажатии на кнопку Добавить вакансию
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.#ctor(ViewLayer.IViewEmployer,ViewLayer.IViewVacancy)">
+            <summary>
+            Конструктор формы.
+            Инициализирует все графические объекты формы
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.ButtonAddVacancyClick(System.Object,System.EventArgs)">
+            <summary>
+            Вещание собственного события нажания кнопки, которое является публичным
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.WatchVacancyMenuItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик событий для контекстного меню "Просмотр вакансий"
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.EditMenuInfoItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик событий для контекстного меню "Редактирование" по таблице инфо
+            включает изменение текущей ячейки
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.EditMenuVacanciesClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик событий для контекстного меню "Редактирование" по таблице вакансии
+            включает изменение текущей ячейки, также добавляет комбобоксы к двум столбцам
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.TabControlEmployersSelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Подстроить размеры формы под внутренний контент
+            Запуск подгрузки данных при переходе на другую вкладку
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.UpdateInfo(System.String)">
+            <summary>
+            Обновить таблицу с информацией о работодателях
+            Пытается применить фильтр для показа
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.UpdateVacancies(System.String)">
+            <summary>
+            Обновление таблицы с информацией о вакансиях
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.dataGridInfo_CellEndEdit(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Блокировка ячейки в таблице "сведения о работодателе"
+            при завершении редактирования ячейки
+            Обновление данных после изменения
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.dataGridVacancies_CellEndEdit(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Блокировка ячейки в таблице "Вакансии"
+            при завершении редактирования ячейки
+            Обновление данных после изменения
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.dataGridInfo_RowsAdded(System.Object,System.Windows.Forms.DataGridViewRowsAddedEventArgs)">
+            <summary>
+            Обработчик события на добавление новой строки в таблицу
+            "сведения о работодателе"
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.dataGridVacancies_RowsAdded(System.Object,System.Windows.Forms.DataGridViewRowsAddedEventArgs)">
+            <summary>
+            Обработчик события на добавление новой строки в таблицу "вакансии"
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.dataGridInfo_CellMouseUp(System.Object,System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+            <summary>
+            Выделение ячейки в таблице "Сведения о работодателе"
+            при нажании правой кнопки мыши
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.dataGridVacancies_CellMouseUp(System.Object,System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+            <summary>
+            Выделение ячейки в таблице "Вакансии"
+            при нажании правой кнопки мыши
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.buttonAcceptRegistration_Click(System.Object,System.EventArgs)">
+            <summary>
+            Регистрация предприятия
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.buttonClearRegistration_Click(System.Object,System.EventArgs)">
+            <summary>
+            Очистить поля формы регистрация
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.buttonSearchVacancy_Click(System.Object,System.EventArgs)">
+            <summary>
+            Поиск вакансии
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.buttonSearchInfo_Click(System.Object,System.EventArgs)">
+            <summary>
+            Применение фильтра к информации о работодателях
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.buttonClearSearchInfo_Click(System.Object,System.EventArgs)">
+            <summary>
+            Сбросить результаты поиска информации о работодателях
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.buttonClearSearchVacancy_Click(System.Object,System.EventArgs)">
+            <summary>
+            Сброс параметров поиска вакансий
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.tabControlEmployers_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Использование быстрых клавиш Enter и Escape
+            </summary>
+        </member>
+        <member name="F:ViewLayer.FormEmployers.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ViewLayer.FormEmployers.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ViewLayer.IViewAuth">
+            <summary>
+            Интерфейс для взаимодейтсвия с формой авторизации
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewAuth.CanAuth(System.String,System.String)">
+            <summary>
+            Проверка возможности авторизации
+            </summary>
+            <param name="login"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ViewLayer.IViewEmployee">
+            <summary>
+            Интерфейс для взаимодействия со слоем представления
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.RegisterEmployee(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Зарегистрировать работника
+            </summary>
+            <param name="passport">Паспортные данные работника</param>
+            <param name="firstName">Имя работника</param>
+            <param name="secondName">Фамилия работника</param>
+            <param name="middleName">Отчество работника</param>
+            <param name="address">Адрес работника</param>
+            <param name="phone">Телефон работника</param>
+            <param name="experience">Опыт работника</param>
+            <param name="specialty">Предпочитаемая специальность работника</param>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.GetEmployees(System.String)">
+            <summary>
+            Получить список работников
+            name1, itn1, address1, phone1
+            name2, itn2, address2, phone2
+            ...
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ViewLayer.IViewVacancy">
+            <summary>
+            Интерфейс взаимодействия с формой AddVacancy
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewVacancy.CreateVacancy(System.String,System.String,System.String,System.String,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Создать вакансию предпринимателя
+            </summary>
+            <param name="name">Имя вакансии - уникально для каждого работодателя</param>
+            <param name="employerItn">ИНН работодателя, для которого создается вакансия.
+            ИНН должен существовать в базе данных</param>
+            <param name="specialty">Специальность для вакансии</param>
+            <param name="type">Тип занятости для вакансии</param>
+            <param name="description">Описание вакансии, может быть null</param>
+            <param name="salary">Заработная плата</param>
+            <param name="requiredExperience">Требуемый уровень для вакансии</param>
+        </member>
+        <member name="M:ViewLayer.IViewVacancy.GetVacancies(System.String)">
+            <summary>
+            Получить список вакансий
+            В виде:
+            имя вакансии, специальность, предприятие, требуемый опыт, тип занятости, оплата, описание
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewVacancy.GetEmploymentTypes">
+            <summary>
+            Получить список типов занятости
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewVacancy.GetSpecialties">
+            <summary>
+            Получить список специальностей
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewVacancy.ChangeVacancy(System.String,System.String,System.String,System.String,System.UInt32,System.String,System.UInt32,System.String)">
+            <summary>
+            Изменить параметры вакансии с именем oldName
+            </summary>
+            <param name="oldEmployerName">Старое наименование работодателя</param>
+            <param name="oldName">Старое наименование вакансии</param>
+            <param name="newSpecialty">Специальность в строковом формате</param>
+            <param name="newName">Имя вакансии</param>
+            <param name="newExperience">Опыт работы в месяцах</param>
+            <param name="newEmploymentType">Тип занятости</param>
+            <param name="newSalary">Зарплата</param>
+            <param name="newDescription">Описание вакансии</param>
+        </member>
+        <member name="T:ViewLayer.IViewEmployer">
+            <summary>
+            Интерфейс для взаимодействия со слоем представления
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployer.RegisterEmployer(System.String,System.String,System.String,System.String)">
+            <summary>
+            Зарегистрировать предпринимателя или предприятие
+            </summary>
+            <param name="name">Название организации</param>
+            <param name="itn">ИНН предприятия</param>
+            <param name="address">Адрес</param>
+            <param name="phone"></param>
+        </member>
+        <member name="M:ViewLayer.IViewEmployer.GetEmployers(System.String)">
+            <summary>
+            Получить список работодателей
+            name1, itn1, address1, phone1
+            name2, itn2, address2, phone2
+            ...
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ViewLayer.IViewEmployer.ChangeEmployerInfo(System.String,System.String,System.String,System.String)">
+            <summary>
+            Сменить информацию о работодателе
+            </summary>
+            <param name="Itn">ИНН</param>
+            <param name="newName">Имя работодателя</param>
+            <param name="newAddress">Адрес</param>
+            <param name="newPhone">Номер телефона</param>
+        </member>
+        <member name="T:ViewLayer.IViewSpecialty">
+            <summary>
+            Интерфейс для взаимодействия с формой AddSpecialty
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewSpecialty.AddSpecialty(System.String)">
+            <summary>
+            Добавить специальность
+            </summary>
+        </member>
+        <member name="T:ViewLayer.Properties.Resources">
+            <summary>
+              Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+            </summary>
+        </member>
+        <member name="P:ViewLayer.Properties.Resources.ResourceManager">
+            <summary>
+              Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+            </summary>
+        </member>
+        <member name="P:ViewLayer.Properties.Resources.Culture">
+            <summary>
+              Перезаписывает свойство CurrentUICulture текущего потока для всех
+              обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+            </summary>
+        </member>
+    </members>
+</doc>

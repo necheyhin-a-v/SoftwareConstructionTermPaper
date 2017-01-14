@@ -12,8 +12,12 @@ namespace ViewLayer
     public interface IViewSpecialty
     {
         /// <summary>
-        /// Добавить специальность
+        /// Добавить новую специальность
         /// </summary>
         void AddSpecialty(string name);
+        /// <summary>
+        /// Получить список специальностей из базы данных
+        /// </summary>
+        List<string> GetSpecialties();
     }
 }

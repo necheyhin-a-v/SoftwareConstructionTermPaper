@@ -149,7 +149,7 @@ namespace ViewLayer
                 this.dataGridInfo.ClearSelection();
                 List<string[]> employers = ViewEmployer.GetEmployers(filter);
                 if (employers.Count == 0)
-                    return;
+                    throw new Exception("Нет результатов поиска");
                 this.dataGridInfo.RowCount = employers.Count;
                 int currentRow = 0;
                 foreach (string[] currentEmployer in employers)
@@ -161,7 +161,7 @@ namespace ViewLayer
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошибка в получении данных о работодателях");
+                MessageBox.Show("Невозможно получить данные о работодателях.\nПри выполнении поиска проверьте результаты");
             }
         }
         /// <summary>
@@ -169,11 +169,13 @@ namespace ViewLayer
         /// </summary>
         public void UpdateVacancies(string filter = "")
         {
-            this.dataGridVacancies.SelectAll();
-            this.dataGridVacancies.ClearSelection();
             try
             {
+                this.dataGridVacancies.SelectAll();
+                this.dataGridVacancies.ClearSelection();
                 List<string[]> vacancies = ViewVacancy.GetVacancies(filter);
+                if (vacancies.Count == 0)
+                    throw new Exception("Нет результатов поиска");
                 this.dataGridVacancies.RowCount = vacancies.Count;
                 int currentRow = 0;
                 foreach (string[] currentVacancy in vacancies)
