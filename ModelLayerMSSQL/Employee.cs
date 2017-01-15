@@ -92,7 +92,7 @@ namespace ModelLayerMSSQL
                     newEmployee.MiddleName = (String)list.ElementAt(0).ElementAt(3);
                     newEmployee.Address = (String)list.ElementAt(0).ElementAt(4);
                     newEmployee.Phone = (String)list.ElementAt(0).ElementAt(5);
-                    if (list.ElementAt(0).ElementAt(6).ToString().CompareTo("") == 0)
+                    if (Convert.IsDBNull(list.ElementAt(0).ElementAt(6)))
                     {
                         newEmployee.HasFoundJob = false;
                     }
@@ -339,8 +339,6 @@ namespace ModelLayerMSSQL
             {
                 DataBase.GetCommand().Parameters.Clear();   //Очистить список параметров после использования
             }
-
-
         }
         /// <summary>
         /// Возвращает значение пасспорта для текущего объекта

@@ -57,7 +57,6 @@ namespace ViewLayer
             contextMenuInfoEmploee.Items.Add(changeSelectedSpecialtiesMenuItem);
             contextMenuInfoEmploee.Items.Add(changeSelectedEmploymenTypesMenuItem);
             contextMenuInfoEmploee.Items.Add(suggestVacancyMenuItem);
-
         }
         /// <summary>
         /// Добавление контекстного меню для каждой строки таблицы
@@ -72,11 +71,71 @@ namespace ViewLayer
             }
         }
         /// <summary>
+        /// Принять редактирование ячейки, заблокировать ее,
+        /// внести изменения в базу и обновить информацию из базы данных
+        /// </summary>
+        private void dataGridInfo_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //Если пользователь еще не выбрал дату
+            if (dateTimePicker.Visible)
+                return;
+            dataGridInfo.AllowUserToResizeColumns = true;
+            dataGridInfo.ReadOnly = true;
+            try
+            {
+                ViewEmployee.ChangeEmployeeInfo(
+                    (dataGridInfo.CurrentCell.ColumnIndex == 3) ? DataBeforeEditing :
+                    dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[3].Value.ToString(),    //Старый пасспорт
+                    dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[0].Value.ToString(),    //Имя                    
+                    dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[1].Value.ToString(),    //Отчество
+                    dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[2].Value.ToString(),    //Фамилия
+                    dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[3].Value.ToString(),    //Новый пасспорт
+                    dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[4].Value.ToString(),    //адрес
+                    dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[5].Value.ToString(),    //телефон
+                    Convert.ToUInt32(dataGridInfo.Rows[dataGridInfo.CurrentCell.RowIndex].Cells[6].Value.ToString()),//опыт работы
+                                                                                                                     //Была изменена дата у работника
+                    (dataGridInfo.CurrentCell.ColumnIndex==7) ? dateTimePicker.Value.Date.ToString() : "");//Статус работника
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+                //MessageBox.Show("Ошибка при изменении данных");
+            }
+            finally
+            {
+                dateTimePicker.Visible = false;
+                //Обновить информацию после изменения
+                UpdateInfo(this.textBoxSearchInfo.Text);
+            }
+        }
+
+        /// <summary>
         /// Обработчик события пункта меню редактировать информацию о работнике
         /// </summary>
         private void EditMenuInfoItemClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Редактирование информации о работнике");
+            //Установка dateTimePicker в ячейке для смены даты нахождения работы
+            if (dataGridInfo.CurrentCell.ColumnIndex == 7)  //Смена поиска даты работы специалистом
+            {
+                dataGridInfo.AllowUserToResizeColumns = false;
+                dateTimePicker.MaxDate = DateTime.Today;
+                dateTimePicker.Value = DateTime.Today;
+                //Установить положение dateTimePicker в ячейке
+                dateTimePicker.Location = dataGridInfo.GetCellDisplayRectangle(
+                    dataGridInfo.CurrentCell.ColumnIndex, dataGridInfo.CurrentCell.RowIndex, false).Location;
+                Size cellSize = dataGridInfo.GetCellDisplayRectangle(
+                     dataGridInfo.CurrentCell.ColumnIndex, dataGridInfo.CurrentCell.RowIndex, false).Size;
+                dateTimePicker.Size = new Size(cellSize.Width, cellSize.Height+1);
+                dateTimePicker.Visible = true;
+                dateTimePicker.Focus();
+            }
+            else
+            {
+                dateTimePicker.Visible = false;
+            }
+            dataGridInfo.ReadOnly = false;  //Открытие режима редактирования
+            dataGridInfo.BeginEdit(false);  //Не выбирать все ячейки для редактирования
+            DataBeforeEditing = dataGridInfo.CurrentCell.Value.ToString();
         }
         /// <summary>
         /// Обработчик события пункта меню сменить предпочитаемые специальности для текущего работника
@@ -166,13 +225,21 @@ namespace ViewLayer
                 int currentRow = 0;
                 foreach (string[] currentEmployee in employees)
                 {
-                    for (int i = 0; i < currentEmployee.Count(); i++)
+                    //Добавить все элементы как текстовые
+                    for (int i = 0; i < currentEmployee.Count()-1; i++)
                         this.dataGridInfo.Rows[currentRow].Cells[i].Value = currentEmployee.ElementAt(i);
+                    //Последний элемент добавить как check-box
+                    //Создание новой ячейки-checkBox
+                    DataGridViewCheckBoxCell comboBox = new DataGridViewCheckBoxCell();
+                    comboBox.Value = Boolean.Parse(currentEmployee.ElementAt(currentEmployee.Length - 1));
+                    //Установить новую ячейку в нужное место
+                    dataGridInfo.Rows[currentRow].Cells[dataGridInfo.ColumnCount-1] = comboBox;
                     currentRow++;
                 }
             }
             catch (Exception err)
             {
+                Console.Error.Write(err.Message);
                 MessageBox.Show("Невозможно получить данные о работниках.\nПри выполнении поиска проверьте результаты");
             }
         }
@@ -240,6 +307,15 @@ namespace ViewLayer
                         break;
                 }
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void dateTimePicker_Leave(object sender, EventArgs e)
+        {
+            //Скрыть dateTimePicker и симулировать изменение ячейки
+            dateTimePicker.Visible = false;
+            dataGridInfo_CellEndEdit(null, null);
         }
     }
 }

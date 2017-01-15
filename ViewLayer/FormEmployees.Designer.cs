@@ -56,8 +56,18 @@
             this.buttonSearchInfo = new System.Windows.Forms.Button();
             this.textBoxSearchInfo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.dataGridInfo = new System.Windows.Forms.DataGridView();
+            this.ColumnFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPassport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnExperience = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHasFoundJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabWorkSearch = new System.Windows.Forms.TabPage();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabStatistic = new System.Windows.Forms.TabPage();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -66,13 +76,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.ColumnFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPassport = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnExperience = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcEmployees.SuspendLayout();
             this.tabRegEmployees.SuspendLayout();
             this.tabInfoEmployees.SuspendLayout();
@@ -81,6 +84,7 @@
             this.splitContainerInfo.Panel2.SuspendLayout();
             this.splitContainerInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).BeginInit();
+            this.tabWorkSearch.SuspendLayout();
             this.tabStatistic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -331,6 +335,7 @@
             // 
             // splitContainerInfo.Panel2
             // 
+            this.splitContainerInfo.Panel2.Controls.Add(this.dateTimePicker);
             this.splitContainerInfo.Panel2.Controls.Add(this.dataGridInfo);
             this.splitContainerInfo.Size = new System.Drawing.Size(854, 509);
             this.splitContainerInfo.SplitterDistance = 26;
@@ -372,8 +377,18 @@
             this.label11.TabIndex = 6;
             this.label11.Text = "Поиск";
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(751, 49);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(98, 20);
+            this.dateTimePicker.TabIndex = 3;
+            this.dateTimePicker.Visible = false;
+            this.dateTimePicker.Leave += new System.EventHandler(this.dateTimePicker_Leave);
+            // 
             // dataGridInfo
             // 
+            this.dataGridInfo.AllowUserToResizeRows = false;
             this.dataGridInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -383,19 +398,71 @@
             this.ColumnPassport,
             this.ColumnAddress,
             this.ColumnPhoneNumber,
-            this.ColumnExperience});
+            this.ColumnExperience,
+            this.ColumnHasFoundJob});
             this.dataGridInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridInfo.Location = new System.Drawing.Point(0, 0);
             this.dataGridInfo.MultiSelect = false;
             this.dataGridInfo.Name = "dataGridInfo";
             this.dataGridInfo.ReadOnly = true;
+            this.dataGridInfo.RowTemplate.Height = 20;
             this.dataGridInfo.Size = new System.Drawing.Size(854, 479);
             this.dataGridInfo.TabIndex = 2;
+            this.dataGridInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInfo_CellEndEdit);
             this.dataGridInfo.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridInfo_CellMouseUp);
             this.dataGridInfo.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridInfo_RowsAdded);
             // 
+            // ColumnFirstName
+            // 
+            this.ColumnFirstName.HeaderText = "Имя";
+            this.ColumnFirstName.Name = "ColumnFirstName";
+            this.ColumnFirstName.ReadOnly = true;
+            // 
+            // ColumnMiddleName
+            // 
+            this.ColumnMiddleName.HeaderText = "Отчество";
+            this.ColumnMiddleName.Name = "ColumnMiddleName";
+            this.ColumnMiddleName.ReadOnly = true;
+            // 
+            // ColumnSecondName
+            // 
+            this.ColumnSecondName.HeaderText = "Фамилия";
+            this.ColumnSecondName.Name = "ColumnSecondName";
+            this.ColumnSecondName.ReadOnly = true;
+            // 
+            // ColumnPassport
+            // 
+            this.ColumnPassport.HeaderText = "Паспорт";
+            this.ColumnPassport.Name = "ColumnPassport";
+            this.ColumnPassport.ReadOnly = true;
+            // 
+            // ColumnAddress
+            // 
+            this.ColumnAddress.HeaderText = "Адрес";
+            this.ColumnAddress.Name = "ColumnAddress";
+            this.ColumnAddress.ReadOnly = true;
+            // 
+            // ColumnPhoneNumber
+            // 
+            this.ColumnPhoneNumber.HeaderText = "Номер телефона";
+            this.ColumnPhoneNumber.Name = "ColumnPhoneNumber";
+            this.ColumnPhoneNumber.ReadOnly = true;
+            // 
+            // ColumnExperience
+            // 
+            this.ColumnExperience.HeaderText = "Опыт работы";
+            this.ColumnExperience.Name = "ColumnExperience";
+            this.ColumnExperience.ReadOnly = true;
+            // 
+            // ColumnHasFoundJob
+            // 
+            this.ColumnHasFoundJob.HeaderText = "Трудоустроен с помощью службы";
+            this.ColumnHasFoundJob.Name = "ColumnHasFoundJob";
+            this.ColumnHasFoundJob.ReadOnly = true;
+            // 
             // tabWorkSearch
             // 
+            this.tabWorkSearch.Controls.Add(this.dateTimePicker1);
             this.tabWorkSearch.Location = new System.Drawing.Point(4, 22);
             this.tabWorkSearch.Name = "tabWorkSearch";
             this.tabWorkSearch.Padding = new System.Windows.Forms.Padding(3);
@@ -403,6 +470,13 @@
             this.tabWorkSearch.TabIndex = 2;
             this.tabWorkSearch.Text = "Поиск работы";
             this.tabWorkSearch.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(202, 61);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(147, 20);
+            this.dateTimePicker1.TabIndex = 0;
             // 
             // tabStatistic
             // 
@@ -481,48 +555,6 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             // 
-            // ColumnFirstName
-            // 
-            this.ColumnFirstName.HeaderText = "Имя";
-            this.ColumnFirstName.Name = "ColumnFirstName";
-            this.ColumnFirstName.ReadOnly = true;
-            // 
-            // ColumnMiddleName
-            // 
-            this.ColumnMiddleName.HeaderText = "Отчество";
-            this.ColumnMiddleName.Name = "ColumnMiddleName";
-            this.ColumnMiddleName.ReadOnly = true;
-            // 
-            // ColumnSecondName
-            // 
-            this.ColumnSecondName.HeaderText = "Фамилия";
-            this.ColumnSecondName.Name = "ColumnSecondName";
-            this.ColumnSecondName.ReadOnly = true;
-            // 
-            // ColumnPassport
-            // 
-            this.ColumnPassport.HeaderText = "Паспорт";
-            this.ColumnPassport.Name = "ColumnPassport";
-            this.ColumnPassport.ReadOnly = true;
-            // 
-            // ColumnAddress
-            // 
-            this.ColumnAddress.HeaderText = "Адрес";
-            this.ColumnAddress.Name = "ColumnAddress";
-            this.ColumnAddress.ReadOnly = true;
-            // 
-            // ColumnPhoneNumber
-            // 
-            this.ColumnPhoneNumber.HeaderText = "Номер телефона";
-            this.ColumnPhoneNumber.Name = "ColumnPhoneNumber";
-            this.ColumnPhoneNumber.ReadOnly = true;
-            // 
-            // ColumnExperience
-            // 
-            this.ColumnExperience.HeaderText = "Опыт работы";
-            this.ColumnExperience.Name = "ColumnExperience";
-            this.ColumnExperience.ReadOnly = true;
-            // 
             // FormEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -543,6 +575,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).EndInit();
             this.splitContainerInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).EndInit();
+            this.tabWorkSearch.ResumeLayout(false);
             this.tabStatistic.ResumeLayout(false);
             this.tabStatistic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -596,5 +629,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnExperience;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHasFoundJob;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

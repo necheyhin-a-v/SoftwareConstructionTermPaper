@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewLayer;
-using ModelLayerMSSQL;
+using System.Globalization;
 
 namespace BusinessLayer
 {
@@ -17,14 +17,14 @@ namespace BusinessLayer
         }
         public List<string[]> GetEmployees(string filter)
         {
-            List<Employee> employees = Employee.GetAll();
+            List<ModelLayerMSSQL.Employee> employees = ModelLayerMSSQL.Employee.GetAll();
             List<string[]> list = new List<string[]>();
             //Не используется фильтр
             if (filter.Equals(""))
             {
-                foreach (Employee current in employees)
+                foreach (ModelLayerMSSQL.Employee current in employees)
                 {
-                    string[] tmp = new string[7];
+                    string[] tmp = new string[8];
                     tmp.SetValue(current.GetFirstName(), 0);
                     tmp.SetValue(current.GetMiddleName(), 1);
                     tmp.SetValue(current.GetSecondName(), 2);
@@ -32,15 +32,16 @@ namespace BusinessLayer
                     tmp.SetValue(current.GetAddress(), 4);
                     tmp.SetValue(current.GetPhone(), 5);
                     tmp.SetValue(Convert.ToString(current.GetExperience()), 6);
+                    tmp.SetValue(current.GetStatus().ToString(), 7);
                     list.Add(tmp);
                 }
             }
             //Используется фильтр
             else
             {
-                foreach (Employee current in employees)
+                foreach (ModelLayerMSSQL.Employee current in employees)
                 {
-                    string[] tmp = new string[7];
+                    string[] tmp = new string[8];
                     tmp.SetValue(current.GetFirstName(), 0);
                     tmp.SetValue(current.GetMiddleName(), 1);
                     tmp.SetValue(current.GetSecondName(), 2);
@@ -48,6 +49,7 @@ namespace BusinessLayer
                     tmp.SetValue(current.GetAddress(), 4);
                     tmp.SetValue(current.GetPhone(), 5);
                     tmp.SetValue(Convert.ToString(current.GetExperience()), 6);
+                    tmp.SetValue(current.GetStatus().ToString(), 7);
                     //Проверка каждого поля на соответствие фильтру
                     for (int i = 0; i < tmp.Count(); i++)
                     {
@@ -69,14 +71,12 @@ namespace BusinessLayer
             else if (firstName.Equals(""))
                 throw new Exception("Имя не может быть пустым");
             else if (secondName.Equals(""))
-                throw new Exception("Фамилия не может быть пустым");
-            else if (middleName.Equals(""))
-                throw new Exception("Отчество не может быть пустым");
+                throw new Exception("Фамилия не может быть пустой");
             else if (address.Equals(""))
                 throw new Exception("Адрес не может быть пустым");
             try
             {
-                Employee newEmpoyee = new Employee(passport, firstName, secondName, middleName, address, phone, Convert.ToUInt32(experience));
+                ModelLayerMSSQL.Employee newEmpoyee = new ModelLayerMSSQL.Employee(passport, firstName, secondName, middleName, address, phone, Convert.ToUInt32(experience));
                 //Если ни одна специальность не выбрана - выбрать все
                 if (SelectedSpecialties.Count == 0)
                 {
@@ -109,6 +109,24 @@ namespace BusinessLayer
         public List<string> GetSelectedSpecialties(string passportData)
         {
             throw new NotImplementedException();
+        }
+
+        public void ChangeEmployeeInfo(string oldPassport, string firstName, string middleName, 
+            string secondName, string newPassport, string address, string phone, uint experience, string status)
+        {
+            ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(oldPassport);
+            employee.ChangePassport(newPassport);
+            employee.ChangeFirstName(firstName);
+            employee.ChangeMiddleName(middleName);
+            employee.ChangeSecondName(secondName);
+            employee.ChangeAddress(address);
+            employee.ChangePhone(phone);
+            employee.ChangeExperience(experience);
+            if( !status.Equals(""))
+            {
+                DateTime date = DateTime.Parse(status);
+                employee.ChangeDateWhenJobFounded(date);
+            }
         }
     }
 }

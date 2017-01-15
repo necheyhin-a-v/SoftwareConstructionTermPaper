@@ -47,5 +47,11 @@ namespace ViewLayer
         /// Получить выбранные специальности для конкретного работника
         /// </summary>
         List<string> GetSelectedSpecialties(string passportData);
+
+        /// <summary>
+        /// Изменение информации о работнике
+        /// </summary>
+        void ChangeEmployeeInfo(string oldPassport, string firstName, string middleName,string secondName,
+            string newPassport, string address, string phone, uint experience, string status);
     }
 }
