@@ -67,7 +67,6 @@
             this.ColumnExperience = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnHasFoundJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabWorkSearch = new System.Windows.Forms.TabPage();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tabStatistic = new System.Windows.Forms.TabPage();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -84,7 +83,6 @@
             this.splitContainerInfo.Panel2.SuspendLayout();
             this.splitContainerInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).BeginInit();
-            this.tabWorkSearch.SuspendLayout();
             this.tabStatistic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -99,9 +97,10 @@
             this.tcEmployees.Location = new System.Drawing.Point(0, 0);
             this.tcEmployees.Name = "tcEmployees";
             this.tcEmployees.SelectedIndex = 0;
-            this.tcEmployees.Size = new System.Drawing.Size(868, 541);
+            this.tcEmployees.Size = new System.Drawing.Size(868, 474);
             this.tcEmployees.TabIndex = 4;
             this.tcEmployees.SelectedIndexChanged += new System.EventHandler(this.tcEmployees_SelectedIndexChanged);
+            this.tcEmployees.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tcEmployees_Selecting);
             this.tcEmployees.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tcEmployees_KeyDown);
             // 
             // tabRegEmployees
@@ -129,7 +128,7 @@
             this.tabRegEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabRegEmployees.Name = "tabRegEmployees";
             this.tabRegEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRegEmployees.Size = new System.Drawing.Size(860, 515);
+            this.tabRegEmployees.Size = new System.Drawing.Size(860, 448);
             this.tabRegEmployees.TabIndex = 0;
             this.tabRegEmployees.Text = "Регистрация";
             this.tabRegEmployees.UseVisualStyleBackColor = true;
@@ -142,6 +141,7 @@
             this.buttonSelectEmploymentTypes.TabIndex = 30;
             this.buttonSelectEmploymentTypes.Text = "Выбрать";
             this.buttonSelectEmploymentTypes.UseVisualStyleBackColor = true;
+            this.buttonSelectEmploymentTypes.Click += new System.EventHandler(this.buttonSelectEmploymentTypes_Click);
             // 
             // label12
             // 
@@ -312,7 +312,7 @@
             this.tabInfoEmployees.Location = new System.Drawing.Point(4, 22);
             this.tabInfoEmployees.Name = "tabInfoEmployees";
             this.tabInfoEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfoEmployees.Size = new System.Drawing.Size(860, 515);
+            this.tabInfoEmployees.Size = new System.Drawing.Size(860, 448);
             this.tabInfoEmployees.TabIndex = 1;
             this.tabInfoEmployees.Text = "Сведения";
             this.tabInfoEmployees.UseVisualStyleBackColor = true;
@@ -337,7 +337,7 @@
             // 
             this.splitContainerInfo.Panel2.Controls.Add(this.dateTimePicker);
             this.splitContainerInfo.Panel2.Controls.Add(this.dataGridInfo);
-            this.splitContainerInfo.Size = new System.Drawing.Size(854, 509);
+            this.splitContainerInfo.Size = new System.Drawing.Size(854, 442);
             this.splitContainerInfo.SplitterDistance = 26;
             this.splitContainerInfo.TabIndex = 0;
             // 
@@ -379,7 +379,7 @@
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(751, 49);
+            this.dateTimePicker.Location = new System.Drawing.Point(3, 3);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(98, 20);
             this.dateTimePicker.TabIndex = 3;
@@ -388,6 +388,7 @@
             // 
             // dataGridInfo
             // 
+            this.dataGridInfo.AllowUserToAddRows = false;
             this.dataGridInfo.AllowUserToResizeRows = false;
             this.dataGridInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -406,7 +407,7 @@
             this.dataGridInfo.Name = "dataGridInfo";
             this.dataGridInfo.ReadOnly = true;
             this.dataGridInfo.RowTemplate.Height = 20;
-            this.dataGridInfo.Size = new System.Drawing.Size(854, 479);
+            this.dataGridInfo.Size = new System.Drawing.Size(854, 412);
             this.dataGridInfo.TabIndex = 2;
             this.dataGridInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInfo_CellEndEdit);
             this.dataGridInfo.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridInfo_CellMouseUp);
@@ -462,21 +463,13 @@
             // 
             // tabWorkSearch
             // 
-            this.tabWorkSearch.Controls.Add(this.dateTimePicker1);
             this.tabWorkSearch.Location = new System.Drawing.Point(4, 22);
             this.tabWorkSearch.Name = "tabWorkSearch";
             this.tabWorkSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWorkSearch.Size = new System.Drawing.Size(860, 515);
+            this.tabWorkSearch.Size = new System.Drawing.Size(860, 448);
             this.tabWorkSearch.TabIndex = 2;
             this.tabWorkSearch.Text = "Поиск работы";
             this.tabWorkSearch.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(202, 61);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(147, 20);
-            this.dateTimePicker1.TabIndex = 0;
             // 
             // tabStatistic
             // 
@@ -490,7 +483,7 @@
             this.tabStatistic.Location = new System.Drawing.Point(4, 22);
             this.tabStatistic.Name = "tabStatistic";
             this.tabStatistic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatistic.Size = new System.Drawing.Size(860, 515);
+            this.tabStatistic.Size = new System.Drawing.Size(352, 327);
             this.tabStatistic.TabIndex = 3;
             this.tabStatistic.Text = "Статистика";
             this.tabStatistic.UseVisualStyleBackColor = true;
@@ -559,7 +552,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 541);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(868, 474);
             this.Controls.Add(this.tcEmployees);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -575,7 +569,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).EndInit();
             this.splitContainerInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).EndInit();
-            this.tabWorkSearch.ResumeLayout(false);
             this.tabStatistic.ResumeLayout(false);
             this.tabStatistic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -630,7 +623,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnExperience;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHasFoundJob;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

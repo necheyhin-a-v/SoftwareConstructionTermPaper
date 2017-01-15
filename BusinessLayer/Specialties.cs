@@ -32,13 +32,12 @@ namespace BusinessLayer
             return list;
         }
 
-        public void SetSelectedSpecialties(List<string> specialties)
+        public List<string> GetEmploymentTypes()
         {
-            throw new NotImplementedException();
-        }
-        public List<string> GetSelectedSpecialties()
-        {
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            foreach(var item in Enum.GetValues(typeof(ModelLayerMSSQL.EmploymentType)))
+                result.Add(item.ToString());
+            return result;
         }
     }
 }

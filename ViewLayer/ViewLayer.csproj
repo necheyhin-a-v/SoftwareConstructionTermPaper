@@ -126,6 +126,12 @@
     <Compile Include="FormEmployers.Designer.cs">
       <DependentUpon>FormEmployers.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSelectEmploymentTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectEmploymentTypes.Designer.cs">
+      <DependentUpon>FormSelectEmploymentTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSelectSpecialties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,12 +152,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployees.resx">
       <DependentUpon>FormEmployees.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAuthorization.resx">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployers.resx">
       <DependentUpon>FormEmployers.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectEmploymentTypes.resx">
+      <DependentUpon>FormSelectEmploymentTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectSpecialties.resx">
       <DependentUpon>FormSelectSpecialties.cs</DependentUpon>

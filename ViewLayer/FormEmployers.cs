@@ -34,8 +34,8 @@ namespace ViewLayer
             this.ViewEmployer = viewEmployer;
             this.ViewVacancy = viewVacancy;
             InitializeComponent();
-            //Установить размер формы начальный
-            this.Size = new Size(377, 225);
+            //Эмуляция изменения вкладки для подстройки размеров формы
+            TabControlEmployersSelectedIndexChanged(null, null);
             //Создание объектов контекстного меню для вакансий и информации о работодателях
             contextMenuInfoEmployer = new ContextMenuStrip();
             contextMenuVacancies = new ContextMenuStrip();

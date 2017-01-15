@@ -10,23 +10,21 @@ using System.Windows.Forms;
 
 namespace ViewLayer
 {
-    public partial class FormSelectSpecialties : Form
+    public partial class FormSelectEmploymentTypes : Form
     {
-        private IViewSpecialty ViewSpecialty;
         private IViewEmployee ViewEployee;
         /// <summary>
         /// Конструктор динамической формы
         /// </summary>
-        public FormSelectSpecialties(IViewSpecialty viewSpecialty, IViewEmployee viewEmployee)
+        public FormSelectEmploymentTypes(IViewEmployee viewEmployee, IViewSpecialty viewSpecialty)
         {
-            this.ViewSpecialty = viewSpecialty;
             this.ViewEployee = viewEmployee;
             InitializeComponent();
-            List<string> specialties = ViewSpecialty.GetSpecialties();
+            List<string> employmentTypes = viewSpecialty.GetEmploymentTypes();
             //Настройка таблицы в ширину
             this.tableLayoutPanelTop.ColumnCount = 4;
             //Добавление последовательно всех специальностей в виде checkBox
-            foreach (string item in specialties)
+            foreach (string item in employmentTypes)
             {
                 CheckBox currentCheckBox = new CheckBox();
                 currentCheckBox.Text = item;
@@ -40,7 +38,7 @@ namespace ViewLayer
             //Формирование списка выбранных специальностей
             foreach (CheckBox item in this.tableLayoutPanelTop.Controls)
                 if (item.Checked) result.Add(item.Text);
-            ViewEployee.SetSelectedSpecialties(result);
+            ViewEployee.SetSelectedEmploymentTypes(result);
             this.Close();
         }
 

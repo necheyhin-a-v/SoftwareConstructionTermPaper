@@ -126,7 +126,7 @@ namespace ModelLayerMSSQL
                 + "'" + this.MiddleName + "',"
                 + "'" + this.Address + "',"
                 + "'" + this.Phone + "',"
-                + "'" + (this.HasFoundJob ? DateWhenWorkFounded.ToString("dd.MM.yy") : null) + "', "
+                + (this.HasFoundJob ? "'"+DateWhenWorkFounded.ToString("dd.MM.yy")+"'" : null) + ", "
                 + this.Experience + ")";
             try
             {

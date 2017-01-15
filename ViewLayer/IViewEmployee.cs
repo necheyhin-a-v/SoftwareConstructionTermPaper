@@ -53,5 +53,27 @@ namespace ViewLayer
         /// </summary>
         void ChangeEmployeeInfo(string oldPassport, string firstName, string middleName,string secondName,
             string newPassport, string address, string phone, uint experience, string status);
+        /// <summary>
+        /// Получить список типов занятости, выбранных пользователем
+        /// </summary>
+        List<string> GetSelectedEmploymentTypes();
+        /// <summary>
+        /// Получить выбранные типы занятости для конкретного работника
+        /// </summary>
+        List<string> GetSelectedEmploymentTypes(string passportData);
+        /// <summary>
+        /// Установить список типов занятостей, выбранных пользователем
+        /// </summary>
+        void SetSelectedEmploymentTypes(List<string> employmentTypes);
+        /// <summary>
+        /// Установить выбранные типы занятостей для работника и сохранить 
+        /// значения для конкретного работника
+        /// </summary>
+        void SetSelectedEmploymentTypes(string passportData, List<string> employmentTypes);
+
+
+
+
+
     }
 }

@@ -19,5 +19,9 @@ namespace ViewLayer
         /// Получить список специальностей из базы данных
         /// </summary>
         List<string> GetSpecialties();
+        /// <summary>
+        /// Получить список всех типов занятости
+        /// </summary>
+        List<string> GetEmploymentTypes();
     }
 }

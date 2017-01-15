@@ -11,10 +11,13 @@ namespace BusinessLayer
     class Employees : IViewEmployee
     {
         private List<string> SelectedSpecialties;
+        private List<string> SelectedEmploymentTypes;
+
         public Employees()
         {
             SelectedSpecialties = new List<string>();
         }
+
         public List<string[]> GetEmployees(string filter)
         {
             List<ModelLayerMSSQL.Employee> employees = ModelLayerMSSQL.Employee.GetAll();
@@ -63,6 +66,7 @@ namespace BusinessLayer
             }
             return list;
         }
+
         public void RegisterEmployee(string passport, string firstName, string secondName, string middleName,
             string address, string phone, string experience)
         {
@@ -76,7 +80,8 @@ namespace BusinessLayer
                 throw new Exception("Адрес не может быть пустым");
             try
             {
-                ModelLayerMSSQL.Employee newEmpoyee = new ModelLayerMSSQL.Employee(passport, firstName, secondName, middleName, address, phone, Convert.ToUInt32(experience));
+                ModelLayerMSSQL.Employee newEmpoyee = new ModelLayerMSSQL.Employee(passport, firstName, secondName,
+                    middleName, address, phone, experience.Equals("") ? 0 : Convert.ToUInt32(experience));
                 //Если ни одна специальность не выбрана - выбрать все
                 if (SelectedSpecialties.Count == 0)
                 {
@@ -86,17 +91,28 @@ namespace BusinessLayer
                 }
                 foreach (string item in SelectedSpecialties)
                     newEmpoyee.AddPriorSpecialty(item);
-
+                //Если ни один тип занятости не выбран - выбрать все
+                if (SelectedEmploymentTypes.Count == 0)
+                {
+                    Array list = Enum.GetValues(typeof(ModelLayerMSSQL.EmploymentType));
+                    foreach(var item in list)
+                        SelectedEmploymentTypes.Add(item.ToString());
+                }
+                foreach (string item in SelectedEmploymentTypes)
+                    newEmpoyee.AddPriorEmploymentType(
+                        (ModelLayerMSSQL.EmploymentType)Enum.Parse(typeof(ModelLayerMSSQL.EmploymentType), item));
             }
             catch (Exception)
             {
                 throw new Exception("Ошибка базы данных при попытке добавить работника");
             }
         }
+
         public List<string> GetSelectedSpecialties()
         {
             return SelectedSpecialties;
         }
+
         public void SetSelectedSpecialties(List<string> specialties)
         {
             SelectedSpecialties = specialties;
@@ -127,6 +143,26 @@ namespace BusinessLayer
                 DateTime date = DateTime.Parse(status);
                 employee.ChangeDateWhenJobFounded(date);
             }
+        }
+
+        public List<string> GetSelectedEmploymentTypes()
+        {
+            return this.SelectedEmploymentTypes;
+        }
+
+        public List<string> GetSelectedEmploymentTypes(string passportData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetSelectedEmploymentTypes(List<string> employmentTypes)
+        {
+            this.SelectedEmploymentTypes = employmentTypes;
+        }
+
+        public void SetSelectedEmploymentTypes(string passportData, List<string> employmentTypes)
+        {
+            throw new NotImplementedException();
         }
     }
 }
