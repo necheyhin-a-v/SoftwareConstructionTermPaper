@@ -41,10 +41,9 @@ namespace ViewLayer
             tcEmployees_SelectedIndexChanged(null, null);
             //Скрытие первого столбца
             this.dataGridInfo.RowHeadersVisible = false;
+            this.dataGridStatistics.RowHeadersVisible = false;
             //Подключить обработчик при нажатии на кнопку добавления специальностей
             this.buttonSelectSpecialties.Click += ButtonSelectSpecialtiesClicked;
-
-
             //Создание объектов контекстного меню  информации о работниках
             contextMenuInfoEmploee = new ContextMenuStrip();
             // Создание пунктов меню
@@ -62,6 +61,10 @@ namespace ViewLayer
             contextMenuInfoEmploee.Items.Add(changeSelectedSpecialtiesMenuItem);
             contextMenuInfoEmploee.Items.Add(changeSelectedEmploymenTypesMenuItem);
             contextMenuInfoEmploee.Items.Add(suggestVacancyMenuItem);
+            //Настроить объекты работы со статистикой
+            dateTimePickerStartStatictics.MaxDate = DateTime.Today;
+            dateTimePickerStartStatictics.Value = DateTime.Today.AddMonths(-1);
+            dateTimePickerEndStatistics.MaxDate = DateTime.Today;
         }
         /// <summary>
         /// Добавление контекстного меню для каждой строки таблицы
@@ -115,7 +118,6 @@ namespace ViewLayer
                 UpdateInfo(this.textBoxSearchInfo.Text);
             }
         }
-
         /// <summary>
         /// Обработчик события пункта меню редактировать информацию о работнике
         /// </summary>
@@ -151,10 +153,17 @@ namespace ViewLayer
         {
             MessageBox.Show("Изменение предпочитаемых специальностей");
         }
+        /// <summary>
+        /// Обработчик события пункта меню сменить предпочитаемые типы
+        /// занятости для для текущего работника
+        /// </summary>
         private void ChangeSelectedEmploymenTypesMenuItemClick(object sender, EventArgs e)
         {
             MessageBox.Show("Изменение предпочитаемых типов занятости");
         }
+        /// <summary>
+        /// Обработчик события "подобрать вакансию"
+        /// </summary>
         private void SuggestVacancyMenuItemClick(object sender, EventArgs e)
         {
             AllowToFindJob = true;
@@ -211,12 +220,17 @@ namespace ViewLayer
                     this.Size = new Size(380, 380);
                     break;
                 case 1: //Вкладка сведения
-                    this.Size = new Size(885, 580);
+                    this.Size = new Size(900, 580);
                     UpdateInfo(this.textBoxSearchInfo.Text);
+                    break;
+                case 2: //Вкладка поиск работы
+                    break;
+                case 3: //Вкладка статистики
+                    this.Size = new Size(900, 580);
+                    UpdateStatistics();
                     break;
             }
         }
-
         /// <summary>
         /// Обновить таблицу с информацией о работниках
         /// Пытается применить фильтр для показа
@@ -250,6 +264,49 @@ namespace ViewLayer
             {
                 Console.Error.Write(err.Message);
                 MessageBox.Show("Невозможно получить данные о работниках.\nПри выполнении поиска проверьте результаты");
+            }
+        }
+        /// <summary>
+        /// Обновляет таблицу статистики
+        /// </summary>
+        public void UpdateStatistics()
+        {
+            try
+            {
+                this.dataGridStatistics.SelectAll();
+                this.dataGridStatistics.ClearSelection();
+                List<string[]> employees;
+                //Не используются даты нет фильтра
+                if (this.radioButtonShowAll.Checked)
+                   employees = ViewEmployee.GetEmployeeAsStatistics();
+                //Не используются даты, фильтрация
+                else if (this.radioButtonNotFoudJob.Checked)
+                    employees = ViewEmployee.GetEmployeeAsStatistics("","", "false");
+                //Используются даты и фильтр
+                else
+                    employees = ViewEmployee.GetEmployeeAsStatistics(dateTimePickerStartStatictics.Value.ToString(), dateTimePickerEndStatistics.Value.ToString(), "true");
+                if (employees.Count == 0)
+                    throw new Exception("Нет информации для показа");
+                this.dataGridStatistics.RowCount = employees.Count;
+                int currentRow = 0;
+                foreach (string[] currentEmployee in employees)
+                {
+                    //Добавить все элементы как текстовые
+                    for (int i = 0; i < currentEmployee.Count() - 1; i++)
+                        this.dataGridStatistics.Rows[currentRow].Cells[i].Value = currentEmployee.ElementAt(i);
+                    //Последний элемент добавить как check-box
+                    //Создание новой ячейки-checkBox
+                    DataGridViewCheckBoxCell comboBox = new DataGridViewCheckBoxCell();
+                    comboBox.Value = Boolean.Parse(currentEmployee.ElementAt(currentEmployee.Length - 1));
+                    //Установить новую ячейку в нужное место
+                    dataGridStatistics.Rows[currentRow].Cells[dataGridStatistics.ColumnCount - 1] = comboBox;
+                    currentRow++;
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Error.Write(err.Message);
+                MessageBox.Show("Невозможно получить статистику.\nИли нет информации для отображения");
             }
         }
         /// <summary>
@@ -340,6 +397,39 @@ namespace ViewLayer
         {
             if (AllowToFindJob == false && e.TabPageIndex == 2)
                 e.Cancel = true;
+        }
+
+        private void radioButtonStatistics_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.radioButtonShowAll.Checked)
+            {
+                dateTimePickerStartStatictics.Value = DateTime.Today.AddMonths(-1);//По умолчанию статистика за месяц
+                dateTimePickerEndStatistics.Value = DateTime.Today;
+                dateTimePickerStartStatictics.Enabled = false;
+                dateTimePickerEndStatistics.Enabled = false;
+            }
+            else if(this.radioButtonNotFoudJob.Checked)
+            {
+                dateTimePickerStartStatictics.Value = DateTime.Today.AddMonths(-1);//По умолчанию статистика за месяц
+                dateTimePickerEndStatistics.Value = DateTime.Today;
+                dateTimePickerStartStatictics.Enabled = false;
+                dateTimePickerEndStatistics.Enabled = false;
+            }
+            else if(this.radioButtonFoundJob.Checked)
+            {
+                dateTimePickerStartStatictics.Enabled = true;
+                dateTimePickerEndStatistics.Enabled = true;
+            }
+
+            UpdateStatistics();
+        }
+        /// <summary>
+        /// Произведено изменение интервала статистики
+        /// необходимо обновление таблицы
+        /// </summary>
+        private void dateRangeValueChanged(object sender, EventArgs e)
+        {
+            UpdateStatistics();
         }
     }
 }

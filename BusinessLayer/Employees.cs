@@ -67,6 +67,86 @@ namespace BusinessLayer
             return list;
         }
 
+
+        public List<string[]> GetEmployeeAsStatistics(string dateStart = "", string dateEnd = "", string status = "")
+        {
+            List<ModelLayerMSSQL.Employee> employees = ModelLayerMSSQL.Employee.GetAll();
+            List<string[]> list = new List<string[]>();
+            //Не используется фильтр
+            if (status.Equals(""))
+            {
+                foreach (ModelLayerMSSQL.Employee current in employees)
+                {
+                    string[] tmp = new string[8];
+                    tmp.SetValue(current.GetFirstName(), 0);
+                    tmp.SetValue(current.GetMiddleName(), 1);
+                    tmp.SetValue(current.GetSecondName(), 2);
+                    tmp.SetValue(current.GetPassport(), 3);
+                    tmp.SetValue(current.GetAddress(), 4);
+                    tmp.SetValue(current.GetPhone(), 5);
+                    tmp.SetValue(Convert.ToString(current.GetExperience()), 6);
+                    tmp.SetValue(current.GetStatus().ToString(), 7);
+                    list.Add(tmp);
+                }
+            }
+            //Используется фильтр
+            else
+            {
+                //Если работники трудоустроены
+                if(Boolean.Parse(status))
+                {
+                    foreach (ModelLayerMSSQL.Employee current in employees)
+                    {
+                        string[] tmp = new string[8];
+                        tmp.SetValue(current.GetFirstName(), 0);
+                        tmp.SetValue(current.GetMiddleName(), 1);
+                        tmp.SetValue(current.GetSecondName(), 2);
+                        tmp.SetValue(current.GetPassport(), 3);
+                        tmp.SetValue(current.GetAddress(), 4);
+                        tmp.SetValue(current.GetPhone(), 5);
+                        tmp.SetValue(Convert.ToString(current.GetExperience()), 6);
+                        tmp.SetValue(current.GetStatus().ToString(), 7);
+                        //Проверка диапазона дат
+                        if(current.GetStatus() && DateIsBetween(current.GetDateWhenJobFounded(), DateTime.Parse(dateStart), DateTime.Parse(dateEnd)))
+                            list.Add(tmp);
+                    }
+                }
+                //Не трудоустроены работники
+                else
+                {
+                    foreach (ModelLayerMSSQL.Employee current in employees)
+                    {
+                        string[] tmp = new string[8];
+                        tmp.SetValue(current.GetFirstName(), 0);
+                        tmp.SetValue(current.GetMiddleName(), 1);
+                        tmp.SetValue(current.GetSecondName(), 2);
+                        tmp.SetValue(current.GetPassport(), 3);
+                        tmp.SetValue(current.GetAddress(), 4);
+                        tmp.SetValue(current.GetPhone(), 5);
+                        tmp.SetValue(Convert.ToString(current.GetExperience()), 6);
+                        tmp.SetValue(current.GetStatus().ToString(), 7);
+                        //Проверка диапазона дат
+                        if (!current.GetStatus())
+                            list.Add(tmp);
+                    }
+                }
+            }
+            return list;
+        }
+        /// <summary>
+        /// Возвращает true если дата находится между
+        /// </summary>
+        public bool DateIsBetween(DateTime toCompare, DateTime start, DateTime end)
+        {
+            if (start == end)
+                return toCompare == start;
+            if (start > end)
+                return toCompare <= end || toCompare >= start;
+            else
+                return toCompare >= start && toCompare <= end;
+
+        }
+
         public void RegisterEmployee(string passport, string firstName, string secondName, string middleName,
             string address, string phone, string experience)
         {

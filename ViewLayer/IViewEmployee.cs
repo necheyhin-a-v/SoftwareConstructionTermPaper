@@ -70,10 +70,13 @@ namespace ViewLayer
         /// значения для конкретного работника
         /// </summary>
         void SetSelectedEmploymentTypes(string passportData, List<string> employmentTypes);
-
-
-
-
-
+        /// <summary>
+        /// Получение работников, удовлетворяющих фильтрам
+        /// </summary>
+        /// <param name="dateStart">дата начала диапазона</param>
+        /// <param name="dateEnd">дата окончания диапазона</param>
+        /// <param name="status">статус (true, false) о трудоустройстве</param>
+        /// <returns></returns>
+        List<string[]> GetEmployeeAsStatistics(string dateStart = "", string dateEnd = "", string status = "");
     }
 }
