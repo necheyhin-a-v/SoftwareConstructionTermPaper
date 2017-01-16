@@ -24,6 +24,7 @@ namespace ViewLayer
         /// </summary>
         public event EventHandler ButtonSelectEmploymentTypesClicked;
 
+        private String SelectedEmployerPassport;    //Паспорт выбранного работника для совета ему вакансии
         private String DataBeforeEditing;
         private ContextMenuStrip contextMenuInfoEmploee;
         private IViewEmployee ViewEmployee;
@@ -41,6 +42,7 @@ namespace ViewLayer
             tcEmployees_SelectedIndexChanged(null, null);
             //Скрытие первого столбца
             this.dataGridInfo.RowHeadersVisible = false;
+            this.dataGridVacancies.RowHeadersVisible = false;
             this.dataGridStatistics.RowHeadersVisible = false;
             //Подключить обработчик при нажатии на кнопку добавления специальностей
             this.buttonSelectSpecialties.Click += ButtonSelectSpecialtiesClicked;
@@ -166,6 +168,10 @@ namespace ViewLayer
         /// </summary>
         private void SuggestVacancyMenuItemClick(object sender, EventArgs e)
         {
+            //Сохранить пасспорт выделенного работника
+            //В ячейке с индексом 3 находится пасспортные данные
+            this.SelectedEmployerPassport =
+                dataGridInfo.Rows[dataGridInfo.CurrentRow.Index].Cells[3].Value.ToString();
             AllowToFindJob = true;
             tcEmployees.SelectedIndex = 2;
         }
@@ -224,6 +230,8 @@ namespace ViewLayer
                     UpdateInfo(this.textBoxSearchInfo.Text);
                     break;
                 case 2: //Вкладка поиск работы
+                    this.Size = new Size(900, 580);
+                    UpdateSuggestedVacansies(SelectedEmployerPassport);
                     break;
                 case 3: //Вкладка статистики
                     this.Size = new Size(900, 580);
@@ -266,6 +274,42 @@ namespace ViewLayer
                 MessageBox.Show("Невозможно получить данные о работниках.\nПри выполнении поиска проверьте результаты");
             }
         }
+        /// <summary>
+        /// Обновить таблицу с информацией о работниках
+        /// Если пасспорт не задан - выдаются все вакансии
+        /// Иначе рекомендуемые именно данному сотруднику
+        /// </summary>
+        public void UpdateSuggestedVacansies(string passportNumber = "")
+        {
+            try
+            {
+                this.dataGridVacancies.SelectAll();
+                this.dataGridVacancies.ClearSelection();
+
+                List<string[]> vacancies = ViewEmployee.GetRemommendedVacancies(passportNumber);
+                if (vacancies.Count == 0)
+                {
+                    this.dataGridVacancies.RowCount = vacancies.Count;
+                    throw new Exception("Нет рекомендаций");
+                }
+
+                this.dataGridVacancies.RowCount = vacancies.Count;
+                int currentRow = 0;
+                foreach (string[] currentVacancy in vacancies)
+                {
+                    for (int i = 0; i < currentVacancy.Count(); i++)
+                        this.dataGridVacancies.Rows[currentRow].Cells[i].Value = currentVacancy.ElementAt(i);
+                    currentRow++;
+                }
+            }
+            catch (Exception err)
+            {
+                Console.Error.Write(err.Message);
+                MessageBox.Show("Нет рекомендаций по вакансиям.\nПопробуйте просмотреть все вакансии");
+            }
+        }
+
+
         /// <summary>
         /// Обновляет таблицу статистики
         /// </summary>
@@ -398,7 +442,9 @@ namespace ViewLayer
             if (AllowToFindJob == false && e.TabPageIndex == 2)
                 e.Cancel = true;
         }
-
+        /// <summary>
+        /// Изменен тип отображаемой статистики, перестройка элементов и обновление информации
+        /// </summary>
         private void radioButtonStatistics_CheckedChanged(object sender, EventArgs e)
         {
             if (this.radioButtonShowAll.Checked)
@@ -430,6 +476,17 @@ namespace ViewLayer
         private void dateRangeValueChanged(object sender, EventArgs e)
         {
             UpdateStatistics();
+        }
+        /// <summary>
+        /// Произведено изменение подбора вакансии
+        /// необходимо обновление таблицы вакансий
+        /// </summary>
+        private void radioButtonSuggestVacancyChanged(object sender, EventArgs e)
+        {
+            if (this.radioButtonRecommendedVacancies.Checked)
+                UpdateSuggestedVacansies(SelectedEmployerPassport);
+            else if (this.radioButtonAllVacancies.Checked)
+                UpdateSuggestedVacansies();
         }
     }
 }

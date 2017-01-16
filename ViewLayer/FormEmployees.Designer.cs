@@ -69,13 +69,6 @@
             this.tabWorkSearch = new System.Windows.Forms.TabPage();
             this.tabStatistic = new System.Windows.Forms.TabPage();
             this.splitContainerStatictics = new System.Windows.Forms.SplitContainer();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridStatistics = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -84,6 +77,24 @@
             this.radioButtonShowAll = new System.Windows.Forms.RadioButton();
             this.radioButtonFoundJob = new System.Windows.Forms.RadioButton();
             this.radioButtonNotFoudJob = new System.Windows.Forms.RadioButton();
+            this.splitContainerVacancies = new System.Windows.Forms.SplitContainer();
+            this.dataGridVacancies = new System.Windows.Forms.DataGridView();
+            this.ColumnVacancyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSpecialty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEmployer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEmperience = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEmploymentType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.radioButtonRecommendedVacancies = new System.Windows.Forms.RadioButton();
+            this.radioButtonAllVacancies = new System.Windows.Forms.RadioButton();
+            this.StatisticsColumnFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatisticsColumnMiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatisticsColumnSecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatisticsColumnPassport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatisticsColumnAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatisticsColumnPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatisticsColumnExperience = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcEmployees.SuspendLayout();
             this.tabRegEmployees.SuspendLayout();
             this.tabInfoEmployees.SuspendLayout();
@@ -92,12 +103,18 @@
             this.splitContainerInfo.Panel2.SuspendLayout();
             this.splitContainerInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).BeginInit();
+            this.tabWorkSearch.SuspendLayout();
             this.tabStatistic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerStatictics)).BeginInit();
             this.splitContainerStatictics.Panel1.SuspendLayout();
             this.splitContainerStatictics.Panel2.SuspendLayout();
             this.splitContainerStatictics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStatistics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerVacancies)).BeginInit();
+            this.splitContainerVacancies.Panel1.SuspendLayout();
+            this.splitContainerVacancies.Panel2.SuspendLayout();
+            this.splitContainerVacancies.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridVacancies)).BeginInit();
             this.SuspendLayout();
             // 
             // tcEmployees
@@ -111,7 +128,7 @@
             this.tcEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tcEmployees.Name = "tcEmployees";
             this.tcEmployees.SelectedIndex = 0;
-            this.tcEmployees.Size = new System.Drawing.Size(888, 568);
+            this.tcEmployees.Size = new System.Drawing.Size(886, 508);
             this.tcEmployees.TabIndex = 4;
             this.tcEmployees.SelectedIndexChanged += new System.EventHandler(this.tcEmployees_SelectedIndexChanged);
             this.tcEmployees.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tcEmployees_Selecting);
@@ -348,7 +365,7 @@
             this.tabInfoEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabInfoEmployees.Name = "tabInfoEmployees";
             this.tabInfoEmployees.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabInfoEmployees.Size = new System.Drawing.Size(880, 539);
+            this.tabInfoEmployees.Size = new System.Drawing.Size(878, 479);
             this.tabInfoEmployees.TabIndex = 1;
             this.tabInfoEmployees.Text = "Сведения";
             this.tabInfoEmployees.UseVisualStyleBackColor = true;
@@ -374,7 +391,7 @@
             // 
             this.splitContainerInfo.Panel2.Controls.Add(this.dateTimePicker);
             this.splitContainerInfo.Panel2.Controls.Add(this.dataGridInfo);
-            this.splitContainerInfo.Size = new System.Drawing.Size(872, 531);
+            this.splitContainerInfo.Size = new System.Drawing.Size(870, 471);
             this.splitContainerInfo.SplitterDistance = 26;
             this.splitContainerInfo.SplitterWidth = 5;
             this.splitContainerInfo.TabIndex = 0;
@@ -451,7 +468,7 @@
             this.dataGridInfo.Name = "dataGridInfo";
             this.dataGridInfo.ReadOnly = true;
             this.dataGridInfo.RowTemplate.Height = 20;
-            this.dataGridInfo.Size = new System.Drawing.Size(872, 500);
+            this.dataGridInfo.Size = new System.Drawing.Size(870, 440);
             this.dataGridInfo.TabIndex = 2;
             this.dataGridInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInfo_CellEndEdit);
             this.dataGridInfo.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridInfo_CellMouseUp);
@@ -507,11 +524,12 @@
             // 
             // tabWorkSearch
             // 
+            this.tabWorkSearch.Controls.Add(this.splitContainerVacancies);
             this.tabWorkSearch.Location = new System.Drawing.Point(4, 25);
             this.tabWorkSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabWorkSearch.Name = "tabWorkSearch";
             this.tabWorkSearch.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabWorkSearch.Size = new System.Drawing.Size(880, 539);
+            this.tabWorkSearch.Size = new System.Drawing.Size(878, 479);
             this.tabWorkSearch.TabIndex = 2;
             this.tabWorkSearch.Text = "Поиск работы";
             this.tabWorkSearch.UseVisualStyleBackColor = true;
@@ -555,48 +573,6 @@
             this.splitContainerStatictics.SplitterWidth = 5;
             this.splitContainerStatictics.TabIndex = 1;
             // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Опыт работы";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Номер телефона";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Адрес";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Паспорт";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Фамилия";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Отчество";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Имя";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
             // dataGridStatistics
             // 
             this.dataGridStatistics.AllowUserToAddRows = false;
@@ -604,13 +580,13 @@
             this.dataGridStatistics.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridStatistics.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7});
+            this.StatisticsColumnFirstName,
+            this.StatisticsColumnMiddleName,
+            this.StatisticsColumnSecondName,
+            this.StatisticsColumnPassport,
+            this.StatisticsColumnAddress,
+            this.StatisticsColumnPhone,
+            this.StatisticsColumnExperience});
             this.dataGridStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridStatistics.Location = new System.Drawing.Point(0, 0);
             this.dataGridStatistics.Margin = new System.Windows.Forms.Padding(4);
@@ -695,12 +671,163 @@
             this.radioButtonNotFoudJob.UseVisualStyleBackColor = true;
             this.radioButtonNotFoudJob.CheckedChanged += new System.EventHandler(this.radioButtonStatistics_CheckedChanged);
             // 
+            // splitContainerVacancies
+            // 
+            this.splitContainerVacancies.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerVacancies.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainerVacancies.Location = new System.Drawing.Point(4, 4);
+            this.splitContainerVacancies.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainerVacancies.Name = "splitContainerVacancies";
+            this.splitContainerVacancies.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerVacancies.Panel1
+            // 
+            this.splitContainerVacancies.Panel1.Controls.Add(this.radioButtonAllVacancies);
+            this.splitContainerVacancies.Panel1.Controls.Add(this.radioButtonRecommendedVacancies);
+            // 
+            // splitContainerVacancies.Panel2
+            // 
+            this.splitContainerVacancies.Panel2.Controls.Add(this.dataGridVacancies);
+            this.splitContainerVacancies.Size = new System.Drawing.Size(870, 471);
+            this.splitContainerVacancies.SplitterDistance = 25;
+            this.splitContainerVacancies.SplitterWidth = 5;
+            this.splitContainerVacancies.TabIndex = 9;
+            // 
+            // dataGridVacancies
+            // 
+            this.dataGridVacancies.AllowUserToAddRows = false;
+            this.dataGridVacancies.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridVacancies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridVacancies.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnVacancyName,
+            this.ColumnSpecialty,
+            this.ColumnEmployer,
+            this.ColumnEmperience,
+            this.ColumnEmploymentType,
+            this.ColumnSalary,
+            this.ColumnDescription});
+            this.dataGridVacancies.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridVacancies.Location = new System.Drawing.Point(0, 0);
+            this.dataGridVacancies.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridVacancies.MultiSelect = false;
+            this.dataGridVacancies.Name = "dataGridVacancies";
+            this.dataGridVacancies.ReadOnly = true;
+            this.dataGridVacancies.Size = new System.Drawing.Size(870, 441);
+            this.dataGridVacancies.TabIndex = 5;
+            // 
+            // ColumnVacancyName
+            // 
+            this.ColumnVacancyName.HeaderText = "Требуется";
+            this.ColumnVacancyName.Name = "ColumnVacancyName";
+            this.ColumnVacancyName.ReadOnly = true;
+            // 
+            // ColumnSpecialty
+            // 
+            this.ColumnSpecialty.HeaderText = "Направление деятельности";
+            this.ColumnSpecialty.Name = "ColumnSpecialty";
+            this.ColumnSpecialty.ReadOnly = true;
+            // 
+            // ColumnEmployer
+            // 
+            this.ColumnEmployer.HeaderText = "Предприятие";
+            this.ColumnEmployer.Name = "ColumnEmployer";
+            this.ColumnEmployer.ReadOnly = true;
+            // 
+            // ColumnEmperience
+            // 
+            this.ColumnEmperience.HeaderText = "Требуемый опыт";
+            this.ColumnEmperience.Name = "ColumnEmperience";
+            this.ColumnEmperience.ReadOnly = true;
+            // 
+            // ColumnEmploymentType
+            // 
+            this.ColumnEmploymentType.HeaderText = "Тип занятости";
+            this.ColumnEmploymentType.Name = "ColumnEmploymentType";
+            this.ColumnEmploymentType.ReadOnly = true;
+            // 
+            // ColumnSalary
+            // 
+            this.ColumnSalary.HeaderText = "Оплата";
+            this.ColumnSalary.Name = "ColumnSalary";
+            this.ColumnSalary.ReadOnly = true;
+            // 
+            // ColumnDescription
+            // 
+            this.ColumnDescription.HeaderText = "Описание";
+            this.ColumnDescription.Name = "ColumnDescription";
+            this.ColumnDescription.ReadOnly = true;
+            // 
+            // radioButtonRecommendedVacancies
+            // 
+            this.radioButtonRecommendedVacancies.AutoSize = true;
+            this.radioButtonRecommendedVacancies.Checked = true;
+            this.radioButtonRecommendedVacancies.Location = new System.Drawing.Point(4, 3);
+            this.radioButtonRecommendedVacancies.Name = "radioButtonRecommendedVacancies";
+            this.radioButtonRecommendedVacancies.Size = new System.Drawing.Size(201, 21);
+            this.radioButtonRecommendedVacancies.TabIndex = 0;
+            this.radioButtonRecommendedVacancies.TabStop = true;
+            this.radioButtonRecommendedVacancies.Text = "Рекомендуемые вакансии";
+            this.radioButtonRecommendedVacancies.UseVisualStyleBackColor = true;
+            this.radioButtonRecommendedVacancies.CheckedChanged += new System.EventHandler(this.radioButtonSuggestVacancyChanged);
+            // 
+            // radioButtonAllVacancies
+            // 
+            this.radioButtonAllVacancies.AutoSize = true;
+            this.radioButtonAllVacancies.Location = new System.Drawing.Point(211, 3);
+            this.radioButtonAllVacancies.Name = "radioButtonAllVacancies";
+            this.radioButtonAllVacancies.Size = new System.Drawing.Size(118, 21);
+            this.radioButtonAllVacancies.TabIndex = 1;
+            this.radioButtonAllVacancies.Text = "Все вакансии";
+            this.radioButtonAllVacancies.UseVisualStyleBackColor = true;
+            // 
+            // StatisticsColumnFirstName
+            // 
+            this.StatisticsColumnFirstName.HeaderText = "Имя";
+            this.StatisticsColumnFirstName.Name = "StatisticsColumnFirstName";
+            this.StatisticsColumnFirstName.ReadOnly = true;
+            // 
+            // StatisticsColumnMiddleName
+            // 
+            this.StatisticsColumnMiddleName.HeaderText = "Отчество";
+            this.StatisticsColumnMiddleName.Name = "StatisticsColumnMiddleName";
+            this.StatisticsColumnMiddleName.ReadOnly = true;
+            // 
+            // StatisticsColumnSecondName
+            // 
+            this.StatisticsColumnSecondName.HeaderText = "Фамилия";
+            this.StatisticsColumnSecondName.Name = "StatisticsColumnSecondName";
+            this.StatisticsColumnSecondName.ReadOnly = true;
+            // 
+            // StatisticsColumnPassport
+            // 
+            this.StatisticsColumnPassport.HeaderText = "Паспорт";
+            this.StatisticsColumnPassport.Name = "StatisticsColumnPassport";
+            this.StatisticsColumnPassport.ReadOnly = true;
+            // 
+            // StatisticsColumnAddress
+            // 
+            this.StatisticsColumnAddress.HeaderText = "Адрес";
+            this.StatisticsColumnAddress.Name = "StatisticsColumnAddress";
+            this.StatisticsColumnAddress.ReadOnly = true;
+            // 
+            // StatisticsColumnPhone
+            // 
+            this.StatisticsColumnPhone.HeaderText = "Номер телефона";
+            this.StatisticsColumnPhone.Name = "StatisticsColumnPhone";
+            this.StatisticsColumnPhone.ReadOnly = true;
+            // 
+            // StatisticsColumnExperience
+            // 
+            this.StatisticsColumnExperience.HeaderText = "Опыт работы";
+            this.StatisticsColumnExperience.Name = "StatisticsColumnExperience";
+            this.StatisticsColumnExperience.ReadOnly = true;
+            // 
             // FormEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(888, 568);
+            this.ClientSize = new System.Drawing.Size(886, 508);
             this.Controls.Add(this.tcEmployees);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -717,6 +844,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerInfo)).EndInit();
             this.splitContainerInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).EndInit();
+            this.tabWorkSearch.ResumeLayout(false);
             this.tabStatistic.ResumeLayout(false);
             this.splitContainerStatictics.Panel1.ResumeLayout(false);
             this.splitContainerStatictics.Panel1.PerformLayout();
@@ -724,6 +852,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerStatictics)).EndInit();
             this.splitContainerStatictics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStatistics)).EndInit();
+            this.splitContainerVacancies.Panel1.ResumeLayout(false);
+            this.splitContainerVacancies.Panel1.PerformLayout();
+            this.splitContainerVacancies.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerVacancies)).EndInit();
+            this.splitContainerVacancies.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridVacancies)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -772,18 +906,29 @@
         private System.Windows.Forms.SplitContainer splitContainerStatictics;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridStatistics;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.RadioButton radioButtonNotFoudJob;
         private System.Windows.Forms.RadioButton radioButtonFoundJob;
         private System.Windows.Forms.RadioButton radioButtonShowAll;
         private System.Windows.Forms.DateTimePicker dateTimePickerEndStatistics;
         private System.Windows.Forms.DateTimePicker dateTimePickerStartStatictics;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.SplitContainer splitContainerVacancies;
+        private System.Windows.Forms.RadioButton radioButtonAllVacancies;
+        private System.Windows.Forms.RadioButton radioButtonRecommendedVacancies;
+        private System.Windows.Forms.DataGridView dataGridVacancies;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVacancyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSpecialty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmployer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmperience;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmploymentType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalary;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatisticsColumnFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatisticsColumnMiddleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatisticsColumnSecondName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatisticsColumnPassport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatisticsColumnAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatisticsColumnPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatisticsColumnExperience;
     }
 }

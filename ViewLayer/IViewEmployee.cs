@@ -78,5 +78,9 @@ namespace ViewLayer
         /// <param name="status">статус (true, false) о трудоустройстве</param>
         /// <returns></returns>
         List<string[]> GetEmployeeAsStatistics(string dateStart = "", string dateEnd = "", string status = "");
+        /// <summary>
+        /// Получить список вакансий, рекомендуемых работнику
+        /// </summary>
+        List<string[]> GetRemommendedVacancies(string filterpassportToSuggest = "");
     }
 }

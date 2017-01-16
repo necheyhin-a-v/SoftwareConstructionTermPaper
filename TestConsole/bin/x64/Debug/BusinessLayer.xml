@@ -4,6 +4,11 @@
         <name>BusinessLayer</name>
     </assembly>
     <members>
+        <member name="M:BusinessLayer.Employees.DateIsBetween(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Возвращает true если дата находится между
+            </summary>
+        </member>
         <member name="M:BusinessLayer.Employers.GetEmployers(System.String)">
             <summary>
             Метод определяет получение списка работодателей для формы

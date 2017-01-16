@@ -12,6 +12,19 @@ namespace BusinessLayer
     {
         private List<string> SelectedSpecialties;
         private List<string> SelectedEmploymentTypes;
+        /// <summary>
+        /// Возвращает true если дата находится между
+        /// </summary>
+        public bool DateIsBetween(DateTime toCompare, DateTime start, DateTime end)
+        {
+            if (start == end)
+                return toCompare == start;
+            if (start > end)
+                return toCompare <= end || toCompare >= start;
+            else
+                return toCompare >= start && toCompare <= end;
+
+        }
 
         public Employees()
         {
@@ -66,7 +79,6 @@ namespace BusinessLayer
             }
             return list;
         }
-
 
         public List<string[]> GetEmployeeAsStatistics(string dateStart = "", string dateEnd = "", string status = "")
         {
@@ -133,19 +145,7 @@ namespace BusinessLayer
             }
             return list;
         }
-        /// <summary>
-        /// Возвращает true если дата находится между
-        /// </summary>
-        public bool DateIsBetween(DateTime toCompare, DateTime start, DateTime end)
-        {
-            if (start == end)
-                return toCompare == start;
-            if (start > end)
-                return toCompare <= end || toCompare >= start;
-            else
-                return toCompare >= start && toCompare <= end;
 
-        }
 
         public void RegisterEmployee(string passport, string firstName, string secondName, string middleName,
             string address, string phone, string experience)
@@ -188,6 +188,95 @@ namespace BusinessLayer
             }
         }
 
+        public void ChangeEmployeeInfo(string oldPassport, string firstName, string middleName,
+    string secondName, string newPassport, string address, string phone, uint experience, string status)
+        {
+            ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(oldPassport);
+            employee.ChangePassport(newPassport);
+            employee.ChangeFirstName(firstName);
+            employee.ChangeMiddleName(middleName);
+            employee.ChangeSecondName(secondName);
+            employee.ChangeAddress(address);
+            employee.ChangePhone(phone);
+            employee.ChangeExperience(experience);
+            if (!status.Equals(""))
+            {
+                DateTime date = DateTime.Parse(status);
+                employee.ChangeDateWhenJobFounded(date);
+            }
+        }
+
+        public List<string[]> GetRemommendedVacancies(string passportToSuggest)
+        {
+            List<ModelLayerMSSQL.Vacancy> vacancies = ModelLayerMSSQL.Vacancy.GetAll();
+            List<string[]> list = new List<string[]>();
+            //Не используется фильтр и значит выводятся все вакансии
+            if (passportToSuggest.Equals(""))
+            {
+                foreach (ModelLayerMSSQL.Vacancy current in vacancies)
+                {
+                    string[] tmp = new string[7];
+                    tmp.SetValue(current.GetName(), 0);
+                    tmp.SetValue(current.GetSpecialtyName(), 1);
+                    tmp.SetValue(ModelLayerMSSQL.Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
+                    tmp.SetValue((current.GetRequiredExperience()).ToString(), 3);
+                    tmp.SetValue(current.GetEmploymentType().ToString(), 4);
+                    tmp.SetValue(current.GetSalary().ToString(), 5);
+                    tmp.SetValue(current.GetDescription(), 6);
+                    list.Add(tmp);
+                }
+            }
+            //Используется фильтр
+            else
+            {
+                foreach (ModelLayerMSSQL.Vacancy current in vacancies)
+                {
+                    string[] tmp = new string[7];
+                    tmp.SetValue(current.GetName(), 0);
+                    tmp.SetValue(current.GetSpecialtyName(), 1);
+                    tmp.SetValue(ModelLayerMSSQL.Employer.GetByItn(current.GetEmployerItn()).GetName(), 2);
+                    tmp.SetValue((current.GetRequiredExperience()).ToString(), 3);
+                    tmp.SetValue(current.GetEmploymentType().ToString(), 4);
+                    tmp.SetValue(current.GetSalary().ToString(), 5);
+                    tmp.SetValue(current.GetDescription(), 6);
+                    //Получить работника из базы данных по паспорту
+                    ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(passportToSuggest);
+                    //Проверка на включение вакансии на основе специальности
+                    List<ModelLayerMSSQL.Specialty> speciatlyList = employee.GetPriorSpecialties();
+                    //Используется для того, чтобы исключить дублирование записи по разным критериям (специальности и типа занятости)
+                    bool isItemAdded = false;   
+                    foreach (var item in speciatlyList)
+                    {
+                        //Если вакансия имеет такую же специальность как и работнику требуется
+                        //добавить эту вакансию в список
+                        if(current.GetSpecialtyName().Equals(item.GetName()))
+                        {
+                            list.Add(tmp);
+                            isItemAdded = true;
+                            break;
+                        }
+                    }
+                    //Если текущая запись уже была добавлена нет необходимости
+                    //проверять на соответствие ее другим критериям
+                    if (isItemAdded)
+                        continue;
+                    //Проверка на включение вакансии на основе типа занятости
+                    List<ModelLayerMSSQL.EmploymentType> employmentTypeList = employee.GetPriorEmploymentTypes();
+                    foreach (var item in employmentTypeList)
+                    {
+                        //Если вакансия имеет такой же тип занятости как и работнику требуется
+                        //добавить эту вакансию в список
+                        if (current.GetEmploymentType() == item)
+                        {
+                            list.Add(tmp);
+                            break;
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
         public List<string> GetSelectedSpecialties()
         {
             return SelectedSpecialties;
@@ -198,46 +287,29 @@ namespace BusinessLayer
             SelectedSpecialties = specialties;
         }
 
-        public void SetSelectedSpecialties(string passportData, List<string> specialties)
-        {
-            throw new NotImplementedException();
-        }
-        public List<string> GetSelectedSpecialties(string passportData)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ChangeEmployeeInfo(string oldPassport, string firstName, string middleName, 
-            string secondName, string newPassport, string address, string phone, uint experience, string status)
-        {
-            ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(oldPassport);
-            employee.ChangePassport(newPassport);
-            employee.ChangeFirstName(firstName);
-            employee.ChangeMiddleName(middleName);
-            employee.ChangeSecondName(secondName);
-            employee.ChangeAddress(address);
-            employee.ChangePhone(phone);
-            employee.ChangeExperience(experience);
-            if( !status.Equals(""))
-            {
-                DateTime date = DateTime.Parse(status);
-                employee.ChangeDateWhenJobFounded(date);
-            }
-        }
-
         public List<string> GetSelectedEmploymentTypes()
         {
             return this.SelectedEmploymentTypes;
         }
 
-        public List<string> GetSelectedEmploymentTypes(string passportData)
+        public void SetSelectedEmploymentTypes(List<string> employmentTypes)
+        {
+            this.SelectedEmploymentTypes = employmentTypes;
+        }
+
+        public void SetSelectedSpecialties(string passportData, List<string> specialties)
         {
             throw new NotImplementedException();
         }
 
-        public void SetSelectedEmploymentTypes(List<string> employmentTypes)
+        public List<string> GetSelectedSpecialties(string passportData)
         {
-            this.SelectedEmploymentTypes = employmentTypes;
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetSelectedEmploymentTypes(string passportData)
+        {
+            throw new NotImplementedException();
         }
 
         public void SetSelectedEmploymentTypes(string passportData, List<string> employmentTypes)

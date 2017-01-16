@@ -47,9 +47,62 @@
             Класс формы работников
             </summary>
         </member>
+        <member name="E:ViewLayer.FormEmployees.ButtonSelectSpecialtiesClicked">
+            <summary>
+            Событие, которое происходит при нажатии на кнопку выбрать специальности
+            </summary>
+        </member>
+        <member name="E:ViewLayer.FormEmployees.ButtonSelectEmploymentTypesClicked">
+            <summary>
+            Событие, которое происходит при нажатии на кнопку выбрать типы занятости
+            </summary>
+        </member>
         <member name="M:ViewLayer.FormEmployees.#ctor(ViewLayer.IViewEmployee,ViewLayer.IViewVacancy)">
             <summary>
             Конструктор формы работников
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.dataGridInfo_RowsAdded(System.Object,System.Windows.Forms.DataGridViewRowsAddedEventArgs)">
+            <summary>
+            Добавление контекстного меню для каждой строки таблицы
+            "сведения о работнике"
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.dataGridInfo_CellEndEdit(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Принять редактирование ячейки, заблокировать ее,
+            внести изменения в базу и обновить информацию из базы данных
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.EditMenuInfoItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик события пункта меню редактировать информацию о работнике
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.ChangeSelectedSpecialtiesMenuItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик события пункта меню сменить предпочитаемые специальности для текущего работника
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.ChangeSelectedEmploymenTypesMenuItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик события пункта меню сменить предпочитаемые типы
+            занятости для для текущего работника
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.SuggestVacancyMenuItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик события "подобрать вакансию"
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.buttonCreate_Click(System.Object,System.EventArgs)">
+            <summary>
+            Выполнить регистрацию работника
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.buttonClear_Click(System.Object,System.EventArgs)">
+            <summary>
+            Очистить форму регистрации работника
             </summary>
         </member>
         <member name="M:ViewLayer.FormEmployees.tcEmployees_SelectedIndexChanged(System.Object,System.EventArgs)">
@@ -57,13 +110,73 @@
             Подстроить размеры формы под внутренний контент
             Запуск подгрузки данных при переходе на другую вкладку
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="M:ViewLayer.FormEmployees.UpdateInfo(System.String)">
             <summary>
             Обновить таблицу с информацией о работниках
             Пытается применить фильтр для показа
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.UpdateStatistics">
+            <summary>
+            Обновляет таблицу статистики
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.buttonSearchInfo_Click(System.Object,System.EventArgs)">
+            <summary>
+            Очистить поиск информации о работниках
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.buttonClearSearchInfo_Click(System.Object,System.EventArgs)">
+            <summary>
+            Найти информацию о работниках
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.buttonSelectSpecialties_Click(System.Object,System.EventArgs)">
+            <summary>
+            Перенаправление сигнала о нажатии кнопки во внешнюю среду
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.buttonSelectEmploymentTypes_Click(System.Object,System.EventArgs)">
+            <summary>
+            Перенаправление сигнала о нажатии кнопки во внешнюю среду
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.dataGridInfo_CellMouseUp(System.Object,System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+            <summary>
+            Выделение ячейки при нажатии на контекстное меню
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.tcEmployees_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Использование быстрых клавиш для поиска и отмены поиска
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.dateTimePicker_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Изменение даты трудоустройства работника при окончании изменении даты
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.tcEmployees_Selecting(System.Object,System.Windows.Forms.TabControlCancelEventArgs)">
+            <summary>
+            Отмена перехода на вкладку "поиск работы"
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.radioButtonStatistics_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Изменен тип отображаемой статистики, перестройка элементов и обновление информации
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.dateRangeValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Произведено изменение интервала статистики
+            необходимо обновление таблицы
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormEmployees.radioButtonSuggestVacancyChanged(System.Object,System.EventArgs)">
+            <summary>
+            Произведено изменение подбора вакансии
+            необходимо обновление таблицы вакансий
             </summary>
         </member>
         <member name="F:ViewLayer.FormEmployees.components">
@@ -304,6 +417,50 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:ViewLayer.FormSelectEmploymentTypes.#ctor(ViewLayer.IViewEmployee,ViewLayer.IViewSpecialty)">
+            <summary>
+            Конструктор динамической формы
+            </summary>
+        </member>
+        <member name="F:ViewLayer.FormSelectEmploymentTypes.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormSelectEmploymentTypes.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ViewLayer.FormSelectEmploymentTypes.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormSelectSpecialties.#ctor(ViewLayer.IViewSpecialty,ViewLayer.IViewEmployee)">
+            <summary>
+            Конструктор динамической формы
+            </summary>
+        </member>
+        <member name="F:ViewLayer.FormSelectSpecialties.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ViewLayer.FormSelectSpecialties.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ViewLayer.FormSelectSpecialties.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:ViewLayer.IViewAuth">
             <summary>
             Интерфейс для взаимодейтсвия с формой авторизации
@@ -322,7 +479,7 @@
             Интерфейс для взаимодействия со слоем представления
             </summary>
         </member>
-        <member name="M:ViewLayer.IViewEmployee.RegisterEmployee(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:ViewLayer.IViewEmployee.RegisterEmployee(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Зарегистрировать работника
             </summary>
@@ -333,7 +490,6 @@
             <param name="address">Адрес работника</param>
             <param name="phone">Телефон работника</param>
             <param name="experience">Опыт работника</param>
-            <param name="specialty">Предпочитаемая специальность работника</param>
         </member>
         <member name="M:ViewLayer.IViewEmployee.GetEmployees(System.String)">
             <summary>
@@ -342,7 +498,67 @@
             name2, itn2, address2, phone2
             ...
             </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.GetSelectedSpecialties">
+            <summary>
+            Получить список специальностей, выбранных пользователем
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.SetSelectedSpecialties(System.Collections.Generic.List{System.String})">
+            <summary>
+            Установить список специальностей, выбранных пользователем
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.SetSelectedSpecialties(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Установить выбранные специальности для работника и сохранить 
+            значения для конкретного работника
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.GetSelectedSpecialties(System.String)">
+            <summary>
+            Получить выбранные специальности для конкретного работника
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.ChangeEmployeeInfo(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.UInt32,System.String)">
+            <summary>
+            Изменение информации о работнике
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.GetSelectedEmploymentTypes">
+            <summary>
+            Получить список типов занятости, выбранных пользователем
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.GetSelectedEmploymentTypes(System.String)">
+            <summary>
+            Получить выбранные типы занятости для конкретного работника
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.SetSelectedEmploymentTypes(System.Collections.Generic.List{System.String})">
+            <summary>
+            Установить список типов занятостей, выбранных пользователем
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.SetSelectedEmploymentTypes(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Установить выбранные типы занятостей для работника и сохранить 
+            значения для конкретного работника
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.GetEmployeeAsStatistics(System.String,System.String,System.String)">
+            <summary>
+            Получение работников, удовлетворяющих фильтрам
+            </summary>
+            <param name="dateStart">дата начала диапазона</param>
+            <param name="dateEnd">дата окончания диапазона</param>
+            <param name="status">статус (true, false) о трудоустройстве</param>
             <returns></returns>
+        </member>
+        <member name="M:ViewLayer.IViewEmployee.GetRemommendedVacancies(System.String)">
+            <summary>
+            Получить список вакансий, рекомендуемых работнику
+            </summary>
         </member>
         <member name="T:ViewLayer.IViewVacancy">
             <summary>
@@ -431,7 +647,17 @@
         </member>
         <member name="M:ViewLayer.IViewSpecialty.AddSpecialty(System.String)">
             <summary>
-            Добавить специальность
+            Добавить новую специальность
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewSpecialty.GetSpecialties">
+            <summary>
+            Получить список специальностей из базы данных
+            </summary>
+        </member>
+        <member name="M:ViewLayer.IViewSpecialty.GetEmploymentTypes">
+            <summary>
+            Получить список всех типов занятости
             </summary>
         </member>
         <member name="T:ViewLayer.Properties.Resources">
