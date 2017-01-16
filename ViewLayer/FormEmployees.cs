@@ -23,6 +23,14 @@ namespace ViewLayer
         /// Событие, которое происходит при нажатии на кнопку выбрать типы занятости
         /// </summary>
         public event EventHandler ButtonSelectEmploymentTypesClicked;
+        /// <summary>
+        /// Событие, которое происходит при нажатии на меню изменения набора специальностей
+        /// </summary>
+        public event EventHandler MenuEditSelectedSpecialties;
+        /// <summary>
+        /// Событие, которое происходит при нажатии на меню изменения набора типов занятостей
+        /// </summary>
+        public event EventHandler MenuEditSelectedEmploymentTypes;
 
         private String SelectedEmployerPassport;    //Паспорт выбранного работника для совета ему вакансии
         private String DataBeforeEditing;
@@ -45,7 +53,7 @@ namespace ViewLayer
             this.dataGridVacancies.RowHeadersVisible = false;
             this.dataGridStatistics.RowHeadersVisible = false;
             //Подключить обработчик при нажатии на кнопку добавления специальностей
-            this.buttonSelectSpecialties.Click += ButtonSelectSpecialtiesClicked;
+            //this.buttonSelectSpecialties.Click += ButtonSelectSpecialtiesClicked;
             //Создание объектов контекстного меню  информации о работниках
             contextMenuInfoEmploee = new ContextMenuStrip();
             // Создание пунктов меню
@@ -153,7 +161,7 @@ namespace ViewLayer
         /// </summary>
         private void ChangeSelectedSpecialtiesMenuItemClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Изменение предпочитаемых специальностей");
+            MenuEditSelectedSpecialties(SelectedEmployerPassport, e);
         }
         /// <summary>
         /// Обработчик события пункта меню сменить предпочитаемые типы
@@ -161,17 +169,17 @@ namespace ViewLayer
         /// </summary>
         private void ChangeSelectedEmploymenTypesMenuItemClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Изменение предпочитаемых типов занятости");
+            MenuEditSelectedEmploymentTypes(SelectedEmployerPassport, e);
         }
         /// <summary>
         /// Обработчик события "подобрать вакансию"
         /// </summary>
         private void SuggestVacancyMenuItemClick(object sender, EventArgs e)
         {
-            //Сохранить пасспорт выделенного работника
+            /*//Сохранить пасспорт выделенного работника
             //В ячейке с индексом 3 находится пасспортные данные
             this.SelectedEmployerPassport =
-                dataGridInfo.Rows[dataGridInfo.CurrentRow.Index].Cells[3].Value.ToString();
+                dataGridInfo.Rows[dataGridInfo.CurrentRow.Index].Cells[3].Value.ToString();*/
             AllowToFindJob = true;
             tcEmployees.SelectedIndex = 2;
         }
@@ -383,12 +391,17 @@ namespace ViewLayer
         }
         /// <summary>
         /// Выделение ячейки при нажатии на контекстное меню
+        /// Сохранение данных пасспорта в выделенной строке
         /// </summary>
         private void dataGridInfo_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right && e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
                 dataGridInfo.CurrentCell = dataGridInfo[e.ColumnIndex, e.RowIndex];
+                //Сохранить пасспорт выделенного работника
+                //В ячейке с индексом 3 находится пасспортные данные
+                this.SelectedEmployerPassport =
+                    dataGridInfo.Rows[dataGridInfo.CurrentRow.Index].Cells[3].Value.ToString();
             }
         }
         /// <summary>

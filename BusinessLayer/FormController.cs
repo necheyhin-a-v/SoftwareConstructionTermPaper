@@ -65,6 +65,8 @@ namespace BusinessLayer
             EmployeesForm.FormClosed += UnAuthorize;
             EmployeesForm.ButtonSelectSpecialtiesClicked += SelectSpecialties;
             EmployeesForm.ButtonSelectEmploymentTypesClicked += SelectEmploymentTypes;
+            EmployeesForm.MenuEditSelectedEmploymentTypes += SelectEmploymentTypes;
+            EmployeesForm.MenuEditSelectedSpecialties += SelectSpecialties;
             EmployeesForm.Show();
         }
         private void AddVacancy (object sender, EventArgs e)
@@ -72,7 +74,7 @@ namespace BusinessLayer
             if(VacancyForm.IsDisposed) VacancyForm = new ViewLayer.FormAddVacancy(this.Vacancies);
             EmployerForm.Hide();
             VacancyForm.Show();
-            VacancyForm.FormClosed += FinishAuthorization;
+            VacancyForm.FormClosed += ShowEmployerOrEmployeeForm;
             VacancyForm.ButtonAddSpecialtyClicked += AddSpecialty;
         }
 
@@ -86,17 +88,22 @@ namespace BusinessLayer
 
         private void SelectSpecialties(object sender, EventArgs e)
         {
-            if (SelectSpecialtiesForm.IsDisposed) SelectSpecialtiesForm = new ViewLayer.FormSelectSpecialties(this.Specialties, this.Employees);
+            if (SelectSpecialtiesForm.IsDisposed)
+                SelectSpecialtiesForm = new ViewLayer.FormSelectSpecialties(this.Specialties, this.Employees);
+            if (sender is string)
+                SelectSpecialtiesForm.SpecialtiesByEmployee(sender.ToString());
             EmployeesForm.Hide();
             SelectSpecialtiesForm.Show();
-            SelectSpecialtiesForm.FormClosed += FinishAuthorization;
+            SelectSpecialtiesForm.FormClosed += ShowEmployerOrEmployeeForm;
         }
         private void SelectEmploymentTypes(object sender, EventArgs e)
         {
             if (SelectEmploymentTypesForm.IsDisposed) SelectEmploymentTypesForm = new ViewLayer.FormSelectEmploymentTypes(this.Employees, this.Specialties);
+            if (sender is string)
+                SelectEmploymentTypesForm.EmploymentTypesByEmployee(sender.ToString());
             EmployeesForm.Hide();
             SelectEmploymentTypesForm.Show();
-            SelectEmploymentTypesForm.FormClosed += FinishAuthorization;
+            SelectEmploymentTypesForm.FormClosed += ShowEmployerOrEmployeeForm;
         }
 
         /// <summary>
@@ -114,6 +121,19 @@ namespace BusinessLayer
             else
                 Application.Exit();
         }
+
+        private void ShowEmployerOrEmployeeForm(object sender, FormClosedEventArgs e)
+        {
+            if (this.Users.GetAuthorizedUser() != null)
+            {
+                if (Users.GetRole() == ModelLayerMSSQL.UserRoles.Consultant)
+                    EmployeesForm.Show();
+                else
+                    EmployerForm.Show();
+            }
+        }
+
+
         /// <summary>
         /// При закрытии окон показывать окно авторизации
         /// </summary>

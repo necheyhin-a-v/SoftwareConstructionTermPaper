@@ -29,6 +29,7 @@ namespace BusinessLayer
         public Employees()
         {
             SelectedSpecialties = new List<string>();
+            SelectedEmploymentTypes = new List<string>();
         }
 
         public List<string[]> GetEmployees(string filter)
@@ -299,22 +300,52 @@ namespace BusinessLayer
 
         public void SetSelectedSpecialties(string passportData, List<string> specialties)
         {
-            throw new NotImplementedException();
+            SelectedSpecialties.Clear();
+            SelectedSpecialties.AddRange(specialties);
+            ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(passportData);
+
+            List<ModelLayerMSSQL.Specialty> allSpecialties = ModelLayerMSSQL.Specialty.GetAll();
+            //Удаление у работника ненужных специальностей и установка нужных
+            foreach (var item in allSpecialties)
+                employee.DeletePriorSpecialty(item);
+            foreach (var item in SelectedSpecialties)
+                employee.AddPriorSpecialty(item);
         }
 
         public List<string> GetSelectedSpecialties(string passportData)
         {
-            throw new NotImplementedException();
+            SelectedSpecialties.Clear();
+            ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(passportData);
+            List<ModelLayerMSSQL.Specialty> selectedSpecialties = employee.GetPriorSpecialties();
+            //Преобразование списков из списка специальностей в список строк
+            foreach (var item in selectedSpecialties)
+                SelectedSpecialties.Add(item.GetName());
+            return SelectedSpecialties;
         }
 
         public List<string> GetSelectedEmploymentTypes(string passportData)
         {
-            throw new NotImplementedException();
+            SelectedEmploymentTypes.Clear();
+            ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(passportData);
+            List<ModelLayerMSSQL.EmploymentType> selectedEmploymentTypes = employee.GetPriorEmploymentTypes();
+            //Преобразование списков из списка специальностей в список строк
+            foreach (var item in selectedEmploymentTypes)
+                SelectedEmploymentTypes.Add(item.ToString());
+            return SelectedEmploymentTypes;
         }
 
         public void SetSelectedEmploymentTypes(string passportData, List<string> employmentTypes)
         {
-            throw new NotImplementedException();
+            SelectedEmploymentTypes.Clear();
+            SelectedEmploymentTypes.AddRange(employmentTypes);
+            ModelLayerMSSQL.Employee employee = ModelLayerMSSQL.Employee.GetByPassport(passportData);
+            //Получить все возможные типы занятости
+            List<string> allTypes =  Enum.GetNames(typeof(ModelLayerMSSQL.EmploymentType)).ToList();
+            //Удаление у работника ненужных типов занятости и установка нужных
+            foreach (var item in allTypes)
+                employee.DeletePriorEmploymentType((ModelLayerMSSQL.EmploymentType)Enum.Parse(typeof(ModelLayerMSSQL.EmploymentType), item));
+            foreach (var item in SelectedEmploymentTypes)
+                employee.AddPriorEmploymentType((ModelLayerMSSQL.EmploymentType)Enum.Parse(typeof(ModelLayerMSSQL.EmploymentType), item));
         }
     }
 }
