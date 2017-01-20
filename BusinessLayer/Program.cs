@@ -17,7 +17,8 @@ namespace Programm
             {
                 //Программа требует предварительной настройки
                 //ModelLayerMSSQL.DataBase.Initialize("necheukhin.ddns.net", "1433");
-                ModelLayerMSSQL.DataBase.Initialize("192.168.1.50", "1433");
+                //ModelLayerMSSQL.DataBase.Initialize("192.168.1.50", "1433");
+                ModelLayerMSSQL.DataBase.Initialize("127.0.0.1", "1433");
                 //Создание нового контроллера форм
                 BusinessLayer.FormController controller = new BusinessLayer.FormController();
                 //Передать дальнейшее управление контролееру форм

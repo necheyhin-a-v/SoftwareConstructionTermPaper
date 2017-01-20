@@ -33,14 +33,22 @@ namespace ModelLayerMSSQL
         {
             HostName = host;
             Port = port;
-            //Настройки можно посмотреть в файле tnsnames.ora
-            ConnectionString = "Server=tcp:"
-                + HostName + "," + Port + ";"
-                + "Initial Catalog = " + DB_NAME + ";"
-                + "User Id=" + USER_NAME + ";"
-                 + "Password=" + PASSWORD + ";";
-
-
+            if(host.Equals("127.0.0.1") || host.Equals("localhost"))
+            {
+                //Настройки можно посмотреть в файле tnsnames.ora
+                ConnectionString = "Data Source = .\\SQLEXPRESS;"
+                    + "Initial Catalog = TermPaper;"
+                    + "Integrated Security = True;";
+            }
+            else
+            {
+                //Настройки можно посмотреть в файле tnsnames.ora
+                ConnectionString = "Server=tcp:"
+                    + HostName + "," + Port + ";"
+                    + "Initial Catalog = " + DB_NAME + ";"
+                    + "User Id=" + USER_NAME + ";"
+                     + "Password=" + PASSWORD + ";";
+            }
             Connection = new SqlConnection(ConnectionString);
             Command = new SqlCommand();
             Command.Connection = DataBase.GetConnection();
